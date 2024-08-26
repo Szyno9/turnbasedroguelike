@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name hostile_character
 var turn_queue:turn_queue
 
-const SPEED = 100.0
+const SPEED = 50.0
 
 func _ready():
 	turn_queue=get_parent()
@@ -27,3 +27,8 @@ func play_turn():
 
 func end_turn():
 	turn_queue.play_turn()
+
+
+func _on_detection_shape_body_entered(body):
+	print("dziendobry")
+	turn_queue.combat_mode=true

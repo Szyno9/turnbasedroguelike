@@ -8,13 +8,21 @@ const SPEED = 50.0
 
 func _ready():
 	turn_queue = get_parent()
-	print("gittest")
 
 func _physics_process(delta):
 	
-	if Input.is_action_pressed("ui_accept"):
-		pressedEnter.emit()
-	
+	if turn_queue.combat_mode == true:
+		if Input.is_action_pressed("ui_accept"):
+			pressedEnter.emit()
+	else:
+		if Input.is_action_pressed("ui_left"):
+			position+=Vector2(SPEED*-1, 0)
+		elif Input.is_action_pressed("ui_right"):
+			position+=Vector2(SPEED*1, 0)
+		elif Input.is_action_pressed("ui_up"):
+			position+=Vector2(0, SPEED*-1)
+		elif Input.is_action_pressed("ui_down"):
+			position+=Vector2(0, SPEED)
 
 func play_turn():
 	print("tu jestem")

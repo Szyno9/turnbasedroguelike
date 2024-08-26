@@ -1,6 +1,7 @@
 extends Node
 
 class_name turn_queue
+var combat_mode = false
 var all_chars: Array
 @export var active_char: CharacterBody2D
 #func _init():

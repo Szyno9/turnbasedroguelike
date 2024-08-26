@@ -11,7 +11,7 @@
 [node name="Player_Character" parent="turn_queue" instance=ExtResource("3_q2hce")]
 
 [node name="Enemy2" parent="turn_queue" instance=ExtResource("2_hy038")]
-position = Vector2(464, 176)
+position = Vector2(984, 136)
 
 [node name="Enemy" parent="turn_queue" instance=ExtResource("2_hy038")]
-position = Vector2(456, 384)
+position = Vector2(680, 560)
