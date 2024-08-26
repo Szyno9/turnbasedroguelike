@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddadrm3u5ejos"]
+
+[ext_resource type="PackedScene" uid="uid://bgnxfkapjsu3c" path="res://systems/turn_queue.tscn" id="1_l5m5s"]
+[ext_resource type="PackedScene" uid="uid://kw4ium0jwp1r" path="res://characters/Enemy/enemy.tscn" id="2_hy038"]
+[ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
+
+[node name="main" type="Node2D"]
+
+[node name="turn_queue" parent="." instance=ExtResource("1_l5m5s")]
+
+[node name="Player_Character" parent="turn_queue" instance=ExtResource("3_q2hce")]
+
+[node name="Enemy2" parent="turn_queue" instance=ExtResource("2_hy038")]
+position = Vector2(464, 176)
+
+[node name="Enemy" parent="turn_queue" instance=ExtResource("2_hy038")]
+position = Vector2(456, 384)
