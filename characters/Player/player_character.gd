@@ -3,15 +3,17 @@ extends CharacterBody2D
 class_name player_character
 signal pressedEnter
 var turn_queue:turn_queue
+var turn_mode = false
 
 const SPEED = 50.0
 
 func _ready():
-	turn_queue = get_parent()
+	if get_parent().get_class() == "turn_queue":
+		turn_queue=get_parent()
 
 func _physics_process(delta):
 	
-	if turn_queue.combat_mode == true:
+	if turn_queue:
 		if Input.is_action_pressed("ui_accept"):
 			pressedEnter.emit()
 	else:
@@ -33,3 +35,15 @@ func play_turn():
 	
 func end_turn():
 	turn_queue.play_turn()
+
+func turn_modeON():
+	turn_mode=true
+	var new_parent = get_node("/root/main/turn_queue")
+	get_parent().remove_child(self)
+	new_parent.add_child(self)
+	turn_queue=get_parent()
+
+func _on_area_2d_body_entered(body):
+	if(turn_mode==false):
+		call_deferred("turn_modeON")
+		body.call_deferred("turn_modeON");
