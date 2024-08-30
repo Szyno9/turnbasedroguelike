@@ -8,8 +8,7 @@ var turn_queue:turn_queue
 const SPEED = 50.0
 
 func _ready():
-	if get_parent().get_class() == "turn_queue":
-		turn_queue=get_parent()
+	turn_queue = %turn_queue
 
 func _physics_process(delta):
 	if turn_mode == false:
@@ -43,7 +42,6 @@ func turn_modeON():
 	if turn_mode==false:
 		turn_mode=true
 		for entity in DetectionArea.get_overlapping_bodies():
-			print(entity)
 			entity.call_deferred("turn_modeON")
 		var new_parent = get_node("/root/main/turn_queue")
 		get_parent().remove_child(self)

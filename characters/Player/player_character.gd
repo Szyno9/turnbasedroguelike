@@ -2,18 +2,17 @@ extends CharacterBody2D
 
 class_name player_character
 signal pressedEnter
-var turn_queue:turn_queue
+@export var turn_queue:turn_queue
 var turn_mode = false
 
 const SPEED = 50.0
 
 func _ready():
-	if get_parent().get_class() == "turn_queue":
-		turn_queue=get_parent()
-
+		turn_queue = %turn_queue
+	
 func _physics_process(delta):
 	
-	if turn_queue:
+	if turn_mode:
 		if Input.is_action_pressed("ui_accept"):
 			pressedEnter.emit()
 	else:
@@ -27,7 +26,6 @@ func _physics_process(delta):
 			position+=Vector2(0, SPEED)
 
 func play_turn():
-	print("tu jestem")
 	await pressedEnter
 	position+=Vector2(SPEED,SPEED)
 	await get_tree().create_timer(0.5).timeout
@@ -38,10 +36,9 @@ func end_turn():
 
 func turn_modeON():
 	turn_mode=true
-	var new_parent = get_node("/root/main/turn_queue")
+	var new_parent = get_node(turn_queue.get_path())
 	get_parent().remove_child(self)
 	new_parent.add_child(self)
-	turn_queue=get_parent()
 
 func _on_area_2d_body_entered(body):
 	if(turn_mode==false):
