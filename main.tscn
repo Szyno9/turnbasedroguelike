@@ -6,9 +6,6 @@
 
 [node name="main" type="Node2D"]
 
-[node name="turn_queue" parent="." instance=ExtResource("3_oskk6")]
-unique_name_in_owner = true
-
 [node name="Player_Character" parent="." instance=ExtResource("3_q2hce")]
 
 [node name="Enemy2" parent="." instance=ExtResource("2_hy038")]
@@ -17,4 +14,5 @@ position = Vector2(984, 136)
 [node name="Enemy" parent="." instance=ExtResource("2_hy038")]
 position = Vector2(680, 560)
 
-[connection signal="child_entered_tree" from="turn_queue" to="turn_queue" method="_on_child_entered_tree"]
+[node name="turn_queue" parent="." instance=ExtResource("3_oskk6")]
+unique_name_in_owner = true

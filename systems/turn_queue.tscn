@@ -4,3 +4,5 @@
 
 [node name="turn_queue" type="Node"]
 script = ExtResource("1_wbtp1")
+
+[connection signal="turn_mode_start" from="." to="." method="_on_turn_mode_start"]

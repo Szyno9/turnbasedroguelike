@@ -2,10 +2,9 @@
 
 class_name turn_queue extends Node
 var all_chars: Array
-var test = 0
+signal turn_mode_start
 @export var active_char: CharacterBody2D
 	
-
 func get_chars():
 	all_chars = get_children(false)
 	all_chars.sort() #TODO:Sortowanie
@@ -17,13 +16,16 @@ func get_char(node):
 	all_chars.sort() #TODO:Sortowanie
 
 func play_turn():
+	print("quqe")
 	var new_index: int = (active_char.get_index() + 1) %  get_child_count()
 	active_char = get_child(new_index)
+	
 	active_char.play_turn()
 
-
 func _on_child_entered_tree(node):
-	print(node)
 	get_char(node)
-	
-	
+
+func _on_turn_mode_start():
+	all_chars.sort()
+	active_char = get_child(0)
+	active_char.play_turn()

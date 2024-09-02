@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://df0xmk10p7yr"]
+
+[node name="User_interface" type="CanvasLayer"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 248.0
+offset_top = 512.0
+offset_right = 448.0
+offset_bottom = 640.0
+text = "Attack
+"
+
+[node name="Button2" type="Button" parent="."]
+offset_top = 512.0
+offset_right = 232.0
+offset_bottom = 640.0
+text = "Move
+"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 896.0
+offset_top = 512.0
+offset_right = 1136.0
+offset_bottom = 632.0
+text = "End Turn"

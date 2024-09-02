@@ -4,6 +4,7 @@ class_name hostile_character
 var turn_queue:turn_queue
 @export var turn_mode=false
 @onready var DetectionArea = $DetectionArea
+@onready var timer = $Timer
 
 const SPEED = 50.0
 
@@ -11,7 +12,7 @@ func _ready():
 	turn_queue = %turn_queue
 
 func _physics_process(delta):
-	if turn_mode == false:
+	if  false:
 		var random = randi()%4
 		if random == 0:
 			position+=+Vector2(SPEED*-1,0)
@@ -33,7 +34,8 @@ func play_turn():
 	elif random == 3:
 		position+=+Vector2(0,SPEED)
 	move_and_slide()
-	end_turn()
+	timer.start()
+	#end_turn()
 
 func end_turn():
 	turn_queue.play_turn()
@@ -47,3 +49,7 @@ func turn_modeON():
 		get_parent().remove_child(self)
 		new_parent.add_child(self)
 		
+
+
+func _on_timer_timeout():
+	turn_queue.play_turn()

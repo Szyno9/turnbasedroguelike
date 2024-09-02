@@ -26,4 +26,38 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_2k30x")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="User_interface" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="User_interface"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -144.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="User_interface/HBoxContainer"]
+layout_mode = 2
+text = "Attack
+"
+
+[node name="MoveButton" type="Button" parent="User_interface/HBoxContainer"]
+layout_mode = 2
+text = "Move
+"
+
+[node name="EndTurnButton" type="Button" parent="User_interface/HBoxContainer"]
+layout_mode = 2
+text = "End Turn"
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="User_interface/HBoxContainer/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="User_interface/HBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
