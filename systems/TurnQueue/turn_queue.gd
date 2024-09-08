@@ -16,7 +16,8 @@ func get_char(node):
 	all_chars.sort() #TODO:Sortowanie
 
 func play_turn():
-	print("quqe")
+	if !active_char:
+		active_char = get_child(0) 
 	var new_index: int = (active_char.get_index() + 1) %  get_child_count()
 	active_char = get_child(new_index)
 	

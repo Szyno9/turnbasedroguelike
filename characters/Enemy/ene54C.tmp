@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://kw4ium0jwp1r"]
+[gd_scene load_steps=7 format=3 uid="uid://kw4ium0jwp1r"]
 
 [ext_resource type="Script" path="res://characters/Enemy/enemy.gd" id="1_d6byq"]
 [ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="2_6bqhi"]
+[ext_resource type="PackedScene" uid="uid://y75h01g1if5u" path="res://systems/States/state_machine.tscn" id="3_bq7m3"]
+[ext_resource type="Script" path="res://systems/States/Patrol.gd" id="4_j4bap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_einrk"]
 size = Vector2(32, 32)
@@ -35,5 +37,10 @@ shape = SubResource("CircleShape2D_ix515")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="move_finished" from="." to="." method="_on_move_finished"]
+[node name="StateMachine" parent="." instance=ExtResource("3_bq7m3")]
+
+[node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_j4bap")
+enemy = NodePath("../..")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
