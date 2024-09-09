@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckigu4fwmopn8"]
+[gd_scene load_steps=8 format=3 uid="uid://ckigu4fwmopn8"]
 
 [ext_resource type="Script" path="res://characters/Player/player_character.gd" id="1_2n5uk"]
 [ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="1_ts0cs"]
+[ext_resource type="Resource" uid="uid://b1lxkntwglicv" path="res://characters/Stats/PlayerTestStats.tres" id="2_v72f6"]
 [ext_resource type="PackedScene" uid="uid://y75h01g1if5u" path="res://systems/States/state_machine.tscn" id="3_qh4vw"]
+[ext_resource type="PackedScene" uid="uid://cabt8v6yliv82" path="res://Spells/missle.tscn" id="4_agexo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s4pv"]
 size = Vector2(32, 32)
@@ -10,8 +12,9 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2k30x"]
 radius = 128.0
 
-[node name="Player_Character" type="CharacterBody2D"]
+[node name="Player_Character" type="CharacterBody2D" groups=["ally"]]
 script = ExtResource("1_2n5uk")
+stats = ExtResource("2_v72f6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -50,18 +53,18 @@ layout_mode = 2
 text = "Attack
 "
 
-[node name="MoveButton" type="Button" parent="User_interface/HBoxContainer"]
-layout_mode = 2
-text = "Move
-"
-
 [node name="EndTurnButton" type="Button" parent="User_interface/HBoxContainer"]
 layout_mode = 2
 text = "End Turn"
 
 [node name="StateMachine" parent="." instance=ExtResource("3_qh4vw")]
 
+[node name="SpellBook" type="Node" parent="."]
+
+[node name="Missle" parent="SpellBook" instance=ExtResource("4_agexo")]
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="User_interface/HBoxContainer/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="button_down" from="User_interface/HBoxContainer/AttackButton" to="." method="_on_attack_button_button_down"]
+[connection signal="gui_input" from="User_interface/HBoxContainer/AttackButton" to="." method="_on_attack_button_gui_input"]
 [connection signal="pressed" from="User_interface/HBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

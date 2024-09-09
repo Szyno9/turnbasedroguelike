@@ -13,10 +13,10 @@ var surround_table:Array[Vector2i]
 @onready var tile_map = $"../TileMapLayer"
 
 signal move_finished
-
 var direction: Vector2i
-
 const SPEED = 50.0
+
+@export var stats:Stats
 
 func _ready():
 	astar_grid = AStarGrid2D.new()
@@ -76,3 +76,9 @@ func _on_move_finished():
 		turn_queue.play_turn()
 	else:
 		pass
+
+func take_damage():
+	call_deferred("turn_modeON")
+	stats.health-=5
+	if stats.health <=0:
+		queue_free()

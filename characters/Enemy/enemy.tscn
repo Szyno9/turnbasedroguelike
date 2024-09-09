@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://kw4ium0jwp1r"]
+[gd_scene load_steps=6 format=3 uid="uid://kw4ium0jwp1r"]
 
 [ext_resource type="Script" path="res://characters/Enemy/enemy.gd" id="1_d6byq"]
 [ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="2_6bqhi"]
+[ext_resource type="Resource" uid="uid://b1lxkntwglicv" path="res://characters/Stats/PlayerTestStats.tres" id="2_ucbvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_einrk"]
 size = Vector2(32, 32)
@@ -13,6 +14,7 @@ radius = 1704.15
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_d6byq")
+stats = ExtResource("2_ucbvp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
