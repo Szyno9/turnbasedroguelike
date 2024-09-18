@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://cl4huj0fercdc"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_8ojs6"]
+[ext_resource type="PackedScene" uid="uid://cabt8v6yliv82" path="res://Spells/missle/missle.tscn" id="1_ygl3f"]
+
+[resource]
+script = ExtResource("1_8ojs6")
+name = "Missle"
+spell_scene = ExtResource("1_ygl3f")

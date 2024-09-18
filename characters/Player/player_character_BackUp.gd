@@ -1,22 +1,11 @@
-extends CharacterBody2D
+extends PlayerBase
 
-class_name player_character
 enum INPUT_STATE{MOVE, ATTACK}
 var input_state:int
 
-@export var turn_queue:turn_queue
-var turn_mode = false
-
-var astar_grid: AStarGrid2D
-var current_id_path: Array[Vector2i]
-@onready var tile_map = $"../TileMapLayer"
-
-@export var stats:Stats
-
-var spell_book:SpellBook = SpellBook.new()
-var next_attack:PackedScene
 
 func _ready():
+	tile_map=$"../TileMapLayer"
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = tile_map.get_used_rect()
 	astar_grid.cell_size = Vector2(32, 32)

@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bgnxfkapjsu3c" path="res://systems/TurnQueue/turn_queue.tscn" id="3_oskk6"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
 [ext_resource type="Texture2D" uid="uid://4v7855brisg3" path="res://material32.png" id="4_0hmiy"]
-[ext_resource type="Script" path="res://user_interface.gd" id="6_pus1h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xx73k"]
 texture = ExtResource("4_0hmiy")
@@ -16,6 +15,14 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_vyiaj"]
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_xx73k")
+
+[sub_resource type="Resource" id="Resource_bwe5f"]
+resource_local_to_scene = true
+script = ExtResource("3_gug50")
+health = 50
+actions = 1
+initiative = 1
+speed = 6
 
 [sub_resource type="Resource" id="Resource_l4t5u"]
 resource_local_to_scene = true
@@ -41,8 +48,8 @@ tile_set = SubResource("TileSet_vyiaj")
 rendering_quadrant_size = 32
 
 [node name="Player_Character" parent="." instance=ExtResource("3_q2hce")]
-unique_name_in_owner = true
 position = Vector2(16, 16)
+stats = SubResource("Resource_bwe5f")
 
 [node name="Enemy2" parent="." instance=ExtResource("2_hy038")]
 position = Vector2(656, 176)
@@ -54,31 +61,3 @@ stats = SubResource("Resource_a7liv")
 
 [node name="turn_queue" parent="." instance=ExtResource("3_oskk6")]
 unique_name_in_owner = true
-
-[node name="User_interface" type="CanvasLayer" parent="."]
-script = ExtResource("6_pus1h")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="User_interface"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -144.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
-
-[node name="EndTurnButton" type="Button" parent="User_interface/HBoxContainer"]
-layout_mode = 2
-text = "End Turn"
-
-[node name="SpellsUI" type="HBoxContainer" parent="User_interface"]
-unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -144.0
-offset_right = 200.0
-grow_vertical = 0

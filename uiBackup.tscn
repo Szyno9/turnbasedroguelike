@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://smopfl6g6swg"]
+
+[ext_resource type="Script" path="res://characters/Player/spells_ui.gd" id="2_ykkod"]
+
+[node name="User_interface" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -144.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Attack
+"
+
+[node name="EndTurnButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "End Turn"
+
+[node name="SpellsUI" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -144.0
+offset_right = 200.0
+grow_vertical = 0
+script = ExtResource("2_ykkod")

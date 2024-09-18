@@ -63,13 +63,11 @@ func get_random_surrouding_tile():
 func move_to_tile(direction):
 	global_position = global_position.move_toward(tile_map.map_to_local((direction)), 1)
 	if tile_map.map_to_local(direction) == global_position:
-
 		is_moving = false
 		emit_signal("move_finished")
 
 func _on_timer_timeout():
 	turn_queue.play_turn()
-
 
 func _on_move_finished():	
 	if turn_mode:
@@ -77,8 +75,8 @@ func _on_move_finished():
 	else:
 		pass
 
-func take_damage():
+func take_damage(damage:int):
 	call_deferred("turn_modeON")
-	stats.health-=5
+	stats.health-=damage
 	if stats.health <=0:
 		queue_free()

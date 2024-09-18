@@ -2,6 +2,7 @@ extends Node2D
 
 var target:Vector2
 const speed = 500
+const damage = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if target == null:
@@ -20,7 +21,7 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("take_damage"):
-		body.take_damage()
+		body.take_damage(damage)
 		queue_free()
 	else:
-		print("kolizja")
+		print("no take_damage method")
