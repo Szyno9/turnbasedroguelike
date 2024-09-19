@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://ddadrm3u5ejos"]
+[gd_scene load_steps=7 format=4 uid="uid://ddadrm3u5ejos"]
 
 [ext_resource type="PackedScene" uid="uid://kw4ium0jwp1r" path="res://characters/Enemy/enemy.tscn" id="2_hy038"]
-[ext_resource type="Script" path="res://characters/Stats/Stats.gd" id="3_gug50"]
-[ext_resource type="PackedScene" uid="uid://bgnxfkapjsu3c" path="res://systems/TurnQueue/turn_queue.tscn" id="3_oskk6"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
 [ext_resource type="Texture2D" uid="uid://4v7855brisg3" path="res://material32.png" id="4_0hmiy"]
 [ext_resource type="Script" path="res://user_interface.gd" id="6_pus1h"]
@@ -17,22 +15,6 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_xx73k")
 
-[sub_resource type="Resource" id="Resource_l4t5u"]
-resource_local_to_scene = true
-script = ExtResource("3_gug50")
-health = 50
-actions = 1
-initiative = 1
-speed = 6
-
-[sub_resource type="Resource" id="Resource_a7liv"]
-resource_local_to_scene = true
-script = ExtResource("3_gug50")
-health = 50
-actions = 1
-initiative = 1
-speed = 6
-
 [node name="main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -40,20 +22,25 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAA
 tile_set = SubResource("TileSet_vyiaj")
 rendering_quadrant_size = 32
 
-[node name="Player_Character" parent="." instance=ExtResource("3_q2hce")]
+[node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
 unique_name_in_owner = true
 position = Vector2(16, 16)
+tile_map = NodePath("../TileMapLayer")
+health = 0
+actions = 0
+speed = 0
+initiative = 0
+turn_mode = false
+is_moving = false
 
-[node name="Enemy2" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(656, 176)
-stats = SubResource("Resource_l4t5u")
+[node name="Enemy" parent="." node_paths=PackedStringArray("tile_map") groups=["hostile"] instance=ExtResource("2_hy038")]
+position = Vector2(336, 112)
+tile_map = NodePath("../TileMapLayer")
 
-[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(496, 208)
-stats = SubResource("Resource_a7liv")
-
-[node name="turn_queue" parent="." instance=ExtResource("3_oskk6")]
-unique_name_in_owner = true
+[node name="Enemy2" parent="." node_paths=PackedStringArray("tile_map") groups=["hostile"] instance=ExtResource("2_hy038")]
+position = Vector2(380, 228)
+tile_map = NodePath("../TileMapLayer")
+health = 0
 
 [node name="User_interface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")
@@ -82,3 +69,5 @@ anchor_bottom = 1.0
 offset_top = -144.0
 offset_right = 200.0
 grow_vertical = 0
+
+[connection signal="pressed" from="User_interface/HBoxContainer/EndTurnButton" to="Player_Character" method="_on_end_turn_button_pressed"]

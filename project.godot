@@ -14,6 +14,10 @@ config/name="TurnBasedRogueLike"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TurnQueueGlobal="*res://systems/TurnQueue/AutoloadTQ/turn_queue_Global.gd"
+
 [display]
 
 window/size/viewport_width=800

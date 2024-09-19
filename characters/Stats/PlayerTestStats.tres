@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://characters/Stats/Stats.gd" id="1_qxuy6"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_qxuy6")
 health = 50
 actions = 1

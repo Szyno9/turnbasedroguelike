@@ -1,6 +1,7 @@
 extends Node2D
 
 var target:Vector2
+var protected_group: String
 const speed = 500
 const damage = 10
 # Called when the node enters the scene tree for the first time.
@@ -20,8 +21,6 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if body.has_method("take_damage"):
+	if body.has_method("take_damage") and not body.is_in_group(protected_group):
 		body.take_damage(damage)
 		queue_free()
-	else:
-		print("no take_damage method")

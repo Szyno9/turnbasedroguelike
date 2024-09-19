@@ -1,26 +1,41 @@
 extends CharacterBody2D
 
-class_name PlayerBase
+class_name CharacterBase
 #enum INPUT_STATE{MOVE, ATTACK}
 #var input_state:int
-@export var turn_queue:turn_queue
 @export var tile_map:TileMapLayer
-@export var stats:Stats
-var turn_mode = false
+@export_category("Stats")
+@export var starting_stats:Stats
+@export var health: int
+@export var actions: int
+@export var speed: int
+@export var initiative: int
+
+@export_category("Safe Values")
+@export var turn_mode = false
+@export var is_moving = false
+
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
+signal move_finished
+@onready var NotifyArea = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
+
 var spell_book:SpellBook = SpellBook.new()
 var next_attack:PackedScene
 
-#func _ready():
-	#astar_grid = AStarGrid2D.new()
-	#astar_grid.region = tile_map.get_used_rect()
-	#astar_grid.cell_size = Vector2(32, 32)
-	#astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	#astar_grid.update()
-	#spell_book.add_spell(load("res://Spells/missle/missle.tres"))
-	#
-	#turn_queue=%turn_queue
+func _ready():
+	tile_map=$"../TileMapLayer"
+	astar_grid = AStarGrid2D.new()
+	astar_grid.region = tile_map.get_used_rect()
+	astar_grid.cell_size = Vector2(32, 32)
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar_grid.update()
+	add_child(NotifyArea)
+	
+	health = starting_stats.health
+	actions = starting_stats.actions
+	speed = starting_stats.speed
+	initiative = starting_stats.initiative
 	
 #func _unhandled_input(event):
 	#match input_state:
@@ -57,34 +72,57 @@ var next_attack:PackedScene
 	#if global_position == target_position:
 		#current_id_path.pop_front()
 	
-
+#TURN FUNCTIONS
 func play_turn():
-	pass
+	turn_tick()
 	
 func end_turn():
-	turn_queue.play_turn()
+	TurnQueue.play_turn()
 
 func turn_modeON():
 	if turn_mode == false:
 		turn_mode=true
-		var new_parent = get_node(turn_queue.get_path())
-		get_parent().remove_child(self)
-		new_parent.add_child(self)
+		TurnQueue.join_queue(self)
+		for entity in NotifyArea.get_overlapping_bodies():
+			#entity.call_deferred("turn_modeON")
+			entity.turn_modeON()
 
-func _on_area_2d_body_entered(body):
-	if(turn_mode==false):
-		call_deferred("turn_modeON")
-		body.call_deferred("turn_modeON");
-
-func _on_end_turn_button_pressed():#TODO
-	turn_queue.play_turn()
+func turn_modeOff():
+	turn_mode = false
+	TurnQueue.end_queue()
 	
+func turn_tick():
+	current_id_path.clear()
+	speed=6
+	actions=1
+	
+	
+#BASE FUNCTIONS
 func take_damage(damage:int):
-	call_deferred("turn_modeON")
-	stats.health-=damage
-	if stats.health <=0:
+	turn_modeON()
+	health-=damage
+	if health <=0:
+		TurnQueue.remove_char(self)
 		queue_free()
+		
+func cast_spell(target:Vector2, protected_group: String, attack: PackedScene): #TODO zmiana attack na Resource
+	var b = attack.instantiate()
+	b.target = target
+	b.protected_group = protected_group
+	b.transform = global_transform
+	add_sibling(b)
 
+func move_one_tile(direction):
+	if speed > 0:	
+		global_position = global_position.move_toward(tile_map.map_to_local((direction)), 1)	
+		if tile_map.map_to_local(direction) == global_position:
+			is_moving = false
+			emit_signal("move_finished")
+			if turn_mode:
+				speed-=1
+			
+func move_to_tile(id_path:Array[Vector2i]):
+	pass
 #func _on_attack_button_button_down():#TODO
 	#if input_state == INPUT_STATE.MOVE:
 		#input_state = INPUT_STATE.ATTACK
