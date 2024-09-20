@@ -12,7 +12,7 @@ class_name CharacterBase
 @export var initiative: int
 
 @export_category("Safe Values")
-@export var turn_mode = false
+
 @export var is_moving = false
 
 var astar_grid: AStarGrid2D
@@ -21,7 +21,7 @@ signal move_finished
 @onready var NotifyArea = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
 
 var spell_book:SpellBook = SpellBook.new()
-var next_attack:PackedScene
+@export var next_attack:Spell
 
 func _ready():
 	tile_map=$"../TileMapLayer"
@@ -32,6 +32,7 @@ func _ready():
 	astar_grid.update()
 	add_child(NotifyArea)
 	
+	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed
@@ -78,20 +79,25 @@ func play_turn():
 	
 func end_turn():
 	TurnQueue.play_turn()
+	
+func _on_global_tick():
+	if TurnQueue.turn_mode == false:
+		turn_tick()
 
-func turn_modeON():
-	if turn_mode == false:
-		turn_mode=true
+func turn_modeON(): #TODO: lepsze szukanie wrogów do kolejki
+	if TurnQueue.turn_mode == false:
+		#TurnQueue.turn_mode=true
 		TurnQueue.join_queue(self)
-		for entity in NotifyArea.get_overlapping_bodies():
-			#entity.call_deferred("turn_modeON")
-			entity.turn_modeON()
+	for entity in NotifyArea.get_overlapping_bodies():
+		#entity.call_deferred("turn_modeON")
+		TurnQueue.join_queue(entity)
+
 
 func turn_modeOff():
-	turn_mode = false
+	#TurnQueue.turn_mode = false
 	TurnQueue.end_queue()
 	
-func turn_tick():
+func turn_tick(): #TODO
 	current_id_path.clear()
 	speed=6
 	actions=1
@@ -99,17 +105,20 @@ func turn_tick():
 	
 #BASE FUNCTIONS
 func take_damage(damage:int):
-	turn_modeON()
+	if TurnQueue.turn_mode == false:
+		turn_modeON()
 	health-=damage
 	if health <=0:
 		TurnQueue.remove_char(self)
 		queue_free()
 		
-func cast_spell(target:Vector2, protected_group: String, attack: PackedScene): #TODO zmiana attack na Resource
-	var b = attack.instantiate()
+func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zmiana attack na Resource
+	actions-=spell.action_cost
+	var b = spell.spell_scene.instantiate()
 	b.target = target
 	b.protected_group = protected_group
 	b.transform = global_transform
+	b.damage = spell.damage
 	add_sibling(b)
 
 func move_one_tile(direction):
@@ -118,7 +127,7 @@ func move_one_tile(direction):
 		if tile_map.map_to_local(direction) == global_position:
 			is_moving = false
 			emit_signal("move_finished")
-			if turn_mode:
+			if TurnQueue.turn_mode:
 				speed-=1
 			
 func move_to_tile(id_path:Array[Vector2i]):

@@ -26,15 +26,28 @@ rendering_quadrant_size = 32
 unique_name_in_owner = true
 position = Vector2(16, 16)
 tile_map = NodePath("../TileMapLayer")
+health = null
+actions = null
+speed = null
+initiative = null
+is_moving = null
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("tile_map") groups=["hostile"] instance=ExtResource("2_hy038")]
 position = Vector2(336, 112)
 tile_map = NodePath("../TileMapLayer")
+actions = null
+speed = null
+initiative = null
+is_moving = null
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("tile_map") groups=["hostile"] instance=ExtResource("2_hy038")]
 position = Vector2(380, 228)
 tile_map = NodePath("../TileMapLayer")
-health = 0
+health = null
+actions = null
+speed = null
+initiative = null
+is_moving = null
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")

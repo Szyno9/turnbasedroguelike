@@ -17,6 +17,8 @@ radius = 128.0
 script = ExtResource("1_eaob6")
 starting_stats = ExtResource("2_v72f6")
 
+[node name="NotifyArea" parent="." instance=ExtResource("6_qq2mx")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_ts0cs")
@@ -37,7 +39,5 @@ unique_name_in_owner = true
 script = ExtResource("5_1vgwq")
 
 [node name="StateMachine" parent="." instance=ExtResource("3_qh4vw")]
-
-[node name="NotifyArea" parent="." instance=ExtResource("6_qq2mx")]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_area_2d_body_entered"]

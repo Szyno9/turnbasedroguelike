@@ -3,7 +3,7 @@ extends Node2D
 var target:Vector2
 var protected_group: String
 const speed = 500
-const damage = 10
+var damage = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if target == null:

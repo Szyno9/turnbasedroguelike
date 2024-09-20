@@ -17,15 +17,16 @@ func _ready():
 func _process(delta):
 	pass
 func _physics_process(delta):
-	if turn_mode == false:
+	if TurnQueue.turn_mode == false:
 		patrol()
-	elif turn_mode and is_moving:
+	elif TurnQueue.turn_mode and is_moving:
 		move_one_tile(direction)
 		if speed == 0:
 			TurnQueue.play_turn()
 	
 	
 func play_turn():
+	turn_tick()
 	direction = get_random_surrouding_tile()
 	is_moving = true
 	move_and_slide()
@@ -44,8 +45,8 @@ func get_random_surrouding_tile():
 
 
 func _on_move_finished():
-	pass	
-	if turn_mode:
+	#return
+	if TurnQueue.turn_mode:
 		TurnQueue.play_turn()
 	else:
-		pass
+		return

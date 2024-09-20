@@ -2,8 +2,14 @@ class_name TurnQueue extends Node
 static var all_chars: Array
 static var active_char: CharacterBody2D
 static var turn_mode = false
+static var global_tick: Timer = preload("res://systems/TurnQueue/AutoloadTQ/global_tick.tscn").instantiate()
+
+func _ready():
+	add_child(global_tick)
+	global_tick.start()
 
 static func play_turn():
+	print(active_char)
 	if !active_char:
 		active_char = all_chars[0]
 	var new_index: int = (all_chars.find(active_char) + 1) %  all_chars.size()

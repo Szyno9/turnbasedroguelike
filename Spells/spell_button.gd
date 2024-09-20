@@ -1,6 +1,6 @@
 extends Button
 
-@export var spell_scene:PackedScene
+@export var spell_resource:Spell
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +11,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func set_properties(name:String, spell_scene1:PackedScene):
-	text=name
-	spell_scene=spell_scene1
+func set_properties(spell_resource1:Spell):
+	text=spell_resource1.name
+	spell_resource=spell_resource1

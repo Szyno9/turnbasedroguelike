@@ -23,6 +23,7 @@ func _unhandled_input(event):
 		INPUT_STATE.ATTACK:
 			if event.is_action_pressed("left_mouse_click"):
 				cast_spell(get_global_mouse_position(), "ally", next_attack)
+				input_state = INPUT_STATE.MOVE
 				#var b = next_attack.instantiate()
 				#b.target = get_global_mouse_position()
 				#b.protected_group = "ally"
@@ -48,14 +49,14 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if(turn_mode==false):
+	if(TurnQueue.turn_mode==false):
 		call_deferred("turn_modeON")
-		body.call_deferred("turn_modeON");
+		#body.call_deferred("turn_modeON");
 
 #UI STUFF
 func _on_end_turn_button_pressed():#TODO
-	print("halo")
-	TurnQueue.play_turn()
+	if TurnQueue.turn_mode:
+		TurnQueue.play_turn()
 
 func _on_attack_button_button_down():#TODO
 	if input_state == INPUT_STATE.MOVE:
@@ -66,9 +67,9 @@ func _on_attack_button_button_down():#TODO
 func _on_spells_ui_child_entered_tree(node):
 	node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
 
-func _spell_button_pressed(node):
+func _spell_button_pressed(spell_button:Node):
 	if input_state == INPUT_STATE.MOVE:
 		input_state = INPUT_STATE.ATTACK
-		next_attack = node.spell_scene
+		next_attack = spell_button.spell_resource
 	else:
 		input_state = INPUT_STATE.MOVE

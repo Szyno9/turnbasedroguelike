@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://baldueb0bf64q"]
+
+[node name="GlobalTick" type="Timer"]
+wait_time = 4.0
+autostart = true
