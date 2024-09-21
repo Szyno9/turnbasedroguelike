@@ -13,13 +13,8 @@ func _unhandled_input(event):
 		INPUT_STATE.MOVE:
 			if event.is_action_pressed("left_mouse_click") == false:
 				return
-			var id_path = astar_grid.get_id_path(
-				tile_map.local_to_map(global_position),
-				tile_map.local_to_map((get_global_mouse_position()))
-			).slice(1)
+			set_id_path(tile_map.local_to_map(get_global_mouse_position()))
 			
-			if id_path.is_empty() == false:
-				current_id_path = id_path
 		INPUT_STATE.ATTACK:
 			if event.is_action_pressed("left_mouse_click"):
 				cast_spell(get_global_mouse_position(), "ally", next_attack)
@@ -32,19 +27,7 @@ func _unhandled_input(event):
 				
 			
 func _physics_process(delta):
-	if Input.is_action_just_released("ui_focus_next"):#TODO
-			TurnQueue.join_queue(self)
-	
-	if current_id_path.is_empty():
-		return
-		
-	var target_position = tile_map.map_to_local(current_id_path.front())
-	
-	move_one_tile(current_id_path.front())
-	#global_position = global_position.move_toward(target_position, 3)
-
-	if global_position == target_position:
-		current_id_path.pop_front()
+	move_path()
 	
 
 

@@ -16,11 +16,8 @@ func _ready():
 func _process(delta):
 	pass
 func _physics_process(delta):
-	if is_moving:
-		move_one_tile(next_tile)
-	if TurnQueue.turn_mode == false:
-		return #patrol()
-	elif TurnQueue.turn_mode and TurnQueue.active_char == self:
+	move_path()
+	if TurnQueue.turn_mode and TurnQueue.active_char == self:
 		simple_decision()
 		
 	

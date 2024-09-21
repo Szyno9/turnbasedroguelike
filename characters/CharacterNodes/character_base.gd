@@ -3,7 +3,6 @@ extends CharacterBody2D
 class_name CharacterBase
 #enum INPUT_STATE{MOVE, ATTACK}
 #var input_state:int
-@export var tile_map:TileMapLayer
 @export_category("Stats")
 @export var starting_stats:Stats
 @export var health: int
@@ -17,6 +16,7 @@ var next_attack:Spell
 @export var is_moving = false
 signal move_finished
 
+@export var tile_map:Floor
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 @onready var NotifyArea = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
@@ -25,11 +25,12 @@ var current_id_path: Array[Vector2i]
 
 func _ready():
 	tile_map=$"../TileMapLayer"
-	astar_grid = AStarGrid2D.new()
-	astar_grid.region = tile_map.get_used_rect()
-	astar_grid.cell_size = Vector2(32, 32)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar_grid.update()
+	astar_grid = tile_map.astar_grid
+	#AStarGrid2D.new()
+	#astar_grid.region = tile_map.get_used_rect()
+	#astar_grid.cell_size = Vector2(32, 32)
+	#astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	#astar_grid.update()
 	add_child(NotifyArea)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
@@ -60,19 +61,8 @@ func _ready():
 				#add_child(b)
 				#b.transform = global_transform
 			
-#func _physics_process(delta):
-	#if Input.is_action_pressed("ui_focus_next"):#TODO
-			#turn_queue.turn_mode_start.emit()
-	#
-	#if current_id_path.is_empty():
-		#return
-		#
-	#var target_position = tile_map.map_to_local(current_id_path.front())
-#
-	#global_position = global_position.move_toward(target_position, 3)
-#
-	#if global_position == target_position:
-		#current_id_path.pop_front()
+func _physics_process(delta):
+	pass
 	
 #TURN FUNCTIONS
 func play_turn():
@@ -101,8 +91,9 @@ func turn_modeOff():
 func turn_tick(): #TODO
 	if TurnQueue.turn_mode == true:
 		current_id_path.clear()
-	speed=6
-	actions=1
+		is_moving = false
+	speed=starting_stats.speed
+	actions=starting_stats.actions
 	
 	
 #BASE FUNCTIONS
@@ -123,26 +114,70 @@ func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zm
 	b.damage = spell.damage
 	add_sibling(b)
 
-func move_one_tile(direction):
-	if speed > 0:	
-		global_position = global_position.move_toward(tile_map.map_to_local((direction)), 1)	
-		if tile_map.map_to_local(direction) == global_position:
-			is_moving = false
-			emit_signal("move_finished")
+func set_id_path(target:Vector2i):
+	var id_path = astar_grid.get_id_path(tile_map.local_to_map(global_position), target)
+	if id_path.is_empty() == false:
+		current_id_path = id_path
+func move_path():
+	if current_id_path.is_empty() == false and speed>0:
+		is_moving = true
+		var next_tile = tile_map.map_to_local(current_id_path.front())
+		global_position = global_position.move_toward(next_tile, 3)
+		if global_position == next_tile:
 			if TurnQueue.turn_mode:
 				speed-=1
+			current_id_path.pop_front()
+			move_finished.emit()
+	else:
+		is_moving = false
 
 func get_random_surrouding_tile():
 	var surround_table = tile_map.get_surrounding_cells(tile_map.local_to_map(global_position))
-	return surround_table[randi_range(0,3)]
+	for tile in surround_table:
+		if astar_grid.is_point_solid(tile):
+			surround_table.erase(tile)
+	return surround_table[randi_range(0,surround_table.size()-1)]
+
+#func move_one_tile(direction):
+	#if speed > 0:	
+		#global_position = global_position.move_toward(tile_map.map_to_local((direction)), 1)	
+		#if tile_map.map_to_local(direction) == global_position:
+			#is_moving = false
+			#emit_signal("move_finished")
+			#if TurnQueue.turn_mode:
+				#speed-=1
+#
+
+			#
+#func set_id_path(target_location: Vector2i):
+	#var id_path = astar_grid.get_id_path(
+				#tile_map.local_to_map(global_position),
+				#target_location
+			#).slice(1)
+	#if id_path.is_empty() == false:
+		#current_id_path = id_path
+#
+#func move_to_tile():
+	#if current_id_path.is_empty():
+		#return
+	#var target = current_id_path.front()
+	#
+	#if speed > 0:	
+		#global_position = global_position.move_toward(tile_map.map_to_local((target)), 1)
+		#if global_position == tile_map.map_to_local(target):
+			#tile_map._character_moved(target, Vector2i(0,0))
+			#current_id_path.pop_front()
+			#if TurnQueue.turn_mode:
+				#speed-=1
+		#if current_id_path.is_empty():
+			#is_moving = false
+			#emit_signal("move_finished")
 			
-func move_to_tile(id_path:Array[Vector2i]):
-	pass
 	
 func find_target() ->Vector2:
 	var temp_target:CharacterBase
 	for entity in NotifyArea.get_overlapping_bodies():
-		if entity.is_in_group("ally"):
+		if entity.is_in_group("ally"): #groups
 			temp_target = entity
 	return temp_target.global_position
 #func _on_attack_button_button_down():#TODO

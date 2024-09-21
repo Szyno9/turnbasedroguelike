@@ -16,16 +16,12 @@ func _process(delta):
 
 func patrol(): #TODO PRZEROBIĆ
 	if is_moving == false and TurnQueue.turn_mode == false:
-		next_tile = get_random_surrouding_tile()
+		set_id_path(get_random_surrouding_tile())#next_tile = get_random_surrouding_tile()
 		is_moving = true
-	elif is_moving:	
-		pass
-		#move_one_tile(direction)
 
 func simple_decision():
 	if actions <=0 and speed > 0 and is_moving == false:
-		next_tile = get_random_surrouding_tile()
-		is_moving = true
+		set_id_path(get_random_surrouding_tile()) #set_id_path(Vector2i(0,0))
 	elif actions <= 0 and speed == 0:
 		end_turn()
 	if actions > 0:

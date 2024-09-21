@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://ddadrm3u5ejos"]
 
 [ext_resource type="PackedScene" uid="uid://kw4ium0jwp1r" path="res://characters/Enemy/enemy.tscn" id="2_hy038"]
-[ext_resource type="Script" path="res://map/floor.gd" id="2_j54ih"]
+[ext_resource type="Script" path="res://map.gd" id="2_j54ih"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
 [ext_resource type="Texture2D" uid="uid://4v7855brisg3" path="res://material32.png" id="4_0hmiy"]
 [ext_resource type="Script" path="res://user_interface.gd" id="6_pus1h"]
@@ -23,6 +23,17 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAA
 tile_set = SubResource("TileSet_vyiaj")
 rendering_quadrant_size = 32
 script = ExtResource("2_j54ih")
+
+[node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
+unique_name_in_owner = true
+position = Vector2(176, 207)
+tile_map = NodePath("../TileMapLayer")
+
+[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
+actions = 0
+speed = 0
+initiative = 0
+is_moving = false
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")
@@ -94,13 +105,5 @@ text = "1"
 [node name="SpeedValue" type="Label" parent="UserInterface/StatsUI/Values"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
-unique_name_in_owner = true
-position = Vector2(176, 207)
-tile_map = NodePath("../TileMapLayer")
-
-[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(366, 206)
 
 [connection signal="pressed" from="UserInterface/HBoxContainer/EndTurnButton" to="Player_Character" method="_on_end_turn_button_pressed"]
