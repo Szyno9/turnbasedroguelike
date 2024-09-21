@@ -10,3 +10,6 @@ func remove_spell(spell:Spell):
 
 func get_spells() -> Array[Spell]:
 	return _content
+
+func pick_random() -> Spell:
+	return _content.pick_random()

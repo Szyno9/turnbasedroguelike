@@ -8,19 +8,21 @@ func _ready():
 	add_child(global_tick)
 	global_tick.start()
 
-static func play_turn():
-	print(active_char)
-	if !active_char:
+static func play_turn(): #actually stats turn for next character
+	if !active_char and all_chars.size()>0:
 		active_char = all_chars[0]
+	elif all_chars.size()==0:
+		end_queue()
+		return
 	var new_index: int = (all_chars.find(active_char) + 1) %  all_chars.size()
 	active_char = all_chars[new_index]
+	print(active_char)
 	active_char.play_turn()
 
 static func join_queue(node:CharacterBody2D):
 	turn_mode = true
 	if all_chars.has(node) == false:
 		all_chars.append(node)
-	print(all_chars)
 
 static func end_queue():
 	all_chars.clear()

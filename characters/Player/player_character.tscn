@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckigu4fwmopn8"]
+[gd_scene load_steps=8 format=3 uid="uid://ckigu4fwmopn8"]
 
-[ext_resource type="Script" path="res://characters/Player/player_character_BackUp.gd" id="1_eaob6"]
+[ext_resource type="Script" path="res://characters/Player/player_character.gd" id="1_eaob6"]
 [ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="1_ts0cs"]
 [ext_resource type="Resource" uid="uid://b1lxkntwglicv" path="res://characters/Stats/PlayerTestStats.tres" id="2_v72f6"]
 [ext_resource type="PackedScene" uid="uid://y75h01g1if5u" path="res://systems/States/state_machine.tscn" id="3_qh4vw"]
-[ext_resource type="Script" path="res://Spells/spell_book.gd" id="5_1vgwq"]
-[ext_resource type="PackedScene" uid="uid://cc8fkq42ddbnw" path="res://characters/CharacterNodes/NotifyArea.tscn" id="6_qq2mx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s4pv"]
 size = Vector2(32, 32)
@@ -13,11 +11,29 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2k30x"]
 radius = 128.0
 
+[sub_resource type="GDScript" id="GDScript_lwej2"]
+script/source = "extends Node
+
+var spell_array:Array
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	spell_array.append(load(\"res://Spells/missle/missle.tres\"))
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+func add_spell(spell_path:String):
+	spell_array.append(load(spell_path))
+
+func give_random():
+	return spell_array[randi_range(0, spell_array.size())]
+"
+
 [node name="Player_Character" type="CharacterBody2D" groups=["ally"]]
 script = ExtResource("1_eaob6")
 starting_stats = ExtResource("2_v72f6")
-
-[node name="NotifyArea" parent="." instance=ExtResource("6_qq2mx")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -36,7 +52,7 @@ shape = SubResource("CircleShape2D_2k30x")
 
 [node name="SpellBook" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5_1vgwq")
+script = SubResource("GDScript_lwej2")
 
 [node name="StateMachine" parent="." instance=ExtResource("3_qh4vw")]
 

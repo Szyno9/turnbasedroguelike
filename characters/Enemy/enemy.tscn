@@ -8,14 +8,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_einrk"]
 size = Vector2(32, 32)
 
-[node name="Enemy" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 0
+[node name="Enemy" type="CharacterBody2D" groups=["hostile"]]
+collision_layer = 3
 script = ExtResource("1_d6byq")
 starting_stats = ExtResource("2_ucbvp")
 health = -90
-
-[node name="NotifyArea" parent="." instance=ExtResource("4_yrojn")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -29,5 +26,4 @@ one_shot = true
 
 [node name="DetectionArea" parent="." instance=ExtResource("4_yrojn")]
 
-[connection signal="move_finished" from="." to="." method="_on_move_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

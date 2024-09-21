@@ -22,16 +22,24 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAA
 tile_set = SubResource("TileSet_vyiaj")
 rendering_quadrant_size = 32
 
-[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(465, 115)
-
-[node name="Enemy2" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(465, 240)
-
 [node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
 unique_name_in_owner = true
-position = Vector2(176, 207)
+position = Vector2(16, 16)
 tile_map = NodePath("../TileMapLayer")
+health = null
+actions = null
+speed = null
+initiative = null
+is_moving = null
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_hy038")]
+position = Vector2(336, 112)
+tile_map = NodePath("../TileMapLayer")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_hy038")]
+position = Vector2(380, 228)
+tile_map = NodePath("../TileMapLayer")
+health = 0
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")

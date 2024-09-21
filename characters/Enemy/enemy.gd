@@ -1,13 +1,12 @@
-extends CharacterBase
+extends EnemyBase
 @onready var timer = $Timer
 
-var surround_table:Array[Vector2i]
-var direction: Vector2i
 const SPEED = 50.0
 
 func _ready():
 	super()
-	
+	spell_book.add_spell(load("res://Spells/missle/missle.tres"))
+	TurnQueue.global_tick.connect("timeout", Callable(self, "patrol"))
 	#astar_grid = AStarGrid2D.new()
 	#astar_grid.region = tile_map.get_used_rect()
 	#astar_grid.cell_size = Vector2(32, 32)
@@ -17,36 +16,11 @@ func _ready():
 func _process(delta):
 	pass
 func _physics_process(delta):
+	if is_moving:
+		move_one_tile(next_tile)
 	if TurnQueue.turn_mode == false:
-		patrol()
-	elif TurnQueue.turn_mode and is_moving:
-		move_one_tile(direction)
-		if speed == 0:
-			TurnQueue.play_turn()
-	
-	
-func play_turn():
-	turn_tick()
-	direction = get_random_surrouding_tile()
-	is_moving = true
-	move_and_slide()
+		return #patrol()
+	elif TurnQueue.turn_mode and TurnQueue.active_char == self:
+		simple_decision()
 		
-func patrol():
-	if is_moving == false:
-		direction = get_random_surrouding_tile()
-		is_moving = true
-	elif is_moving:	
-		move_one_tile(direction)
-		
-func get_random_surrouding_tile():
-	surround_table = tile_map.get_surrounding_cells(tile_map.local_to_map(global_position))
-	return surround_table[randi_range(0,3)]
-
-
-
-func _on_move_finished():
-	#return
-	if TurnQueue.turn_mode:
-		TurnQueue.play_turn()
-	else:
-		return
+	

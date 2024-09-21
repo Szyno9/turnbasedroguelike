@@ -10,18 +10,18 @@ class_name CharacterBase
 @export var actions: int
 @export var speed: int
 @export var initiative: int
+var spell_book:SpellBook = SpellBook.new()
+var next_attack:Spell
 
 @export_category("Safe Values")
-
 @export var is_moving = false
+signal move_finished
 
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
-signal move_finished
 @onready var NotifyArea = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
 
-var spell_book:SpellBook = SpellBook.new()
-@export var next_attack:Spell
+
 
 func _ready():
 	tile_map=$"../TileMapLayer"
@@ -33,6 +33,7 @@ func _ready():
 	add_child(NotifyArea)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
+	
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed
@@ -86,7 +87,7 @@ func _on_global_tick():
 
 func turn_modeON(): #TODO: lepsze szukanie wrogów do kolejki
 	if TurnQueue.turn_mode == false:
-		#TurnQueue.turn_mode=true
+		TurnQueue.turn_mode=true
 		TurnQueue.join_queue(self)
 	for entity in NotifyArea.get_overlapping_bodies():
 		#entity.call_deferred("turn_modeON")
@@ -98,7 +99,8 @@ func turn_modeOff():
 	TurnQueue.end_queue()
 	
 func turn_tick(): #TODO
-	current_id_path.clear()
+	if TurnQueue.turn_mode == true:
+		current_id_path.clear()
 	speed=6
 	actions=1
 	
@@ -129,9 +131,20 @@ func move_one_tile(direction):
 			emit_signal("move_finished")
 			if TurnQueue.turn_mode:
 				speed-=1
+
+func get_random_surrouding_tile():
+	var surround_table = tile_map.get_surrounding_cells(tile_map.local_to_map(global_position))
+	return surround_table[randi_range(0,3)]
 			
 func move_to_tile(id_path:Array[Vector2i]):
 	pass
+	
+func find_target() ->Vector2:
+	var temp_target:CharacterBase
+	for entity in NotifyArea.get_overlapping_bodies():
+		if entity.is_in_group("ally"):
+			temp_target = entity
+	return temp_target.global_position
 #func _on_attack_button_button_down():#TODO
 	#if input_state == INPUT_STATE.MOVE:
 		#input_state = INPUT_STATE.ATTACK

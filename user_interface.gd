@@ -8,6 +8,8 @@ func _ready():
 	show_spells()
 
 func _process(delta):
+	if Player_Character == null:
+		return
 	if Player_Character.actions == 0: #TODO zmienić do funkcji on_changed
 		for button in SpellsUI.get_children():
 			button.disabled = true
