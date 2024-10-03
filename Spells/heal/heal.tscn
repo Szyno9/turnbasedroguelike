@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bghhn7qq1nwyk"]
+
+[ext_resource type="Script" path="res://Spells/heal/heal.gd" id="1_i7muy"]
+[ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="2_aqbfu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5spke"]
+size = Vector2(127, 126)
+
+[node name="Heal" type="Node2D"]
+script = ExtResource("1_i7muy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aqbfu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_5spke")

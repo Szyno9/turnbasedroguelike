@@ -1,16 +1,14 @@
 extends Button
 
-@export var spell_resource:Spell
-
+class_name SpellButton
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var spell_index:int
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func set_properties(spell_resource1:Spell):
+func set_properties(spell_resource1:Spell, spell_index1:int):
 	text=spell_resource1.name
-	spell_resource=spell_resource1
+	spell_index = spell_index1

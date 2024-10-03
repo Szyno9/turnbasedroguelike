@@ -24,6 +24,14 @@ tile_set = SubResource("TileSet_vyiaj")
 rendering_quadrant_size = 32
 script = ExtResource("2_j54ih")
 
+[node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
+unique_name_in_owner = true
+position = Vector2(176, 207)
+tile_map = NodePath("../TileMapLayer")
+
+[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
+position = Vector2(366, 206)
+
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")
 
@@ -95,12 +103,7 @@ text = "1"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Player_Character" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("3_q2hce")]
-unique_name_in_owner = true
-position = Vector2(176, 207)
-tile_map = NodePath("../TileMapLayer")
-
-[node name="Enemy" parent="." instance=ExtResource("2_hy038")]
-position = Vector2(366, 206)
+[node name="Enemy2" parent="." instance=ExtResource("2_hy038")]
+position = Vector2(365, 367)
 
 [connection signal="pressed" from="UserInterface/HBoxContainer/EndTurnButton" to="Player_Character" method="_on_end_turn_button_pressed"]

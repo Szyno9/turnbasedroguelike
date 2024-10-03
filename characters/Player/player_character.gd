@@ -6,7 +6,8 @@ var input_state:int
 
 func _ready():
 	super()
-	spell_book.add_spell(load("res://Spells/missle/missle.tres"))
+	spell_book.add_spell(load("res://Spells/missle/missle.tres").duplicate())
+	spell_book.add_spell(load("res://Spells/heal/heal.tres").duplicate())
 	
 func _unhandled_input(event):
 	match input_state:
@@ -17,7 +18,9 @@ func _unhandled_input(event):
 			
 		INPUT_STATE.ATTACK:
 			if event.is_action_pressed("left_mouse_click"):
-				cast_spell(get_global_mouse_position(), "ally", next_attack)
+				if next_attack.cooldown==0:
+					cast_spell(get_global_mouse_position(), "ally", next_attack)
+					next_attack=null
 				input_state = INPUT_STATE.MOVE
 				#var b = next_attack.instantiate()
 				#b.target = get_global_mouse_position()
@@ -50,9 +53,9 @@ func _on_attack_button_button_down():#TODO
 func _on_spells_ui_child_entered_tree(node):
 	node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
 
-func _spell_button_pressed(spell_button:Node):
+func _spell_button_pressed(spell_button:SpellButton):
 	if input_state == INPUT_STATE.MOVE:
 		input_state = INPUT_STATE.ATTACK
-		next_attack = spell_button.spell_resource
+		next_attack = spell_book.get_indexed_spell(spell_button.spell_index)
 	else:
 		input_state = INPUT_STATE.MOVE

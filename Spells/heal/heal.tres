@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://klw605auipp7"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_vikvb"]
+[ext_resource type="PackedScene" uid="uid://bghhn7qq1nwyk" path="res://Spells/heal/heal.tscn" id="2_nnkty"]
+
+[resource]
+script = ExtResource("1_vikvb")
+name = "Heal"
+damage = -25
+basic_cooldown = 2
+cooldown = 2
+range = 5
+action_cost = 1
+spell_scene = ExtResource("2_nnkty")

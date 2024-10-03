@@ -26,6 +26,8 @@ func simple_decision():
 		end_turn()
 	if actions > 0:
 		next_attack = choose_spell()
+		if next_attack.cooldown>0:
+			return
 		var target = find_target()
 		if target != null:
 			cast_spell(target,"hostile", next_attack)

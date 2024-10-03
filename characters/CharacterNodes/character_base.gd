@@ -34,7 +34,6 @@ func _ready():
 	add_child(NotifyArea)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
-	
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed
@@ -79,6 +78,7 @@ func turn_modeON(): #TODO: lepsze szukanie wrogów do kolejki
 	if TurnQueue.turn_mode == false:
 		TurnQueue.turn_mode=true
 		TurnQueue.join_queue(self)
+		TurnQueue.play_turn()
 	for entity in NotifyArea.get_overlapping_bodies():
 		#entity.call_deferred("turn_modeON")
 		TurnQueue.join_queue(entity)
@@ -94,6 +94,7 @@ func turn_tick(): #TODO
 		is_moving = false
 	speed=starting_stats.speed
 	actions=starting_stats.actions
+	spell_book.turn_tick()
 	
 	
 #BASE FUNCTIONS
@@ -107,15 +108,16 @@ func take_damage(damage:int):
 		
 func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zmiana attack na Resource
 	actions-=spell.action_cost
+	spell_book.set_cooldown(spell)
 	var b = spell.spell_scene.instantiate()
-	b.target = target
+	b.target = tile_map.map_to_local(tile_map.local_to_map(target))
 	b.protected_group = protected_group
 	b.transform = global_transform
 	b.damage = spell.damage
 	add_sibling(b)
 
 func set_id_path(target:Vector2i):
-	var id_path = astar_grid.get_id_path(tile_map.local_to_map(global_position), target)
+	var id_path = astar_grid.get_id_path(tile_map.local_to_map(global_position), target).slice(1)
 	if id_path.is_empty() == false:
 		current_id_path = id_path
 func move_path():
@@ -179,7 +181,10 @@ func find_target() ->Vector2:
 	for entity in NotifyArea.get_overlapping_bodies():
 		if entity.is_in_group("ally"): #groups
 			temp_target = entity
-	return temp_target.global_position
+	if temp_target != null:
+		return temp_target.global_position
+	else:
+		return self.global_position
 #func _on_attack_button_button_down():#TODO
 	#if input_state == INPUT_STATE.MOVE:
 		#input_state = INPUT_STATE.ATTACK
