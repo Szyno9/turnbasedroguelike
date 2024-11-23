@@ -1,0 +1,63 @@
+{
+	"categories": [
+		{
+			"uuid": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "43b46b20-83f1-414c-a48a-20f0305f7253",
+			"title": "Todo",
+			"tasks": []
+		},
+		{
+			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
+			"title": "Doing",
+			"tasks": [
+				"d3119641-a8be-4205-b5e3-ab4e4c91803b"
+			]
+		},
+		{
+			"uuid": "224db046-a596-4ff4-8ad8-3b173959edd3",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "d3119641-a8be-4205-b5e3-ab4e4c91803b",
+			"title": "Map_gen",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "Connection_grid",
+					"done": false
+				},
+				{
+					"details": "Room gen",
+					"done": false
+				},
+				{
+					"details": "Map gen",
+					"done": false
+				}
+			]
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"43b46b20-83f1-414c-a48a-20f0305f7253"
+			],
+			[
+				"7677b0ce-33bb-4db0-a85f-661f5b566d95"
+			],
+			[
+				"224db046-a596-4ff4-8ad8-3b173959edd3"
+			]
+		]
+	}
+}

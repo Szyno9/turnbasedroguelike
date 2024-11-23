@@ -117,7 +117,11 @@ func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zm
 	add_sibling(b)
 
 func set_id_path(target:Vector2i):
-	var id_path = astar_grid.get_id_path(tile_map.local_to_map(global_position), target).slice(1)
+	var id_path
+	if current_id_path.is_empty():
+		id_path = astar_grid.get_id_path(tile_map.local_to_map(global_position), target).slice(1)
+	else:
+		id_path = astar_grid.get_id_path(current_id_path.front(), target)
 	if id_path.is_empty() == false:
 		current_id_path = id_path
 func move_path():

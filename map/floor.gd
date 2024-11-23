@@ -14,7 +14,8 @@ func _ready():
 	astar_grid.update()
 
 func _physics_process(delta):
-	test()
+	if Engine.get_physics_frames() % 30 == 0:
+		test()
 
 func test():
 	var char_position:Array[Vector2i]
