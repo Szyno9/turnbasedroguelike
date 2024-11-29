@@ -39,7 +39,7 @@ func draw_room(room:Array):
 	for y in range(room.size()):
 		for x in range(room[y].size()):
 			var tile_position = Vector2i(x, y)
-			if room[x][y] == 0:
+			if room[y][x] == 0:
 				tile_map.set_cell(tile_position,0,floor_tile)
 			else:
 				tile_map.set_cell(tile_position, 0, wall_tile)
@@ -63,7 +63,8 @@ func generate_room():
 	
 	#for i in range(MAX_ROOM_SIZE):
 		#print(room[i])
-	ensure_room_connectivity(room)
+	room = ensure_room_connectivity(room)
+	room = slice_room(room)
 		
 	return room
 
@@ -119,34 +120,24 @@ func ensure_room_connectivity(room: Array):
 	var room_dict = {}
 	var start = Vector2i(0,0)
 	
-	while true:
+	while find_room(room,visited) != null:
 		room_dict = find_room(room,visited)
-		print("iteration")
-		if room_dict == null:
-			break
 		start = room_dict["Start"]
 		visited = room_dict["Visited"]
 	
 		room_dict = scan_room(room, visited, start)
 		visited = room_dict["Visited"]
 		subrooms.append(room_dict["Subroom"])
-	
-	#for row in visited:
-		#print(row)
-	var room_count = 0
-	var sub_count = 0
-	for row in room:
-		room_count += row.count(0)
-	for row in subrooms[0]:
-		sub_count += row.count(0)
-	
-	print(room_count)
-	print(sub_count)	
-	
+
+	var largest_count = 0
 	for subroom in subrooms:
-		print("pokoj")
+		var sub_count = 0
 		for row in subroom:
-			print(row)
+			sub_count += row.count(0)
+		if sub_count > largest_count:
+			largest_count = sub_count
+			room = subroom
+		
 	return room
 			
 func find_room(room:Array, visited:Array):
@@ -188,8 +179,31 @@ func scan_room(room: Array, visited: Array, start: Vector2i):
 			subroom[dy][dx] = 0
 	return {"Subroom": subroom, "Visited": visited}
 	
-func not_visted(table:Array):
-	return table.has(false)
+func slice_room(room: Array):
+	var sliced_room = []
+	var most_left:int = MAX_ROOM_SIZE
+	var most_right:int = 0
+	var most_up:int = 0
+	var most_down:int = MAX_ROOM_SIZE
+	for y in range(room.size()):
+		for x in range(room.size()):
+			if room[y][x] == 0:
+				if x < most_left:
+					most_left = x
+				if x > most_right:
+					most_right = x
+				if y > most_down:
+					most_down = y
+				if y < most_up:
+					most_up = y
+	var room_center:Vector2i = Vector2i(most_right-most_left, most_down-most_up)
+	for y in range(most_up, most_down):
+		sliced_room.append([])
+		for x in range(most_left, most_right):
+			sliced_room[y].append(room[y][x])
+	for row in sliced_room:
+		print(row)
+	return sliced_room
 ####### GRAPH PART
 func generate_connection_graph(room_count:int):
 	connection_graph = Graph.new(room_count)
