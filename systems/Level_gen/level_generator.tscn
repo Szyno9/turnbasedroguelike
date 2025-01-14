@@ -1,30 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddppvn6tlyv2b"]
+[gd_scene load_steps=2 format=3 uid="uid://ddppvn6tlyv2b"]
 
-[ext_resource type="Script" path="res://level_genX.gd" id="1_4y8nf"]
-[ext_resource type="Texture2D" uid="uid://4v7855brisg3" path="res://material32.png" id="2_lvqlf"]
-[ext_resource type="Script" path="res://systems/Level_gen/camera_2d.gd" id="3_krmtk"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ba3j"]
-texture = ExtResource("2_lvqlf")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_vyr26"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_6ba3j")
+[ext_resource type="Script" path="res://systems/Level_gen/level_genY.gd" id="1_6xxy0"]
 
 [node name="LevelGenerator" type="Node2D"]
-script = ExtResource("1_4y8nf")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("3_krmtk")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_vyr26")
+script = ExtResource("1_6xxy0")

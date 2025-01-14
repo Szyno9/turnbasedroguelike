@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcqlxo41bivr6"]
+
+[ext_resource type="Script" path="res://characters/CharacterNodes/status_holder.gd" id="1_137ke"]
+
+[node name="Status_holder" type="Node2D"]
+script = ExtResource("1_137ke")

@@ -5,7 +5,7 @@ var floor_tile := Vector2i(0,0)
 var wall_tile := Vector2i(1,0)
 
 var connection_graph:Graph
-var ROOM_NUMBER: int = 200
+var ROOM_NUMBER: int = 30
 var MAX_ROOM_SIZE: int = 20
 var STANDARD_GAP: int = 3
 var GRID_SIZE: int = MAX_ROOM_SIZE * ROOM_NUMBER
@@ -35,7 +35,6 @@ func test_generate_dungeon():
 	for i in range(1000):
 		tile_map.clear()
 		generate_dungeon()
-		print(tile_map.get_used_rect())
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):
@@ -110,40 +109,38 @@ func place_room(current_room: Array, new_room:Array, current_point:Vector2i):
 			if current_room[pin.y][pin.x] == 0:
 				break
 		var random_number = randi()%4
-		random_number = 2
 		#pin = Vector2i(current_room[0].size()/2,current_room.size()/2)
 		#pin -= Vector2i(current_room[0].size()/2,current_room.size()/2) #center pin
+		pin = Vector2i(current_room[0].size()/2, current_room.size()/2) - Vector2i(current_room[0].size()/2,current_room.size()/2)
 		match random_number:
 			0: #UP
-				pin = move_pin_to_side(pin,current_room,Vector2i.DOWN)
+				#pin = move_pin_to_side(pin,current_room,Vector2i.DOWN)
 				new_point = current_point + Vector2i(pin.x, -(current_room.size()/2+new_room.size()/2 + STANDARD_GAP))
 			1: #DOWN
-				pin = move_pin_to_side(pin,current_room,Vector2i.UP)
+				#pin = move_pin_to_side(pin,current_room,Vector2i.UP)
 				new_point = current_point + Vector2i(pin.x, current_room.size()/2+new_room.size()/2 + STANDARD_GAP)
 			2: #LEFT
-				print(pin)
-				pin = move_pin_to_side(pin,current_room,Vector2i.LEFT)
+				#pin = move_pin_to_side(pin,current_room,Vector2i.LEFT)
 				new_point = current_point + Vector2i(-(current_room[0].size()/2 + new_room[0].size()/2 + STANDARD_GAP), pin.y)
 			3: #RIGHT
-				pin = move_pin_to_side(pin,current_room,Vector2i.RIGHT)
+				#pin = move_pin_to_side(pin,current_room,Vector2i.RIGHT)
 				new_point = current_point + Vector2i(current_room[0].size()/2+new_room[0].size()/2 + STANDARD_GAP, pin.y)
 	return {"new_point": new_point,"pin": pin+current_point}
 
 func move_pin_to_side(pin:Vector2i, room:Array, direction:Vector2i):
 	var final_pin:Vector2i = pin
-	while (pin.x in range(1,room[0].size()-1)) and (pin.y in range(1,room.size()-1)):
+	while (pin.x in range(2,room[0].size()-2)) and (pin.y in range(2,room.size()-2)):
 		pin+= direction
 		if room[pin.y][pin.x] == 0:
 			final_pin = pin
-	print(final_pin)
 	final_pin -= Vector2i(room[0].size()/2,room.size()/2)
 	return final_pin
-		
+
 func is_point_viable(room:Array, point:Vector2i):
 	var offset_x = room[0].size()/2
 	var offset_y = room.size()/2
-	for y in range(room.size()+1):
-		for x in range(room[y-1].size()+1):
+	for y in range(room.size()+3):
+		for x in range(room[y-3].size()+3):
 			var tile_position = Vector2i(point.x + x-offset_x, point.y + y-offset_y)
 			if tile_map.get_cell_tile_data(tile_position) != null:
 				return false
@@ -151,7 +148,13 @@ func is_point_viable(room:Array, point:Vector2i):
 	
 func draw_connection(point1:Vector2i, point2:Vector2i):
 	var point_step: Vector2i = (point2 - point1)/(point2 - point1).length()
-	var tile_position = point1
+	var point_alt=point2
+	while tile_map.get_cell_tile_data(point2) == null and tile_map.get_cell_tile_data(point_alt) == null:
+		point2+=point_step
+		point_alt-=point_step
+	if tile_map.get_cell_tile_data(point2) == null:
+		point2 = point_alt
+	var tile_position = point1+point_step
 	while tile_position != point2:
 		tile_position += point_step
 		tile_map.set_cell(tile_position,0,floor_tile)

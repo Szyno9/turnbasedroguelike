@@ -10,38 +10,225 @@
 		{
 			"uuid": "43b46b20-83f1-414c-a48a-20f0305f7253",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
+				"1fae73aa-129f-40a5-9a56-d9ea2273a876",
+				"2d9b08b4-6bd6-420d-9121-71afa3931217",
+				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
+				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
+				"19762a89-4f38-41f8-b593-d8bc462eff9a",
+				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
+				"9f2e2e5c-acea-428c-afb0-7eff8eae9579",
+				"1aa225f9-43e7-45db-b1d5-cba3f2af887f"
+			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
-				"d3119641-a8be-4205-b5e3-ab4e4c91803b"
+				"4f107f56-4b1b-41a1-8135-890ead7258b7"
 			]
 		},
 		{
 			"uuid": "224db046-a596-4ff4-8ad8-3b173959edd3",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"2c784979-f697-4175-8124-3daad16c802c",
+				"639094d8-e32a-4545-a4dd-00b586260752",
+				"a8ee94ab-0918-427c-ab19-2c42272455d4",
+				"8bd76749-a11e-4a8e-894f-9a7a7d8905dc",
+				"f0329f00-6607-48b3-b2ca-c68c386d71f3",
+				"5f308286-3901-493c-8e54-4cf1711649b2",
+				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
+				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce"
+			]
 		}
 	],
 	"tasks": [
 		{
 			"uuid": "d3119641-a8be-4205-b5e3-ab4e4c91803b",
 			"title": "Map_gen",
-			"description": "",
+			"description": "\t\t",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": [
 				{
 					"details": "Connection_grid",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Room gen",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Map gen",
+					"done": true
+				},
+				{
+					"details": "Add_features",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
+			"title": "Enemies",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "1fae73aa-129f-40a5-9a56-d9ea2273a876",
+			"title": "Enemy_Packs",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "4f107f56-4b1b-41a1-8135-890ead7258b7",
+			"title": "Teleports",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "2d9b08b4-6bd6-420d-9121-71afa3931217",
+			"title": "Loot",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "2c784979-f697-4175-8124-3daad16c802c",
+			"title": "Solidfy Map",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "639094d8-e32a-4545-a4dd-00b586260752",
+			"title": "Put Map in main",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "a8ee94ab-0918-427c-ab19-2c42272455d4",
+			"title": "spell ranges in spell resource",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "f0329f00-6607-48b3-b2ca-c68c386d71f3",
+			"title": "naprawić turnqueue",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "5f308286-3901-493c-8e54-4cf1711649b2",
+			"title": "spell range for enemies",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
+			"title": "new_enemy",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "sprite",
+					"done": false
+				},
+				{
+					"details": "attack",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "9f2e2e5c-acea-428c-afb0-7eff8eae9579",
+			"title": "finishh main character",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "sprite",
+					"done": false
+				},
+				{
+					"details": "proper turn queue behaviour",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "19762a89-4f38-41f8-b593-d8bc462eff9a",
+			"title": "Dźwięk",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "4ab6160f-ce42-4395-9519-49cd68a0ed96",
+			"title": "SPELLS",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "fireball",
+					"done": false
+				},
+				{
+					"details": "spear shot",
+					"done": false
+				},
+				{
+					"details": "fire wall",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "8bd76749-a11e-4a8e-894f-9a7a7d8905dc",
+			"title": "fix ai",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
+			"title": "SpellsUI",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "Icons",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "c0bac883-3f0d-4c38-adf8-be6677e5b837",
+			"title": "camera",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "1aa225f9-43e7-45db-b1d5-cba3f2af887f",
+			"title": "Cast_Spell",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "Cast spell by spell type",
+					"done": false
+				},
+				{
+					"details": "cast spell on target not on coords",
 					"done": false
 				}
 			]

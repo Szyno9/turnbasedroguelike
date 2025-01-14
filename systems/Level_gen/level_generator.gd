@@ -64,7 +64,6 @@ func smooth_room(room: Array):
 	for y in range(MAX_ROOM_SIZE):
 		for x in range(MAX_ROOM_SIZE):
 			var neighbors = get_wall_count(room, x, y)
-			print(neighbors)
 			if neighbors > 4:
 				room[y][x] = 1
 			elif neighbors < 4:

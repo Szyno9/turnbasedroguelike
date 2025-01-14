@@ -4,12 +4,11 @@ static var active_char: CharacterBase
 static var turn_mode = false
 static var global_tick: Timer = preload("res://systems/TurnQueue/AutoloadTQ/global_tick.tscn").instantiate()
 
-
 func _ready():
 	add_child(global_tick)
 	global_tick.start()
 
-static func play_turn(): #actually stats turn for next character
+static func play_turn(): #actually starts turn for next character
 	if !active_char and all_chars.size()>0:
 		active_char = all_chars[0]
 		return
@@ -25,6 +24,9 @@ static func join_queue(node:CharacterBody2D):
 	global_tick.stop()
 	if all_chars.has(node) == false:
 		all_chars.append(node)
+		all_chars.sort_custom(initiative_sort)
+	else:
+		play_turn()
 
 static func end_queue():
 	all_chars.clear()
@@ -33,3 +35,9 @@ static func end_queue():
 	
 static func remove_char(node:CharacterBody2D):
 	all_chars.erase(node)
+
+static func initiative_sort(a:CharacterBase,b:CharacterBase):
+	if a.initiative > b.initiative:
+		return true
+	return false
+	

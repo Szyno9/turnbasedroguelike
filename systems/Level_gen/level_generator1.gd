@@ -29,7 +29,7 @@ func CaveGeneration(tile_size, size, terrain_map):
 			update_tile_with_cellular_automata(x, y)
 	
 	smooth_map()
-	print("Wygładzanie zakończone")
+
 
 # Funkcja inicjalizująca mapę losowo
 func initialize_map(size):

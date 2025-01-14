@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://klw605auipp7"]
+[gd_resource type="Resource" script_class="Spell" load_steps=4 format=3 uid="uid://klw605auipp7"]
 
+[ext_resource type="Texture2D" uid="uid://qy5b5q2hsddf" path="res://Spells/heal/heal_icon_small.png" id="1_gpdbt"]
 [ext_resource type="Script" path="res://Spells/Spell.gd" id="1_vikvb"]
 [ext_resource type="PackedScene" uid="uid://bghhn7qq1nwyk" path="res://Spells/heal/heal.tscn" id="2_nnkty"]
 
 [resource]
 script = ExtResource("1_vikvb")
 name = "Heal"
+icon = ExtResource("1_gpdbt")
 damage = -25
 basic_cooldown = 2
 cooldown = 2
-range = 5
+spell_range = 15
+range_type = 0
+type = 1
 action_cost = 1
 spell_scene = ExtResource("2_nnkty")

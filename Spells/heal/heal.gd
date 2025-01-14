@@ -9,18 +9,11 @@ func _ready():
 		queue_free()
 	global_position = target
 
-func _physics_process(delta):
-	for char in $Area2D.get_overlapping_bodies():
-		if char.has_method("take_damage"):
-			char.take_damage(damage)
-	await get_tree().create_timer(0.005).timeout
+func _physics_process(_delta):
+	await get_tree().create_timer(1).timeout
 	queue_free()
 	#process_mode = Node.PROCESS_MODE_DISABLED
-	
-func heal_characters():
-	for char in $Area2D.get_overlapping_bodies():
-		if char.has_method("take_damage"):
-			char.take_damage(damage)
-	await get_tree().create_timer(2).timeout
-	queue_free()
-	
+
+func _on_area_2d_body_entered(body):
+	if body.has_method("take_damage"):
+			body.take_damage(damage)

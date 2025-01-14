@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://kw4ium0jwp1r"]
+
+[ext_resource type="Script" path="res://characters/Enemies/enemy.gd" id="1_d6byq"]
+[ext_resource type="Texture2D" uid="uid://d148uqj4ahkq3" path="res://icon.svg" id="2_6bqhi"]
+[ext_resource type="Resource" uid="uid://dw2wu8ngn806i" path="res://characters/Enemies/testEnemyStats.tres" id="2_vrspw"]
+[ext_resource type="PackedScene" uid="uid://cc8fkq42ddbnw" path="res://characters/CharacterNodes/NotifyArea.tscn" id="4_yrojn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_einrk"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="CharacterBody2D" groups=["hostile"]]
+collision_layer = 3
+script = ExtResource("1_d6byq")
+starting_stats = ExtResource("2_vrspw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_6bqhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_einrk")
+
+[node name="DetectionArea" parent="." instance=ExtResource("4_yrojn")]

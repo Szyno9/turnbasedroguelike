@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=4 format=3 uid="uid://4n8a2m3be7g4"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_lf06o"]
+[ext_resource type="Texture2D" uid="uid://bpddpwurqtuaj" path="res://Spells/slash/slash_icon_small.png" id="1_nyhyq"]
+[ext_resource type="PackedScene" uid="uid://bm6eq0ovmda7b" path="res://Spells/slash/slash.tscn" id="2_djv2p"]
+
+[resource]
+script = ExtResource("1_lf06o")
+name = "Slash"
+icon = ExtResource("1_nyhyq")
+damage = 20
+basic_cooldown = 1
+cooldown = 1
+spell_range = 1
+range_type = 0
+type = 0
+action_cost = 1
+spell_scene = ExtResource("2_djv2p")

@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://cl4huj0fercdc"]
+[gd_resource type="Resource" script_class="Spell" load_steps=4 format=3 uid="uid://cl4huj0fercdc"]
 
 [ext_resource type="Script" path="res://Spells/Spell.gd" id="1_8ojs6"]
+[ext_resource type="Texture2D" uid="uid://l88p1xbhmd24" path="res://Spells/missle/missle_icon_small.png" id="1_s8qor"]
 [ext_resource type="PackedScene" uid="uid://cabt8v6yliv82" path="res://Spells/missle/missle.tscn" id="1_ygl3f"]
 
 [resource]
 script = ExtResource("1_8ojs6")
 name = "Missle"
+icon = ExtResource("1_s8qor")
 damage = 10
 basic_cooldown = 1
 cooldown = 1
-range = 15
+spell_range = 12
+range_type = 0
+type = 0
 action_cost = 1
 spell_scene = ExtResource("1_ygl3f")

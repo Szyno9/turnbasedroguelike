@@ -3,8 +3,10 @@ extends CharacterBody2D
 class_name CharacterBase
 #enum INPUT_STATE{MOVE, ATTACK}
 #var input_state:int
+
 @export_category("Stats")
 @export var starting_stats:Stats
+@export var max_health: int
 @export var health: int
 @export var actions: int
 @export var speed: int
@@ -12,32 +14,35 @@ class_name CharacterBase
 var spell_book:SpellBook = SpellBook.new()
 var next_attack:Spell
 
+
 @export_category("Safe Values")
 @export var is_moving = false
+var direction_facing = Vector2i.DOWN
 signal move_finished
+signal character_damaged
+signal character_died
+signal spell_casted
 
-@export var tile_map:Floor
+@export var tile_map:LevelMap
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
-@onready var NotifyArea = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
-
+@onready var NotifyArea:Area2D = preload("res://characters/CharacterNodes/NotifyArea.tscn").instantiate()
+@onready var status_holder:StatusHolder = preload("res://characters/CharacterNodes/status_holder.tscn").instantiate()
+var map_coords:Vector2i
 
 
 func _ready():
-	tile_map=$"../TileMapLayer"
+	tile_map=%LevelMap
 	astar_grid = tile_map.astar_grid
-	#AStarGrid2D.new()
-	#astar_grid.region = tile_map.get_used_rect()
-	#astar_grid.cell_size = Vector2(32, 32)
-	#astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	#astar_grid.update()
 	add_child(NotifyArea)
+	add_child(status_holder)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed
 	initiative = starting_stats.initiative
+	
 	
 #func _unhandled_input(event):
 	#match input_state:
@@ -60,7 +65,8 @@ func _ready():
 				#add_child(b)
 				#b.transform = global_transform
 			
-func _physics_process(delta):
+func _physics_process(_delta):
+	map_coords = tile_map.local_to_map(global_position)
 	pass
 	
 #TURN FUNCTIONS
@@ -77,11 +83,12 @@ func _on_global_tick():
 func turn_modeON(): #TODO: lepsze szukanie wrogów do kolejki
 	if TurnQueue.turn_mode == false:
 		TurnQueue.turn_mode=true
-		TurnQueue.join_queue(self)
-		TurnQueue.play_turn()
+		#TurnQueue.join_queue(self)
 	for entity in NotifyArea.get_overlapping_bodies():
-		#entity.call_deferred("turn_modeON")
-		TurnQueue.join_queue(entity)
+		if entity.is_class("CharacterBody2D"):
+			TurnQueue.join_queue(entity)
+	await get_tree().create_timer(0.5).timeout
+	TurnQueue.play_turn()
 
 
 func turn_modeOff():
@@ -95,18 +102,31 @@ func turn_tick(): #TODO
 	speed=starting_stats.speed
 	actions=starting_stats.actions
 	spell_book.turn_tick()
-	
+	status_holder.turn_tick_status_check()
+
 	
 #BASE FUNCTIONS
 func take_damage(damage:int):
 	if TurnQueue.turn_mode == false:
 		turn_modeON()
-	health-=damage
+	
+	damage = status_holder.damage_status_check(damage)
+	if damage > 0:
+		character_damaged.emit()
+		health-=damage
 	if health <=0:
 		TurnQueue.remove_char(self)
+		character_died.emit()
 		queue_free()
+
+func take_heal(heal:int):
+	if heal+health < max_health:
+		health+=heal
+	else:
+		health = max_health
 		
-func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zmiana attack na Resource
+func cast_spell(target:Vector2, protected_group: String, spell: Spell):
+	current_id_path =[]
 	actions-=spell.action_cost
 	spell_book.set_cooldown(spell)
 	var b = spell.spell_scene.instantiate()
@@ -114,6 +134,7 @@ func cast_spell(target:Vector2, protected_group: String, spell: Spell): #TODO zm
 	b.protected_group = protected_group
 	b.transform = global_transform
 	b.damage = spell.damage
+	spell_casted.emit()
 	add_sibling(b)
 
 func set_id_path(target:Vector2i):
@@ -128,7 +149,8 @@ func move_path():
 	if current_id_path.is_empty() == false and speed>0:
 		is_moving = true
 		var next_tile = tile_map.map_to_local(current_id_path.front())
-		global_position = global_position.move_toward(next_tile, 3)
+		global_position = global_position.move_toward(next_tile, 1)
+		direction_facing = current_id_path.front() - tile_map.local_to_map(global_position)
 		if global_position == next_tile:
 			if TurnQueue.turn_mode:
 				speed-=1
@@ -144,66 +166,14 @@ func get_random_surrouding_tile():
 			surround_table.erase(tile)
 	return surround_table[randi_range(0,surround_table.size()-1)]
 
-#func move_one_tile(direction):
-	#if speed > 0:	
-		#global_position = global_position.move_toward(tile_map.map_to_local((direction)), 1)	
-		#if tile_map.map_to_local(direction) == global_position:
-			#is_moving = false
-			#emit_signal("move_finished")
-			#if TurnQueue.turn_mode:
-				#speed-=1
-#
-
-			#
-#func set_id_path(target_location: Vector2i):
-	#var id_path = astar_grid.get_id_path(
-				#tile_map.local_to_map(global_position),
-				#target_location
-			#).slice(1)
-	#if id_path.is_empty() == false:
-		#current_id_path = id_path
-#
-#func move_to_tile():
-	#if current_id_path.is_empty():
-		#return
-	#var target = current_id_path.front()
-	#
-	#if speed > 0:	
-		#global_position = global_position.move_toward(tile_map.map_to_local((target)), 1)
-		#if global_position == tile_map.map_to_local(target):
-			#tile_map._character_moved(target, Vector2i(0,0))
-			#current_id_path.pop_front()
-			#if TurnQueue.turn_mode:
-				#speed-=1
-		#if current_id_path.is_empty():
-			#is_moving = false
-			#emit_signal("move_finished")
-			
-	
-func find_target() ->Vector2:
-	var temp_target:CharacterBase
-	for entity in NotifyArea.get_overlapping_bodies():
-		if entity.is_in_group("ally"): #groups
-			temp_target = entity
-	if temp_target != null:
-		return temp_target.global_position
-	else:
-		return self.global_position
-#func _on_attack_button_button_down():#TODO
-	#if input_state == INPUT_STATE.MOVE:
-		#input_state = INPUT_STATE.ATTACK
-	#else:
-		#input_state = INPUT_STATE.MOVE
-	
 
 
-#func _on_spells_ui_child_entered_tree(node):
-	#node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
 
-#func _spell_button_pressed(node):
-	#if input_state == INPUT_STATE.MOVE:
-		#input_state = INPUT_STATE.ATTACK
-		#next_attack = node.spell_scene
-		#print(node.spell_scene)
-	#else:
-		#input_state = INPUT_STATE.MOVE
+func check_spell_range(spell:Spell, target:Vector2):
+	var center:Vector2i = tile_map.local_to_map(global_position)
+	var final_target:Vector2i = tile_map.local_to_map(target)
+	match(spell.range_type):
+		GlobalEnums.RANGE_TYPE.CIRCURAL:
+			if center.distance_to(final_target) <= spell.spell_range:
+				return true
+	return false

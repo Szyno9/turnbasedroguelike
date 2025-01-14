@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://vm6dbsvgtd42"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_bj1bj"]
+[ext_resource type="PackedScene" uid="uid://bnrklg848mv2p" path="res://Spells/Shield/shield.tscn" id="2_337ch"]
+
+[resource]
+script = ExtResource("1_bj1bj")
+name = "Spell Shield"
+damage = 0
+basic_cooldown = 3
+cooldown = 0
+spell_range = 12
+range_type = 0
+type = 2
+action_cost = 1
+spell_scene = ExtResource("2_337ch")
