@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 TurnQueueGlobal="*res://systems/TurnQueue/AutoloadTQ/turn_queue_Global.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GlobalEnums="*res://systems/global_enums.gd"
+GlobalDataBus="*res://systems/GlobalBus/global_bus.gd"
 
 [display]
 

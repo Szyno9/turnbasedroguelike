@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddadrm3u5ejos"]
+[gd_scene load_steps=14 format=3 uid="uid://ddadrm3u5ejos"]
 
 [ext_resource type="Texture2D" uid="uid://c25noxqeg4oh7" path="res://assets/tilesets/overlay.png" id="2_gvtur"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddppvn6tlyv2b" path="res://systems/Level_gen/level_generator.tscn" id="6_332ob"]
 [ext_resource type="Script" path="res://systems/user_inteface/user_interface.gd" id="6_pus1h"]
 [ext_resource type="PackedScene" uid="uid://ceychkkljcd64" path="res://characters/Enemies/Skeleton/skeleton.tscn" id="7_51oky"]
+[ext_resource type="PackedScene" uid="uid://bxd0pguc7mq2b" path="res://systems/user_inteface/pause_menu.tscn" id="9_w4hfc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cu8cg"]
 texture = ExtResource("4_2sccx")
@@ -433,6 +434,8 @@ text = "1"
 [node name="SpeedValue" type="Label" parent="UserInterface/StatsUI/Values"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="PauseMenu" parent="UserInterface" instance=ExtResource("9_w4hfc")]
 
 [node name="Skeleton2" parent="." instance=ExtResource("7_51oky")]
 position = Vector2(280, 264)

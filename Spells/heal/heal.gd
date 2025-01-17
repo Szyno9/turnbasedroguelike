@@ -2,7 +2,7 @@ extends Node2D
 
 var target:Vector2
 var protected_group: String
-var damage = -25
+var heal = 30
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if target == null:
@@ -15,5 +15,5 @@ func _physics_process(_delta):
 	#process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_area_2d_body_entered(body):
-	if body.has_method("take_damage"):
-			body.take_damage(damage)
+	if body.has_method("take_heal"):
+			body.take_heal(heal)
