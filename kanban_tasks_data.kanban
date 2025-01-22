@@ -28,6 +28,7 @@
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
+				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
 				"2d9b08b4-6bd6-420d-9121-71afa3931217"
 			]
 		},
@@ -253,6 +254,13 @@
 		{
 			"uuid": "4d790c00-7606-4120-8cf1-b0b9479c2133",
 			"title": "Change TurnQueue to not static",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "b4ae0d37-5023-4dfc-8b66-be76803ba913",
+			"title": "Spell Upgrades",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": []

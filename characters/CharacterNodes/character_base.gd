@@ -38,6 +38,7 @@ func _ready():
 	add_child(status_holder)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
+	max_health = starting_stats.health
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed

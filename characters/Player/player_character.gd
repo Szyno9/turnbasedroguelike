@@ -10,6 +10,9 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/heal/heal.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/slash/slash.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
+	spell_book.get_indexed_spell(0).upgrade()
+	spell_book.get_indexed_spell(0).upgrade()
+	spell_book.get_indexed_spell(0).upgrade()
 	
 func _unhandled_input(event):
 	if TurnQueue.turn_mode == false or TurnQueue.active_char == self:

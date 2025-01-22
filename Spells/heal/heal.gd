@@ -3,6 +3,7 @@ extends Node2D
 var target:Vector2
 var protected_group: String
 var heal = 30
+var damage
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if target == null:
