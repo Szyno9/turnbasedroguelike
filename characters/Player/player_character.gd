@@ -13,6 +13,7 @@ func _ready():
 	spell_book.get_indexed_spell(0).upgrade()
 	spell_book.get_indexed_spell(0).upgrade()
 	spell_book.get_indexed_spell(0).upgrade()
+	GlobalDataBus.world_interaction.connect(interact_with_element)
 	
 func _unhandled_input(event):
 	if TurnQueue.turn_mode == false or TurnQueue.active_char == self:
@@ -21,6 +22,8 @@ func _unhandled_input(event):
 				if event.is_action_pressed("left_mouse_click") == false:
 					return
 				else:
+					if tile_map.local_to_map(get_global_mouse_position()):
+						pass
 					set_id_path(tile_map.local_to_map(get_global_mouse_position()))
 				
 			INPUT_STATE.ATTACK:
@@ -73,3 +76,8 @@ func _spell_button_pressed(spell_button:SpellButton):
 	else:
 		input_state = INPUT_STATE.ATTACK
 		next_attack = spell_book.get_indexed_spell(spell_button.spell_index)
+
+func interact_with_element(element:Interactable):
+	match element.interaction_type:
+		GlobalEnums.INTERACTABLES.CHEST:
+			element.open_chest()

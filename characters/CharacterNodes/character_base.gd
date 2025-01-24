@@ -130,11 +130,13 @@ func cast_spell(target:Vector2, protected_group: String, spell: Spell):
 	current_id_path =[]
 	actions-=spell.action_cost
 	spell_book.set_cooldown(spell)
+	
 	var b = spell.spell_scene.instantiate()
 	b.target = tile_map.map_to_local(tile_map.local_to_map(target))
 	b.protected_group = protected_group
 	b.transform = global_transform
 	b.damage = spell.damage
+	
 	spell_casted.emit()
 	add_sibling(b)
 

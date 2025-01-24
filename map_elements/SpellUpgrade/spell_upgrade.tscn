@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rqq68dqco2ra"]
+
+[ext_resource type="Texture2D" uid="uid://5ximgays2qiy" path="res://map_elements/SpellUpgrade/Book.png" id="1_1m7on"]
+
+[node name="SpellUpgrade" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1m7on")
