@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddadrm3u5ejos"]
+[gd_scene load_steps=16 format=3 uid="uid://ddadrm3u5ejos"]
 
 [ext_resource type="Texture2D" uid="uid://c25noxqeg4oh7" path="res://assets/tilesets/overlay.png" id="2_gvtur"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ceychkkljcd64" path="res://characters/Enemies/Skeleton/skeleton.tscn" id="7_51oky"]
 [ext_resource type="PackedScene" uid="uid://bxd0pguc7mq2b" path="res://systems/user_inteface/pause_menu.tscn" id="9_w4hfc"]
 [ext_resource type="PackedScene" uid="uid://du0v3w3mg4src" path="res://map_elements/Chest/chest.tscn" id="10_a85ow"]
+[ext_resource type="PackedScene" uid="uid://xqxb7d5vwcsl" path="res://systems/user_inteface/spell_dialog.tscn" id="10_wqllc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cu8cg"]
 texture = ExtResource("4_2sccx")
@@ -437,6 +438,9 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PauseMenu" parent="UserInterface" instance=ExtResource("9_w4hfc")]
+
+[node name="SpellDialog" parent="UserInterface" instance=ExtResource("10_wqllc")]
+visible = false
 
 [node name="Skeleton2" parent="." instance=ExtResource("7_51oky")]
 position = Vector2(280, 264)

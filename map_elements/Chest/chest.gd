@@ -16,10 +16,10 @@ func _process(delta):
 func open_chest():
 	opened = true
 	$Sprite2D.frame=1
-	var upgrade = content.instantiate()
-	upgrade.global_position = get_global_position()
-	add_sibling(upgrade)
-
+	#var upgrade = content.instantiate()
+	#upgrade.global_position = get_global_position()
+	#add_sibling(upgrade)
+	return "haha"
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if opened == true:

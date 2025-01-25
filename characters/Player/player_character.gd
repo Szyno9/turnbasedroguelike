@@ -10,9 +10,6 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/heal/heal.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/slash/slash.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
-	spell_book.get_indexed_spell(0).upgrade()
-	spell_book.get_indexed_spell(0).upgrade()
-	spell_book.get_indexed_spell(0).upgrade()
 	GlobalDataBus.world_interaction.connect(interact_with_element)
 	
 func _unhandled_input(event):
@@ -65,19 +62,30 @@ func _on_attack_button_button_down():#TODO
 		input_state = INPUT_STATE.MOVE
 	
 func _on_spells_ui_child_entered_tree(node):
-	node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
+	#node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
+	node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node.spell_resource))
 
-func _spell_button_pressed(spell_button:SpellButton):
+#func _spell_button_pressed(spell_button:SpellButton):
+	#current_id_path = [tile_map.local_to_map(global_position)]
+	#
+	#if input_state == INPUT_STATE.ATTACK and spell_book.get_indexed_spell(spell_button.spell_index) == next_attack:
+		#input_state = INPUT_STATE.MOVE
+		#next_attack = null
+	#else:
+		#input_state = INPUT_STATE.ATTACK
+		#next_attack = spell_book.get_indexed_spell(spell_button.spell_index)
+func _spell_button_pressed(spell_resource:Spell):
 	current_id_path = [tile_map.local_to_map(global_position)]
 	
-	if input_state == INPUT_STATE.ATTACK and spell_book.get_indexed_spell(spell_button.spell_index) == next_attack:
+	if input_state == INPUT_STATE.ATTACK and spell_resource == next_attack:
 		input_state = INPUT_STATE.MOVE
 		next_attack = null
 	else:
 		input_state = INPUT_STATE.ATTACK
-		next_attack = spell_book.get_indexed_spell(spell_button.spell_index)
+		next_attack = spell_resource
 
 func interact_with_element(element:Interactable):
 	match element.interaction_type:
 		GlobalEnums.INTERACTABLES.CHEST:
 			element.open_chest()
+			GlobalDataBus.open_spell_interface.emit(spell_book)
