@@ -16,3 +16,9 @@ func _physics_process(delta):
 		if not is_moving and not ai_processing:
 			turn_ai()
 	
+func die():
+	var content = load("res://map_elements/SpellUpgrade/spell_upgrade.tscn")
+	var upgrade = content.instantiate()
+	upgrade.global_position = get_global_position()
+	call_deferred("add_sibling",upgrade)
+	super()

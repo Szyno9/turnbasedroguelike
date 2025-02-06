@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sofj8"]
-size = Vector2(14.5, 14)
+size = Vector2(8, 8)
 
 [node name="Teleport" type="Node2D"]
 script = ExtResource("1_25raa")
@@ -61,3 +61,5 @@ frame_progress = 0.32102
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_sofj8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

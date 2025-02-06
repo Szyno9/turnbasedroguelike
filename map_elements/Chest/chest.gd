@@ -13,13 +13,12 @@ func _ready():
 func _process(delta):
 	pass
 
-func open_chest():
+func open_container():
 	opened = true
 	$Sprite2D.frame=1
-	#var upgrade = content.instantiate()
-	#upgrade.global_position = get_global_position()
-	#add_sibling(upgrade)
-	return "haha"
+	var upgrade = content.instantiate()
+	upgrade.global_position = get_global_position()
+	add_sibling(upgrade)
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if opened == true:

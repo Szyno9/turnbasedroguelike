@@ -12,7 +12,14 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
 	GlobalDataBus.world_interaction.connect(interact_with_element)
 	
+#func _input(event):
+	#if event.is_action_pressed("open_spells_ui"):
+		#GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.SHOW)
+	
 func _unhandled_input(event):
+	if event.is_action_pressed("open_spells_ui"):
+		GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.SHOW)
+	
 	if TurnQueue.turn_mode == false or TurnQueue.active_char == self:
 		match input_state:
 			INPUT_STATE.MOVE:
@@ -86,6 +93,8 @@ func _spell_button_pressed(spell_resource:Spell):
 
 func interact_with_element(element:Interactable):
 	match element.interaction_type:
-		GlobalEnums.INTERACTABLES.CHEST:
-			element.open_chest()
-			GlobalDataBus.open_spell_interface.emit(spell_book)
+		GlobalEnums.INTERACTABLES.CONTAINER:
+			element.open_container()
+		GlobalEnums.INTERACTABLES.UPGRADE:
+			element.on_interaction()
+			GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.UPGRADE)

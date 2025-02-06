@@ -116,9 +116,12 @@ func take_damage(damage:int):
 		character_damaged.emit()
 		health-=damage
 	if health <=0:
-		TurnQueue.remove_char(self)
-		character_died.emit()
-		queue_free()
+		die()
+
+func die():
+	TurnQueue.remove_char(self)
+	character_died.emit()
+	queue_free()
 
 func take_heal(heal:int):
 	if heal+health < max_health:
@@ -170,8 +173,6 @@ func get_random_surrouding_tile():
 	return surround_table[randi_range(0,surround_table.size()-1)]
 
 
-
-
 func check_spell_range(spell:Spell, target:Vector2):
 	var center:Vector2i = tile_map.local_to_map(global_position)
 	var final_target:Vector2i = tile_map.local_to_map(target)
@@ -180,3 +181,7 @@ func check_spell_range(spell:Spell, target:Vector2):
 			if center.distance_to(final_target) <= spell.spell_range:
 				return true
 	return false
+
+func teleport_to_location(destination: Vector2i):
+	current_id_path = []
+	global_position = destination

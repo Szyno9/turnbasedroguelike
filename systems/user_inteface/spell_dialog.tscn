@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://systems/user_inteface/spell_dialog.gd" id="1_m0mho"]
 
 [node name="SpellDialog" type="Panel"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

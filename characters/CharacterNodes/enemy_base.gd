@@ -88,3 +88,6 @@ func find_target(spell:Spell) ->Vector2:
 func choose_spell(): #TODO do przerobienia, mmoże się przyda
 	var spell = spell_book.pick_random()
 	return spell
+
+func give_rewards():
+	pass
