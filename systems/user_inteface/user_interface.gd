@@ -7,6 +7,7 @@ extends CanvasLayer
 #@onready var ActionsValue: int = %ActionsValue.text
 
 func _ready():
+	GlobalDataBus.spell_book_modified.connect(show_spells)
 	show_spells()
 
 func _process(_delta):
@@ -31,6 +32,8 @@ func _process(_delta):
 	%SpeedValue.text = str(Player_Character.speed)
 	
 func show_spells():
+	for child in SpellsUI.get_children():
+		SpellsUI.remove_child(child)
 	var button_pck = preload("res://systems/user_inteface/spell_button.tscn")
 	var index = 0
 	for spell in Player_Character.spell_book.get_spells():

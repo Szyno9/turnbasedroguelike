@@ -98,3 +98,7 @@ func interact_with_element(element:Interactable):
 		GlobalEnums.INTERACTABLES.UPGRADE:
 			element.on_interaction()
 			GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.UPGRADE)
+		GlobalEnums.INTERACTABLES.SPELL:
+			var new_spell = element.spell
+			element.on_interaction()
+			GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL, new_spell)

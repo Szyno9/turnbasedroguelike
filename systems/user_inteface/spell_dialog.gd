@@ -1,7 +1,9 @@
 extends Panel
 
 var opened = false
-var mode = GlobalEnums.SPELL_DIALOG_MODES.SHOW
+var mode = GlobalEnums.SPELL_DIALOG_MODES.UPGRADE
+var spell_book: SpellBook
+var next_spell: Spell
 
 func _input(event):
 	if opened == true:
@@ -16,13 +18,14 @@ func _ready():
 func _process(delta):
 	pass
 
-func show_spells(spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MODES):
+func show_spells(user_spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MODES, new_spell:Spell = null):
+	spell_book = user_spell_book
 	mode = new_mode
-	get_tree().paused = true
-	opened = true
+	next_spell = new_spell
+	open_menu()
 	for child in %SpellContainer.get_children():
 		child.queue_free()
-	visible = true
+	
 	var button_pck = preload("res://systems/user_inteface/spell_button.tscn")
 	var index = 0
 	for spell in spell_book.get_spells():
@@ -31,14 +34,17 @@ func show_spells(spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MODES):
 		button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
 		%SpellContainer.add_child(button)
 		index+=1
-	if mode == GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL or mode == GlobalEnums.SPELL_DIALOG_MODES.SHOW:
-		while index <= 7:
-			var button = button_pck.instantiate()
-			button.set_properties(Spell.new(), index)
-			button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
-			%SpellContainer.add_child(button)
-			index+=1
+	if mode == GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL:
+		var button = button_pck.instantiate()
+		button.set_properties(Spell.new(), index)
+		button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
+		%SpellContainer.add_child(button)
+		index+=1
 		
+func open_menu():
+	get_tree().paused = true
+	opened = true
+	visible = true
 func close_menu():
 	visible = false
 	get_tree().paused = false
@@ -52,4 +58,5 @@ func _on_spell_button_pressed(spell_resource:Spell):
 		GlobalEnums.SPELL_DIALOG_MODES.SHOW:
 			return
 		GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL:
-			pass
+			spell_book.swap_spell(spell_resource, next_spell)
+			close_menu()

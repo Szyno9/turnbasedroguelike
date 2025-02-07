@@ -2,12 +2,22 @@ class_name SpellBook
 extends RefCounted
 var _content:Array[Spell] = []
 
-
 func add_spell(spell:Spell):
 	_content.append(spell)
+	GlobalDataBus.spell_book_modified.emit()
 
 func remove_spell(spell:Spell):
 	_content.erase(spell)
+	GlobalDataBus.spell_book_modified.emit()
+	
+func swap_spell(spell:Spell, new_spell:Spell):
+	if spell.name == new_spell.name:
+		spell.upgrade()
+		return
+	var index = _content.find(spell)
+	_content[index] = new_spell
+	GlobalDataBus.spell_book_modified.emit()
+	
 
 func get_spells() -> Array[Spell]:
 	return _content

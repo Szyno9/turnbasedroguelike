@@ -5,6 +5,7 @@ var spell_interface = load("res://map_elements/SpellUpgrade/spell_upgrade.tscn")
 var current_scene_name
 signal world_interaction(element:Interactable)
 signal open_spell_interface(spell_book:SpellBook)
+signal spell_book_modified
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
