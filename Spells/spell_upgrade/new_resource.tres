@@ -1,43 +1,43 @@
 [gd_resource type="Resource" script_class="SpellUpgrades" load_steps=8 format=3 uid="uid://fghc62emkyl8"]
 
-[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_upgrade.gd" id="1_7ysvk"]
-[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_hgdve"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_upgrade.gd" id="1_8mr68"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_elx0u"]
 
 [sub_resource type="Resource" id="Resource_haxa1"]
-script = ExtResource("2_hgdve")
+script = ExtResource("2_elx0u")
 damage = 15
-cooldown = 0
+basic_cooldown = 0
 spell_range = 0
 action_cost = 0
 
 [sub_resource type="Resource" id="Resource_1dmir"]
-script = ExtResource("2_hgdve")
+script = ExtResource("2_elx0u")
 damage = 15
-cooldown = 0
+basic_cooldown = 0
 spell_range = 0
 action_cost = 0
 
 [sub_resource type="Resource" id="Resource_v2cce"]
-script = ExtResource("2_hgdve")
+script = ExtResource("2_elx0u")
 damage = 15
-cooldown = 0
+basic_cooldown = 0
 spell_range = 6
 action_cost = 0
 
 [sub_resource type="Resource" id="Resource_i7hn2"]
-script = ExtResource("2_hgdve")
+script = ExtResource("2_elx0u")
 damage = 5
-cooldown = 0
+basic_cooldown = 0
 spell_range = 0
 action_cost = 1
 
 [sub_resource type="Resource" id="Resource_spk6c"]
-script = ExtResource("2_hgdve")
+script = ExtResource("2_elx0u")
 damage = 5
-cooldown = 0
+basic_cooldown = 0
 spell_range = 1
 action_cost = 0
 
 [resource]
-script = ExtResource("1_7ysvk")
-upgrades = Array[ExtResource("2_hgdve")]([SubResource("Resource_haxa1"), SubResource("Resource_1dmir"), SubResource("Resource_v2cce"), SubResource("Resource_i7hn2"), SubResource("Resource_spk6c")])
+script = ExtResource("1_8mr68")
+upgrades = Array[ExtResource("2_elx0u")]([SubResource("Resource_haxa1"), SubResource("Resource_1dmir"), SubResource("Resource_v2cce"), SubResource("Resource_i7hn2"), SubResource("Resource_spk6c")])

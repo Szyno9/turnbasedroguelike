@@ -27,9 +27,7 @@
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
-				"49058e54-d5d1-4dc6-90a8-0511aebf44ea",
-				"2d9b08b4-6bd6-420d-9121-71afa3931217",
-				"ef33a72b-6dd7-4802-81e1-423a469df8b6"
+				"2d9b08b4-6bd6-420d-9121-71afa3931217"
 			]
 		},
 		{
@@ -46,7 +44,9 @@
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
 				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
-				"4f107f56-4b1b-41a1-8135-890ead7258b7"
+				"4f107f56-4b1b-41a1-8135-890ead7258b7",
+				"49058e54-d5d1-4dc6-90a8-0511aebf44ea",
+				"ef33a72b-6dd7-4802-81e1-423a469df8b6"
 			]
 		}
 	],
@@ -101,7 +101,12 @@
 			"title": "Loot",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
-			"steps": []
+			"steps": [
+				{
+					"details": "Drop table",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "2c784979-f697-4175-8124-3daad16c802c",
@@ -282,11 +287,11 @@
 			"steps": [
 				{
 					"details": "SHOW MODE",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "NEW SPELL MODE",
-					"done": false
+					"done": true
 				}
 			]
 		}

@@ -24,5 +24,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	if opened == true:
 		return
 	if event is InputEventMouseButton and event.pressed:
+		if TurnQueueGlobal.turn_mode:
+			return
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			GlobalDataBus.world_interaction.emit(self)

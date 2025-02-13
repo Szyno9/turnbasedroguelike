@@ -5,7 +5,10 @@ var frequency := 2.0
 var time = 0
 @onready var default_pos = Sprite.get_position()
 
-var spell = load("res://Spells/missle/missle.tres").duplicate()
+var spell:Spell
+
+func _ready():
+	spell = GlobalDataBus.all_spells.pick_random().duplicate()
 
 func _physics_process(delta):
 	time += delta * frequency
@@ -13,6 +16,8 @@ func _physics_process(delta):
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
+		if TurnQueueGlobal.turn_mode:
+			return
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			GlobalDataBus.world_interaction.emit(self)
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cqkhihs72oj7d"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_mb5ai"]
+
+[resource]
+script = ExtResource("1_mb5ai")
+base_folder = "res://Spells"
+includes = Array[String](["**.tres"])
+excludes = Array[String](["all_spells.tres", "spell_upgrade/*"])
+paths = Array[String](["res://Spells/heal/heal.tres", "res://Spells/missle/missle.tres", "res://Spells/Shield/shield.tres", "res://Spells/slash/slash.tres"])

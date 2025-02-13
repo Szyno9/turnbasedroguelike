@@ -1,7 +1,22 @@
-[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://vm6dbsvgtd42"]
+[gd_resource type="Resource" script_class="Spell" load_steps=6 format=3 uid="uid://vm6dbsvgtd42"]
 
 [ext_resource type="Script" path="res://Spells/Spell.gd" id="1_bj1bj"]
 [ext_resource type="PackedScene" uid="uid://bnrklg848mv2p" path="res://Spells/Shield/shield.tscn" id="2_337ch"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="3_4vkhk"]
+
+[sub_resource type="Resource" id="Resource_rb87s"]
+script = ExtResource("3_4vkhk")
+damage = 0
+basic_cooldown = 1
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_jtfdl"]
+script = ExtResource("3_4vkhk")
+damage = 0
+basic_cooldown = 1
+spell_range = 0
+action_cost = 0
 
 [resource]
 script = ExtResource("1_bj1bj")
@@ -14,3 +29,4 @@ range_type = 0
 type = 2
 action_cost = 1
 spell_scene = ExtResource("2_337ch")
+upgrade_list = Array[ExtResource("3_4vkhk")]([SubResource("Resource_rb87s"), SubResource("Resource_jtfdl")])

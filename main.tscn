@@ -459,5 +459,11 @@ position = Vector2(120, 103)
 [node name="SpellPickup" parent="." instance=ExtResource("13_pmpr1")]
 position = Vector2(94, 133)
 
+[node name="SpellPickup2" parent="." instance=ExtResource("13_pmpr1")]
+position = Vector2(61, 167)
+
+[node name="SpellPickup3" parent="." instance=ExtResource("13_pmpr1")]
+position = Vector2(61, 128)
+
 [connection signal="pressed" from="UserInterface/HBoxContainer/EndTurnButton" to="Player_Character" method="_on_end_turn_button_pressed"]
 [connection signal="child_entered_tree" from="UserInterface/SpellsUI" to="Overlay" method="_on_spells_ui_child_entered_tree"]

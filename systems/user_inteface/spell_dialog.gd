@@ -25,6 +25,8 @@ func show_spells(user_spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MO
 	open_menu()
 	for child in %SpellContainer.get_children():
 		child.queue_free()
+	for child in %NewSpellContainer.get_children():
+		child.queue_free()
 	
 	var button_pck = preload("res://systems/user_inteface/spell_button.tscn")
 	var index = 0
@@ -40,6 +42,10 @@ func show_spells(user_spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MO
 		button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
 		%SpellContainer.add_child(button)
 		index+=1
+		
+		var button2 = button_pck.instantiate()
+		button2.set_properties(new_spell, index)
+		%NewSpellContainer.add_child(button2)
 		
 func open_menu():
 	get_tree().paused = true
