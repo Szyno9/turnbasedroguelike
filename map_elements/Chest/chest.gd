@@ -3,7 +3,7 @@ extends Interactable
 class_name Chest
 
 var opened: bool = false
-var content = load("res://map_elements/SpellUpgrade/spell_upgrade.tscn")
+var content = GlobalDataBus.all_rewards.pick_random()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

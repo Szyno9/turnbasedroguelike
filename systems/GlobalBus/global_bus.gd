@@ -1,9 +1,11 @@
 extends Node
 
 class_name GlobalBus
-var spell_interface = load("res://map_elements/SpellUpgrade/spell_upgrade.tscn")
+var spell_interface = load("res://rewards/SpellUpgrade/spell_upgrade.tscn")
 var spell_group_resource: ResourceGroup = load("res://Spells/all_spells.tres")
+var reward_group_resource: ResourceGroup = load("res://rewards/all_rewards.tres")
 var all_spells:Array = spell_group_resource.load_all()
+var all_rewards:Array = reward_group_resource.load_all()
 var current_scene_name
 signal world_interaction(element:Interactable)
 signal open_spell_interface(spell_book:SpellBook)

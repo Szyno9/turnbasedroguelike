@@ -102,3 +102,7 @@ func interact_with_element(element:Interactable):
 			var new_spell = element.spell
 			element.on_interaction()
 			GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL, new_spell)
+		GlobalEnums.INTERACTABLES.HEART:
+			element.on_interaction()
+			max_health+=25
+			take_heal(25)

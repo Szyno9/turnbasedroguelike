@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dmepue77dwkdb"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_beeo6"]
+
+[resource]
+script = ExtResource("1_beeo6")
+base_folder = "res://rewards"
+includes = Array[String](["**.tscn"])
+excludes = Array[String](["all_rewards.tres"])
+paths = Array[String](["res://rewards/HeartPickup/heart_pickup.tscn", "res://rewards/SpellPickup/spell_pickup.tscn", "res://rewards/SpellUpgrade/spell_upgrade.tscn"])

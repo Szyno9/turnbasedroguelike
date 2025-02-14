@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://cg8dvk4vj727y"]
+
+[ext_resource type="Script" path="res://rewards/HeartPickup/heart_pickup.gd" id="1_cnwtt"]
+[ext_resource type="Texture2D" uid="uid://dtr4g4pn3huvh" path="res://rewards/HeartPickup/Heart.png" id="2_iv7yb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqwkr"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqemg"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sghd8"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ykd3"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry8fj"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6u2c"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7kdb"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62jhx"]
+atlas = ExtResource("2_iv7yb")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8jy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqwkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqemg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sghd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ykd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry8fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6u2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7kdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62jhx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w07vm"]
+size = Vector2(17, 21)
+
+[node name="heart_pickup" type="Node2D"]
+script = ExtResource("1_cnwtt")
+interaction_type = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_l8jy5")
+autoplay = "default"
+frame_progress = 0.823892
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_w07vm")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
