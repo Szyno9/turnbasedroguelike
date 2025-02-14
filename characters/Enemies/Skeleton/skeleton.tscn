@@ -168,7 +168,7 @@ states/death/position = Vector2(495, 94)
 states/hit/node = SubResource("AnimationNodeAnimation_sgqsw")
 states/hit/position = Vector2(526, 219)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ppnww"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_36b5t"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_q5vyp"), "hit", "Idle", SubResource("AnimationNodeStateMachineTransition_k4oqu"), "hit", "death", SubResource("AnimationNodeStateMachineTransition_v5tvr"), "Idle", "death", SubResource("AnimationNodeStateMachineTransition_mlynb"), "Walk", "death", SubResource("AnimationNodeStateMachineTransition_fjexe")]
-graph_offset = Vector2(-406, -3)
+graph_offset = Vector2(-372, 28)
 
 [sub_resource type="Animation" id="Animation_ktw6x"]
 length = 0.001
