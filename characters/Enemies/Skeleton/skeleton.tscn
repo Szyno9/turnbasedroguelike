@@ -51,7 +51,7 @@ states/idle_front/position = Vector2(421, 40)
 states/idle_side/node = SubResource("AnimationNodeAnimation_ryuj8")
 states/idle_side/position = Vector2(405, 276)
 transitions = ["Start", "idle_front", SubResource("AnimationNodeStateMachineTransition_jqke8"), "Start", "idle_side", SubResource("AnimationNodeStateMachineTransition_5c2oy"), "Start", "idle_back", SubResource("AnimationNodeStateMachineTransition_fviqb"), "idle_front", "End", SubResource("AnimationNodeStateMachineTransition_ku4t6"), "idle_back", "End", SubResource("AnimationNodeStateMachineTransition_ipgq1"), "idle_side", "End", SubResource("AnimationNodeStateMachineTransition_u06iv")]
-graph_offset = Vector2(-280, -171)
+graph_offset = Vector2(-250, -19)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ls4qp"]
 animation = &"walk_back"
@@ -151,6 +151,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5tvr"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mlynb"]
 

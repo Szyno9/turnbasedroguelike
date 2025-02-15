@@ -12,7 +12,6 @@
 			"title": "Todo",
 			"tasks": [
 				"9e8d65c3-0dc1-4b24-b3e2-e8fb73b96dda",
-				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
 				"1fae73aa-129f-40a5-9a56-d9ea2273a876",
 				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
 				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
@@ -27,7 +26,8 @@
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
-				"2d9b08b4-6bd6-420d-9121-71afa3931217"
+				"2d9b08b4-6bd6-420d-9121-71afa3931217",
+				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf"
 			]
 		},
 		{
@@ -80,7 +80,16 @@
 			"title": "Enemies",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
-			"steps": []
+			"steps": [
+				{
+					"details": "slime",
+					"done": true
+				},
+				{
+					"details": "mag",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "1fae73aa-129f-40a5-9a56-d9ea2273a876",
@@ -104,7 +113,7 @@
 			"steps": [
 				{
 					"details": "Drop table",
-					"done": false
+					"done": true
 				}
 			]
 		},

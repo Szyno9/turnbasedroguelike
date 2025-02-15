@@ -4,7 +4,9 @@ const SPEED = 10.0
 
 func _ready():
 	super()
-	spell_book.add_spell(load("res://Spells/slash/slash.tres"))
+	spell_book.add_spell(load("res://Spells/missle/missle.tres"))
+	spell_book.add_spell(load("res://Spells/missle/missle.tres"))
+	#spell_book.add_spell(load("res://Spells/heal/heal.tres"))
 	TurnQueue.global_tick.connect("timeout", Callable(self, "patrol"))
 func _process(_delta):
 	pass
