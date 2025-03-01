@@ -10,6 +10,7 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/heal/heal.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/slash/slash.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
+	spell_book.add_spell(load("res://Spells/fireball/fireball.tres").duplicate())
 	GlobalDataBus.world_interaction.connect(interact_with_element)
 	
 #func _input(event):

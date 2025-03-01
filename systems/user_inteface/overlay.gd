@@ -31,8 +31,6 @@ func get_range_circural(spell:Spell):
 		var current = cell_stack.pop_back()
 		if current in current_overlay:
 			continue
-		#if (center-current).abs().x + (center-current).abs().y>max_distance: #for amount of cells distance
-			#continue
 		if center.distance_to(current) > max_distance:
 			continue
 		current_overlay.append(current)

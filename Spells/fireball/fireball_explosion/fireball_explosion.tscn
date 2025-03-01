@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://3oaf7remduco"]
+
+[ext_resource type="Texture2D" uid="uid://c7jmb8m00fstr" path="res://Spells/fireball/fireball_explosion/fadingfire.png" id="1_17x0l"]
+[ext_resource type="Script" path="res://Spells/fireball/fireball_explosion/fireball_explosion.gd" id="1_ovy3r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a2rc"]
+atlas = ExtResource("1_17x0l")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0ffs"]
+atlas = ExtResource("1_17x0l")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x72kv"]
+atlas = ExtResource("1_17x0l")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2g46g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a2rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0ffs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x72kv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b24p1"]
+size = Vector2(12, 12)
+
+[node name="FireballExplosion" type="Node2D"]
+script = ExtResource("1_ovy3r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2g46g")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_b24p1")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=9 format=3 uid="uid://wnffs4d8aube"]
+
+[ext_resource type="Texture2D" uid="uid://b17yp44k8uahg" path="res://Spells/fireball/fireball_icon_small.png" id="1_8mmch"]
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_is8ea"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_b3cre"]
+[ext_resource type="PackedScene" uid="uid://lippp4tennvq" path="res://Spells/fireball/fire_ball.tscn" id="2_mr5mm"]
+
+[sub_resource type="Resource" id="Resource_uaf5g"]
+script = ExtResource("2_b3cre")
+damage = 10
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_ek7dv"]
+script = ExtResource("2_b3cre")
+damage = 10
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_3x3tc"]
+script = ExtResource("2_b3cre")
+damage = 10
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_pegyq"]
+script = ExtResource("2_b3cre")
+damage = 10
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[resource]
+script = ExtResource("1_is8ea")
+name = ""
+icon = ExtResource("1_8mmch")
+damage = 30
+basic_cooldown = 1
+cooldown = 0
+spell_range = 15
+range_type = 0
+type = 0
+action_cost = 1
+spell_scene = ExtResource("2_mr5mm")
+upgrade_list = Array[ExtResource("2_b3cre")]([SubResource("Resource_uaf5g"), SubResource("Resource_ek7dv"), SubResource("Resource_3x3tc"), SubResource("Resource_pegyq")])
