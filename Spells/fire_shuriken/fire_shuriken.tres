@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=9 format=3 uid="uid://bec8meob5bo0h"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_ucxgl"]
+[ext_resource type="Texture2D" uid="uid://c2m728yjr0jna" path="res://Spells/fire_shuriken/fire_shuriken_icon.png" id="1_yk6gf"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_pccpy"]
+[ext_resource type="PackedScene" uid="uid://bqk7u0s052so4" path="res://Spells/fire_shuriken/fire_shuriken.tscn" id="2_qee6x"]
+
+[sub_resource type="Resource" id="Resource_ie05u"]
+script = ExtResource("2_pccpy")
+damage = 17
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_utauv"]
+script = ExtResource("2_pccpy")
+damage = 5
+basic_cooldown = 0
+spell_range = 10
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_54hvi"]
+script = ExtResource("2_pccpy")
+damage = 10
+basic_cooldown = 0
+spell_range = 10
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_wy67m"]
+script = ExtResource("2_pccpy")
+damage = 10
+basic_cooldown = 0
+spell_range = 10
+action_cost = 0
+
+[resource]
+script = ExtResource("1_ucxgl")
+name = "Fire Shuriken"
+icon = ExtResource("1_yk6gf")
+damage = 33
+basic_cooldown = 2
+cooldown = 0
+spell_range = 25
+range_type = 0
+type = 0
+action_cost = 1
+spell_scene = ExtResource("2_qee6x")
+upgrade_list = Array[ExtResource("2_pccpy")]([SubResource("Resource_ie05u"), SubResource("Resource_utauv"), SubResource("Resource_54hvi"), SubResource("Resource_wy67m")])

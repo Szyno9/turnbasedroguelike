@@ -199,7 +199,7 @@
 			"steps": [
 				{
 					"details": "fireball",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "spear shot",
