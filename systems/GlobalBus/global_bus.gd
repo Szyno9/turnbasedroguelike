@@ -3,14 +3,21 @@ extends Node
 class_name GlobalBus
 var spell_interface = load("res://rewards/SpellUpgrade/spell_upgrade.tscn")
 var spell_group_resource: ResourceGroup = load("res://Spells/all_spells.tres")
+var enemies_group_resource: ResourceGroup = load("res://characters/Enemies/all_enemies.tres")
 var reward_group_resource: ResourceGroup = load("res://rewards/all_rewards.tres")
 var all_spells:Array = spell_group_resource.load_all()
+var all_enemies:Array = enemies_group_resource.load_all()
 var all_rewards:Array = reward_group_resource.load_all()
+
+var player_character: CharacterBase
+var astar_grid: AStar2D
+var elements=[]
+
 var current_scene_name
 signal world_interaction(element:Interactable)
 signal open_spell_interface(spell_book:SpellBook)
 signal spell_book_modified
-
+signal level_changed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_scene_name = get_tree().get_current_scene().name

@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddadrm3u5ejos"]
+[gd_scene load_steps=17 format=3 uid="uid://ddadrm3u5ejos"]
 
+[ext_resource type="Script" path="res://stupid_loader.gd" id="1_hswfo"]
 [ext_resource type="Texture2D" uid="uid://c25noxqeg4oh7" path="res://assets/tilesets/overlay.png" id="2_gvtur"]
 [ext_resource type="PackedScene" uid="uid://ckigu4fwmopn8" path="res://characters/Player/player_character.tscn" id="3_q2hce"]
-[ext_resource type="Texture2D" uid="uid://bnmicbp4a8als" path="res://assets/tilesets/tileset.png" id="4_2sccx"]
 [ext_resource type="Script" path="res://systems/user_inteface/overlay.gd" id="5_eoxft"]
-[ext_resource type="Script" path="res://systems/Level_gen/tile_map.gd" id="5_s0e5t"]
-[ext_resource type="PackedScene" uid="uid://ddppvn6tlyv2b" path="res://systems/Level_gen/level_generator.tscn" id="6_332ob"]
+[ext_resource type="Script" path="res://systems/enemy_holder.gd" id="5_qyatg"]
 [ext_resource type="Script" path="res://systems/user_inteface/user_interface.gd" id="6_pus1h"]
 [ext_resource type="PackedScene" uid="uid://ceychkkljcd64" path="res://characters/Enemies/Skeleton/skeleton.tscn" id="7_51oky"]
 [ext_resource type="PackedScene" uid="uid://bxd0pguc7mq2b" path="res://systems/user_inteface/pause_menu.tscn" id="9_w4hfc"]
@@ -16,326 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://ceobu7tklxixt" path="res://characters/Enemies/Slime/slime.tscn" id="14_gswtm"]
 [ext_resource type="PackedScene" uid="uid://6rnfxkpn3ql2" path="res://characters/Enemies/EvilMage/evil_mage.tscn" id="15_g556r"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cu8cg"]
-texture = ExtResource("4_2sccx")
-0:0/0 = 0
-0:0/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-1:2/0 = 0
-1:2/0/probability = 0.01
-1:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-2:2/0 = 0
-2:2/0/probability = 0.01
-2:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-3:2/0 = 0
-3:2/0/probability = 0.01
-3:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-4:2/0 = 0
-4:2/0/probability = 0.01
-4:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-5:2/0 = 0
-5:2/0/probability = 0.01
-5:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-6:2/0 = 0
-6:2/0/probability = 0.01
-6:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-7:2/0 = 0
-7:2/0/probability = 0.01
-7:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-8:2/0 = 0
-8:2/0/probability = 0.01
-8:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-12: [0],
-"type": 0
-}
-1:0/0 = 0
-1:0/0/metadata/_better_terrain = {
-0: [0],
-3: [0],
-4: [0],
-8: [1, -1],
-12: [1, -1],
-"symmetry": 7,
-"type": 0
-}
-0:2/0 = 0
-0:2/0/metadata/_better_terrain = {
-0: [0],
-3: [0],
-4: [0],
-8: [1, -1],
-12: [1, -1],
-"symmetry": 7,
-"type": 0
-}
-5:0/0 = 0
-5:0/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [1, -1],
-12: [0],
-"symmetry": 7,
-"type": 0
-}
-23:0/0 = 0
-23:0/0/metadata/_better_terrain = {
-0: [1, -1],
-4: [0],
-8: [1, -1],
-12: [0],
-"symmetry": 4,
-"type": 0
-}
-24:0/0 = 0
-24:0/0/metadata/_better_terrain = {
-0: [1, -1],
-4: [0],
-8: [1, -1],
-12: [0],
-"symmetry": 4,
-"type": 0
-}
-18:0/0 = 0
-18:0/0/metadata/_better_terrain = {
-0: [1, -1],
-4: [0],
-8: [1, -1],
-12: [1, -1],
-"symmetry": 7,
-"type": 0
-}
-0:7/0 = 0
-0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:7/0/custom_data_0 = true
-0:7/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
-8: [1],
-12: [1],
-"type": 1
-}
-1:7/0 = 0
-1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:7/0/custom_data_0 = true
-1:7/0/metadata/_better_terrain = {
-0: [1],
-4: [1],
-8: [0, -1],
-12: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-5:7/0 = 0
-5:7/0/probability = 0.06
-5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:7/0/custom_data_0 = true
-5:7/0/metadata/_better_terrain = {
-8: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-6:7/0 = 0
-6:7/0/probability = 0.06
-6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:7/0/custom_data_0 = true
-6:7/0/metadata/_better_terrain = {
-8: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-7:7/0 = 0
-7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:7/0/custom_data_0 = true
-7:7/0/metadata/_better_terrain = {
-8: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-17:7/0 = 0
-17:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-17:7/0/custom_data_0 = true
-17:7/0/metadata/_better_terrain = {
-4: [0, -1],
-8: [0],
-12: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-21:7/0 = 0
-21:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-21:7/0/custom_data_0 = true
-21:7/0/metadata/_better_terrain = {
-4: [0, -1],
-12: [0, -1],
-"symmetry": 4,
-"type": 1
-}
-25:7/0 = 0
-25:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-25:7/0/custom_data_0 = true
-25:7/0/metadata/_better_terrain = {
-0: [0, -1],
-4: [0, -1],
-8: [0, -1],
-12: [0, -1],
-"symmetry": 7,
-"type": 1
-}
-6:0/0 = 0
-6:0/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [1, -1],
-12: [0],
-"symmetry": 7,
-"type": 0
-}
-7:0/0 = 0
-7:0/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [1, -1],
-12: [0],
-"symmetry": 7,
-"type": 0
-}
-25:0/0 = 0
-25:0/0/metadata/_better_terrain = {
-0: [1, -1],
-4: [1, -1],
-8: [1, -1],
-12: [1, -1],
-"symmetry": 7,
-"type": 0
-}
-26:0/0 = 0
-26:0/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [1, -1],
-12: [1, -1],
-"symmetry": 7,
-"type": 0
-}
-28:0/0 = 0
-28:0/0/metadata/_better_terrain = {
-0: [0],
-4: [1, -1],
-8: [1, -1],
-12: [0],
-15: [1],
-"symmetry": 7,
-"type": 0
-}
-2:1/0 = 0
-2:1/0/metadata/_better_terrain = {
-"symmetry": 7,
-"type": 0
-}
-9:1/0 = 0
-9:1/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [1, -1],
-12: [0],
-15: [1],
-"symmetry": 7,
-"type": 0
-}
-12:1/0 = 0
-12:1/0/metadata/_better_terrain = {
-0: [0],
-3: [1, -1],
-4: [0],
-7: [0],
-8: [0],
-11: [1, -1],
-12: [0],
-15: [0],
-"symmetry": 7,
-"type": 0
-}
-19:1/0 = 0
-19:1/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [0],
-11: [1, -1],
-12: [0],
-"symmetry": 7,
-"type": 0
-}
-
-[sub_resource type="TileSet" id="TileSet_gsvcw"]
-physics_layer_0/collision_layer = 1
-custom_data_layer_0/name = "is_solid"
-custom_data_layer_0/type = 1
-sources/0 = SubResource("TileSetAtlasSource_cu8cg")
-metadata/_better_terrain = {
-"decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
-"path": "res://addons/better-terrain/icons/Decoration.svg"
-}],
-"terrains": [["Ground", Color(0.508975, 0.510033, 0.808442, 1), 0, [], {
-"coord": Vector2i(1, 0),
-"source_id": 0
-}], ["Walls", Color(0.965049, 0.768013, 0.196679, 1), 0, [], {
-"path": ""
-}]],
-"version": "0.2"
-}
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gguij"]
 texture = ExtResource("2_gvtur")
 0:0/0 = 0
@@ -345,26 +24,60 @@ texture = ExtResource("2_gvtur")
 sources/0 = SubResource("TileSetAtlasSource_gguij")
 
 [node name="main" type="Node2D"]
-
-[node name="LevelMap" type="TileMap" parent="."]
-unique_name_in_owner = true
-tile_set = SubResource("TileSet_gsvcw")
-format = 2
-script = ExtResource("5_s0e5t")
+script = ExtResource("1_hswfo")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
-unique_name_in_owner = true
 tile_set = SubResource("TileSet_mygjm")
 script = ExtResource("5_eoxft")
-
-[node name="LevelGenerator" parent="." instance=ExtResource("6_332ob")]
 
 [node name="Player_Character" parent="." instance=ExtResource("3_q2hce")]
 unique_name_in_owner = true
 position = Vector2(176, 207)
 
-[node name="Skeleton" parent="." instance=ExtResource("7_51oky")]
+[node name="element_holder" type="Node2D" parent="."]
+script = ExtResource("5_qyatg")
+
+[node name="Skeleton2" parent="element_holder" instance=ExtResource("7_51oky")]
+position = Vector2(280, 264)
+
+[node name="Skeleton3" parent="element_holder" instance=ExtResource("7_51oky")]
+position = Vector2(344, 120)
+
+[node name="Slime" parent="element_holder" instance=ExtResource("14_gswtm")]
+position = Vector2(306, 92)
+
+[node name="EvilMage" parent="element_holder" instance=ExtResource("15_g556r")]
+position = Vector2(344, 72)
+
+[node name="Skeleton" parent="element_holder" instance=ExtResource("7_51oky")]
 position = Vector2(294, 200)
+
+[node name="Chest" parent="element_holder" instance=ExtResource("10_a85ow")]
+position = Vector2(184, 103)
+
+[node name="Teleport" parent="element_holder" instance=ExtResource("12_75hpl")]
+position = Vector2(120, 103)
+
+[node name="SpellPickup" parent="element_holder" instance=ExtResource("13_pmpr1")]
+position = Vector2(94, 133)
+
+[node name="SpellPickup2" parent="element_holder" instance=ExtResource("13_pmpr1")]
+position = Vector2(61, 167)
+
+[node name="SpellPickup3" parent="element_holder" instance=ExtResource("13_pmpr1")]
+position = Vector2(61, 128)
+
+[node name="Chest2" parent="element_holder" instance=ExtResource("10_a85ow")]
+position = Vector2(-28, 89)
+
+[node name="Chest3" parent="element_holder" instance=ExtResource("10_a85ow")]
+position = Vector2(173, 69)
+
+[node name="Chest4" parent="element_holder" instance=ExtResource("10_a85ow")]
+position = Vector2(248, 47)
+
+[node name="Chest5" parent="element_holder" instance=ExtResource("10_a85ow")]
+position = Vector2(117, 61)
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("6_pus1h")
@@ -445,45 +158,6 @@ layout_mode = 2
 
 [node name="SpellDialog" parent="UserInterface" instance=ExtResource("10_wqllc")]
 visible = false
-
-[node name="Skeleton2" parent="." instance=ExtResource("7_51oky")]
-position = Vector2(280, 264)
-
-[node name="Skeleton3" parent="." instance=ExtResource("7_51oky")]
-position = Vector2(344, 120)
-
-[node name="Chest" parent="." instance=ExtResource("10_a85ow")]
-position = Vector2(184, 103)
-
-[node name="Teleport" parent="." instance=ExtResource("12_75hpl")]
-position = Vector2(120, 103)
-
-[node name="SpellPickup" parent="." instance=ExtResource("13_pmpr1")]
-position = Vector2(94, 133)
-
-[node name="SpellPickup2" parent="." instance=ExtResource("13_pmpr1")]
-position = Vector2(61, 167)
-
-[node name="SpellPickup3" parent="." instance=ExtResource("13_pmpr1")]
-position = Vector2(61, 128)
-
-[node name="Chest2" parent="." instance=ExtResource("10_a85ow")]
-position = Vector2(-28, 89)
-
-[node name="Chest3" parent="." instance=ExtResource("10_a85ow")]
-position = Vector2(173, 69)
-
-[node name="Chest4" parent="." instance=ExtResource("10_a85ow")]
-position = Vector2(248, 47)
-
-[node name="Chest5" parent="." instance=ExtResource("10_a85ow")]
-position = Vector2(117, 61)
-
-[node name="Slime" parent="." instance=ExtResource("14_gswtm")]
-position = Vector2(306, 92)
-
-[node name="EvilMage" parent="." instance=ExtResource("15_g556r")]
-position = Vector2(344, 72)
 
 [connection signal="pressed" from="UserInterface/HBoxContainer/EndTurnButton" to="Player_Character" method="_on_end_turn_button_pressed"]
 [connection signal="child_entered_tree" from="UserInterface/SpellsUI" to="Overlay" method="_on_spells_ui_child_entered_tree"]

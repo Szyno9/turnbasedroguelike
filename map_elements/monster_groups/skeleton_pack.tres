@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MonsterGroup" load_steps=3 format=3 uid="uid://ba2d2edlkp3bm"]
+
+[ext_resource type="PackedScene" uid="uid://ceychkkljcd64" path="res://characters/Enemies/Skeleton/skeleton.tscn" id="1_mgoy7"]
+[ext_resource type="Script" path="res://map_elements/monster_groups/monster_group_resource.gd" id="2_a4t5c"]
+
+[resource]
+script = ExtResource("2_a4t5c")
+name = "skeleton_pack"
+_content = Array[PackedScene]([ExtResource("1_mgoy7"), ExtResource("1_mgoy7"), ExtResource("1_mgoy7"), ExtResource("1_mgoy7")])

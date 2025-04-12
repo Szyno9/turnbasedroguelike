@@ -2,9 +2,6 @@ extends CanvasLayer
 @onready var Player_Character: CharacterBase = %Player_Character
 @onready var SpellsUI: HBoxContainer = %SpellsUI
 @onready var camera: Camera2D = $Camera2D
-#@onready var Overlay_TileMap: TileMapLayer = %Overlay
-#@onready var HPValue: int = %HPValue.text
-#@onready var ActionsValue: int = %ActionsValue.text
 
 func _ready():
 	GlobalDataBus.spell_book_modified.connect(show_spells)

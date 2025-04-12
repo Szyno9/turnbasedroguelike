@@ -21,6 +21,8 @@ TurnQueueGlobal="*res://systems/TurnQueue/AutoloadTQ/turn_queue_Global.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GlobalEnums="*res://systems/global_enums.gd"
 GlobalDataBus="*res://systems/GlobalBus/global_bus.gd"
+LevelGenerator="*res://systems/Level_gen/level_generator.tscn"
+GlobalLevelMap="*res://systems/Level_gen/level_map.tscn"
 
 [display]
 
@@ -58,6 +60,11 @@ left_mouse_click={
 open_spells_ui={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":73,"key_label":0,"unicode":105,"location":0,"echo":false,"script":null)
+]
+}
+debug={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
 ]
 }
 

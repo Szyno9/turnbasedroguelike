@@ -2,16 +2,26 @@ extends TileMap
 
 class_name LevelMap
 var astar_grid: AStarGrid2D = AStarGrid2D.new()
-var tile_map: TileMap
+
+func _input(event):
+	if event.is_action_pressed("debug"):
+		next_level()
+
+func new_level():
+	$LevelGenerator.new_level()
+
+func next_level():
+	GlobalDataBus.elements.clear()
+	$LevelGenerator.new_level()
 
 func initialize():
-	tile_map=self
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = get_used_rect()
 	astar_grid.cell_size = Vector2(16, 16)
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
 	set_solid()
+	GlobalDataBus.level_changed.emit()
 
 func _physics_process(_delta):
 	pass
@@ -23,7 +33,7 @@ func set_solid():
 					x+get_used_rect().position.x,
 					y+get_used_rect().position.y
 				)
-				var tile_data = tile_map.get_cell_tile_data(0,tile_position)
+				var tile_data = get_cell_tile_data(0,tile_position)
 				if tile_data.get_custom_data("is_solid") == true:
 					astar_grid.set_point_solid(tile_position)
 
@@ -39,7 +49,7 @@ func test():
 					x+get_used_rect().position.x,
 					y+get_used_rect().position.y
 				)
-				var tile_data = tile_map.get_cell_tile_data(0,tile_position)
+				var tile_data = get_cell_tile_data(0,tile_position)
 				if tile_position in char_position:
 					astar_grid.set_point_solid(tile_position, true)
 				elif tile_data.get_custom_data("is_solid") == false:

@@ -2,26 +2,93 @@ extends Node
 
 @onready var tile_map:LevelMap
 
-var connection_graph:Graph
-var ROOM_NUMBER: int = 30
-var MAX_ROOM_SIZE: int = 90
-var STANDARD_GAP: int = 3
-var GRID_SIZE: int = MAX_ROOM_SIZE * ROOM_NUMBER
 
+var MAX_ROOM_SIZE: int = 90
+var level_grid:Array
 var room_table : Array[Array]
 var cellular_automata_steps = 4
 
 var debug_position = Vector2i(0,0)
 
-func _ready():
-	tile_map = %LevelMap
-	#generate_level() Done
-	#find_sub_rooms() Done
-	#draw_room() Done
-	#place_features()
-	draw_room(generate_level(), Vector2i(0,0))
-	tile_map.initialize()
+signal level_generated
 
+#func _ready():
+	#tile_map = %LevelMap
+	##generate_level() Done
+	##find_sub_rooms() Done
+	##draw_room() Done
+	#
+	#draw_room(generate_level(), Vector2i(0,0))
+	##circular_search(level_grid,Vector2i(25,25), 2)
+	#spawn_enemies()
+	#tile_map.initialize()
+
+func new_level():
+	tile_map = get_parent() #TODO: na ten moment to jest głupie jak but
+	
+	draw_room(generate_level(), Vector2i(0,0))
+	spawn_enemies()
+	get_parent().initialize()
+	#get_tree().current_scene.add_child(tile_map.duplicate())
+
+func spawn_enemies(amount_of_groups:int = 4, size_of_groups:int = 3):
+	var regions_table = []
+	var i = 0
+	while i < amount_of_groups:
+		var new_point = Vector2i(randi_range(0,level_grid[0].size()),randi_range(0,level_grid.size()))
+		var new_region = circular_search(new_point, 30, regions_table)
+		if new_region != []:
+			i+=1
+			regions_table.append(new_region)
+
+	var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
+	for region in regions_table:
+
+		for monster in monster_group.get_monsters():
+			var spawn_point = region.pick_random()
+			region.erase(spawn_point)
+			spawn_point -= Vector2i(MAX_ROOM_SIZE/2, MAX_ROOM_SIZE/2)
+			var monster_scene = monster.instantiate()
+			monster_scene.global_position = tile_map.map_to_local(spawn_point)
+			GlobalDataBus.elements.append(monster_scene)
+
+#func check_point_for_enemy_group(grid, point):
+	#circular_search()
+	
+func circular_search(center, region_size, region_table):
+	var grid = level_grid
+	const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+	var current_region = []
+	var cell_stack: Array = [center]
+	while not (cell_stack.is_empty()):
+		if current_region.size()>=region_size:
+			break
+		var current = cell_stack.pop_back()
+		if current in current_region:
+			continue
+		if check_existing_regions(current, region_table):
+			continue
+		
+		current_region.append(current)
+		
+		for direction in DIRECTIONS:
+			var cell: Vector2i = current + direction
+			if cell.y>=grid.size() or cell.y<0 or cell.x>=grid[0].size() or cell.x<0:
+				continue
+			if cell in current_region:
+				continue
+			if grid[cell.y][cell.x] == 1:
+				continue
+			cell_stack.append(cell)
+	if current_region.size()>=region_size:
+		return current_region
+	return []
+
+func check_existing_regions(current, region_table):
+	for existing_region in region_table:
+		if current in existing_region:
+			return true
+	return false
 
 func draw_room(room:Array, starting_point:Vector2i):
 	var walls:Array[Vector2i]
@@ -59,6 +126,7 @@ func generate_level():
 		room = cellular_automata(room)
 	
 	find_sub_rooms(room)
+	level_grid = room
 	return room
 
 func cellular_automata(room):

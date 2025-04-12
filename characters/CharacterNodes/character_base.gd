@@ -32,19 +32,20 @@ var map_coords:Vector2i
 
 
 func _ready():
-	tile_map=%LevelMap
-	astar_grid = tile_map.astar_grid
+	tile_map= GlobalLevelMap#%LevelMap #TODO: zrobić to mądrze
+	astar_grid = GlobalLevelMap.astar_grid
 	add_child(NotifyArea)
 	add_child(status_holder)
 	
 	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
+	GlobalDataBus.level_changed.connect(_on_level_changed)
 	max_health = starting_stats.health
 	health = starting_stats.health
 	actions = starting_stats.actions
 	speed = starting_stats.speed
 	initiative = starting_stats.initiative
 	
-	
+
 #func _unhandled_input(event):
 	#match input_state:
 		#INPUT_STATE.MOVE:
@@ -185,3 +186,7 @@ func check_spell_range(spell:Spell, target:Vector2):
 func teleport_to_location(destination: Vector2i):
 	current_id_path = []
 	global_position = destination
+
+func _on_level_changed():
+	current_id_path.clear()
+	astar_grid = GlobalLevelMap.astar_grid
