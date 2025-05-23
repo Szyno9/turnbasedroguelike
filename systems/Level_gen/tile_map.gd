@@ -8,6 +8,7 @@ func _input(event):
 		next_level()
 
 func new_level():
+	GlobalDataBus.elements.clear()
 	$LevelGenerator.new_level()
 
 func next_level():

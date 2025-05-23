@@ -19,14 +19,18 @@
 				"9f2e2e5c-acea-428c-afb0-7eff8eae9579",
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"4d790c00-7606-4120-8cf1-b0b9479c2133",
-				"4ab6160f-ce42-4395-9519-49cd68a0ed96"
+				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
+				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
+				"b5a81714-771c-4956-83e6-74eb6cb176f9",
+				"cd0342b9-5222-44e7-a958-a76c3ce5a07f",
+				"873c7757-db77-4598-bd74-37264625ffe4"
 			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
-				"d3119641-a8be-4205-b5e3-ab4e4c91803b"
+				"2391ee5e-694b-4e84-9761-1f972190eeb4"
 			]
 		},
 		{
@@ -303,6 +307,48 @@
 					"done": true
 				}
 			]
+		},
+		{
+			"uuid": "b5a81714-771c-4956-83e6-74eb6cb176f9",
+			"title": "Mapa do obrazka",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "cd0342b9-5222-44e7-a958-a76c3ce5a07f",
+			"title": "Reguły dodawania elementów",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "koło ścoiany",
+					"done": false
+				},
+				{
+					"details": "koło przeciwników",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "873c7757-db77-4598-bd74-37264625ffe4",
+			"title": "Doklejanie kształtów z szumu do gotowych ścieżek",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "Gotowe ścież,ki",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "2391ee5e-694b-4e84-9761-1f972190eeb4",
+			"title": "Multi_Level",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
 		}
 	],
 	"layout": {
