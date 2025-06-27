@@ -91,7 +91,6 @@ func check_existing_regions(current, region_table):
 	return false
 
 func draw_room(room:Array, starting_point:Vector2i):
-	tile_map.tile_set = load("res://assets/tilesets/level_map_1.tres")
 	var walls:Array[Vector2i]
 	var floors:Array[Vector2i]
 	var offset_x:int = room[0].size()/2

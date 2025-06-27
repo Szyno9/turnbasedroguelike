@@ -15,13 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://ceobu7tklxixt" path="res://characters/Enemies/Slime/slime.tscn" id="14_gswtm"]
 [ext_resource type="PackedScene" uid="uid://6rnfxkpn3ql2" path="res://characters/Enemies/EvilMage/evil_mage.tscn" id="15_g556r"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gguij"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qa2gi"]
 texture = ExtResource("2_gvtur")
 0:0/0 = 0
 1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_mygjm"]
-sources/0 = SubResource("TileSetAtlasSource_gguij")
+sources/0 = SubResource("TileSetAtlasSource_qa2gi")
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_hswfo")

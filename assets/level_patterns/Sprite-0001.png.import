@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://c05rshnsqjel1"
+path="res://.godot/imported/Sprite-0001.png-13cf510b1e3ff6e08907530ba7f8ec20.image"
+
+[deps]
+
+source_file="res://assets/level_patterns/Sprite-0001.png"
+dest_files=["res://.godot/imported/Sprite-0001.png-13cf510b1e3ff6e08907530ba7f8ec20.image"]
+
+[params]
+
