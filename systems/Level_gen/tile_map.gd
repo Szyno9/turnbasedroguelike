@@ -8,6 +8,8 @@ var level_1_tileset:TileSet = load("res://assets/tilesets/level_map_2.tres")
 
 var level_tilesets:Array[TileSet] = [level_0_tileset,level_1_tileset]
 
+var spawn_point: Vector2i
+
 func _input(event):
 	if event.is_action_pressed("debug"):
 		GlobalDataBus.current_level=(GlobalDataBus.current_level+1) % level_tilesets.size()
@@ -17,6 +19,7 @@ func new_level():
 	GlobalDataBus.elements.clear()
 	tile_set = level_tilesets[GlobalDataBus.current_level]
 	$LevelGenerator.new_level()
+	GlobalDataBus.set_spawn_point.emit(spawn_point)
 
 
 func initialize():

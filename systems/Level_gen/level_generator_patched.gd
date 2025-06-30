@@ -24,17 +24,17 @@ signal level_generated
 	#spawn_enemies()
 	#tile_map.initialize()
 
-func _ready():
-	tile_map = get_parent() #TODO: na ten moment to jest głupie jak but
-	#generate_level()
-	draw_room(generate_level(),Vector2i(0,0))
-	get_parent().initialize()
+#func _ready():
+	#tile_map = get_parent() #TODO: na ten moment to jest głupie jak but
+	##generate_level()
+	#draw_room(generate_level(),Vector2i(0,0))
+	#get_parent().initialize()
 
 func new_level():
 	tile_map = get_parent() #TODO: na ten moment to jest głupie jak but
 	
 	draw_room(generate_level(), Vector2i(0,0))
-	spawn_enemies()
+	#spawn_enemies()
 	get_parent().initialize()
 	#get_tree().current_scene.add_child(tile_map.duplicate())
 
@@ -59,8 +59,13 @@ func spawn_enemies(amount_of_groups:int = 4, size_of_groups:int = 3):
 			monster_scene.global_position = tile_map.map_to_local(spawn_point)
 			GlobalDataBus.elements.append(monster_scene)
 
-#func check_point_for_enemy_group(grid, point):
-	#circular_search()
+func spawn_enemies2(encounter_coords:Vector2i):
+	var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
+	for monster in monster_group.get_monsters():
+		var spawn_point = encounter_coords
+		var monster_scene = monster.instantiate()
+		monster_scene.global_position = tile_map.map_to_local(spawn_point)
+		GlobalDataBus.elements.append(monster_scene)
 	
 func circular_search(center, region_size, region_table):
 	var grid = level_grid
@@ -100,8 +105,8 @@ func check_existing_regions(current, region_table):
 func draw_room(room:Array, starting_point:Vector2i):
 	var walls:Array[Vector2i]
 	var floors:Array[Vector2i]
-	var offset_x:int = room[0].size()/2
-	var offset_y:int = room.size()/2
+	var offset_x:int = 0#room[0].size()/2
+	var offset_y:int = 0#room.size()/2
 	var room_cells:Array[Vector2i]
 	for y in range(room.size()):
 		for x in range(room[y].size()):
@@ -119,9 +124,9 @@ func draw_room(room:Array, starting_point:Vector2i):
 	
 # ROOM PART
 func generate_level():
-	# Determine room width and height randomly within the specified range
 	var room_properties: Array = []
-	var patchs:Image = load("res://assets/level_patterns/Sprite-0003.png")
+	var encounters_coords_table = []
+	var patchs:Image = load("res://assets/level_patterns/Sprite-0004.png")
 	
 	#if patchs.get_format() != Image.FORMAT_RGBA8:
 		#patchs.convert(Image.FORMAT_RGBA8)
@@ -136,13 +141,16 @@ func generate_level():
 				room_properties[column].append(0) #Floor
 			elif patchs.get_pixel(row, column) == Color(1,0,0,1):
 				room_properties[column].append(2) #Encounter
+				encounters_coords_table.append(Vector2i(row, column))
 			elif patchs.get_pixel(row, column) == Color(0,1,0,1):
 				room_properties[column].append(3) #Tresure
+			elif patchs.get_pixel(row, column) == Color(0,1,1,1):
+				get_parent().spawn_point = Vector2i(row, column)
+				room_properties[column].append(5) #Spawn point
 			elif patchs.get_pixel(row, column) == Color(1,1,1,1):
 				room_properties[column].append(4) #Exit
 	
 	var room = room_properties
-	print(room)
 	for column in range(room.size()):
 		for row in range(room[0].size()):
 			if room[column][row] != 0 and room[column][row] != 1:
@@ -156,6 +164,9 @@ func generate_level():
 	
 	#find_sub_rooms(room)
 	level_grid = room
+	for encounter_coords in encounters_coords_table:
+		spawn_enemies2(encounter_coords)
+	
 	return room
 
 func apply_noise(room):

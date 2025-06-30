@@ -4,6 +4,7 @@ enum INPUT_STATE{MOVE, ATTACK}
 var input_state:int
 
 
+
 func _ready():
 	super()
 	spell_book.add_spell(load("res://Spells/missle/missle.tres").duplicate())
@@ -13,6 +14,8 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/fireball/fireball.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/fire_shuriken/fire_shuriken.tres").duplicate())
 	GlobalDataBus.world_interaction.connect(interact_with_element)
+	GlobalDataBus.set_spawn_point.connect(_on_set_spawn_point)
+	_on_set_spawn_point(GlobalLevelMap.spawn_point)
 	
 #func _input(event):
 	#if event.is_action_pressed("open_spells_ui"):
@@ -108,3 +111,8 @@ func interact_with_element(element:Interactable):
 			element.on_interaction()
 			max_health+=25
 			take_heal(25)
+
+func _on_set_spawn_point(spawn_point: Vector2i):
+	spawn_point = tile_map.map_to_local(spawn_point)
+	global_position.x = spawn_point.x
+	global_position.y = spawn_point.y

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddadrm3u5ejos"]
+[gd_scene load_steps=14 format=3 uid="uid://ddadrm3u5ejos"]
 
 [ext_resource type="Script" path="res://stupid_loader.gd" id="1_hswfo"]
 [ext_resource type="Texture2D" uid="uid://c25noxqeg4oh7" path="res://assets/tilesets/overlay.png" id="2_gvtur"]
@@ -6,14 +6,11 @@
 [ext_resource type="Script" path="res://systems/user_inteface/overlay.gd" id="5_eoxft"]
 [ext_resource type="Script" path="res://systems/enemy_holder.gd" id="5_qyatg"]
 [ext_resource type="Script" path="res://systems/user_inteface/user_interface.gd" id="6_pus1h"]
-[ext_resource type="PackedScene" uid="uid://ceychkkljcd64" path="res://characters/Enemies/Skeleton/skeleton.tscn" id="7_51oky"]
 [ext_resource type="PackedScene" uid="uid://bxd0pguc7mq2b" path="res://systems/user_inteface/pause_menu.tscn" id="9_w4hfc"]
 [ext_resource type="PackedScene" uid="uid://du0v3w3mg4src" path="res://map_elements/Chest/chest.tscn" id="10_a85ow"]
 [ext_resource type="PackedScene" uid="uid://xqxb7d5vwcsl" path="res://systems/user_inteface/spell_dialog.tscn" id="10_wqllc"]
 [ext_resource type="PackedScene" uid="uid://bbo625eo0r0yi" path="res://map_elements/teleport/teleport.tscn" id="12_75hpl"]
 [ext_resource type="PackedScene" uid="uid://dkeahc8xrgfk3" path="res://rewards/SpellPickup/spell_pickup.tscn" id="13_pmpr1"]
-[ext_resource type="PackedScene" uid="uid://ceobu7tklxixt" path="res://characters/Enemies/Slime/slime.tscn" id="14_gswtm"]
-[ext_resource type="PackedScene" uid="uid://6rnfxkpn3ql2" path="res://characters/Enemies/EvilMage/evil_mage.tscn" id="15_g556r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qa2gi"]
 texture = ExtResource("2_gvtur")
@@ -36,21 +33,6 @@ position = Vector2(176, 207)
 
 [node name="element_holder" type="Node2D" parent="."]
 script = ExtResource("5_qyatg")
-
-[node name="Skeleton2" parent="element_holder" instance=ExtResource("7_51oky")]
-position = Vector2(280, 264)
-
-[node name="Skeleton3" parent="element_holder" instance=ExtResource("7_51oky")]
-position = Vector2(344, 120)
-
-[node name="Slime" parent="element_holder" instance=ExtResource("14_gswtm")]
-position = Vector2(306, 92)
-
-[node name="EvilMage" parent="element_holder" instance=ExtResource("15_g556r")]
-position = Vector2(344, 72)
-
-[node name="Skeleton" parent="element_holder" instance=ExtResource("7_51oky")]
-position = Vector2(294, 200)
 
 [node name="Chest" parent="element_holder" instance=ExtResource("10_a85ow")]
 position = Vector2(184, 103)

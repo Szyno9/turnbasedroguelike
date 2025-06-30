@@ -3,7 +3,7 @@ extends Node2D
 func _ready():
 	#GlobalDataBus.element_holder = self
 	for element in GlobalDataBus.elements:
-		print(element.global_position)
+		#print(element.global_position)
 		add_child(element)
 
 func clear_elements():
