@@ -21,6 +21,7 @@ signal open_spell_interface(spell_book:SpellBook)
 signal spell_book_modified
 signal level_changed
 signal set_spawn_point(spawn_point:Vector2i)
+signal move_to_next_level
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_scene_name = get_tree().get_current_scene().name

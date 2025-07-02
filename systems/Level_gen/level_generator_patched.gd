@@ -38,34 +38,44 @@ func new_level():
 	get_parent().initialize()
 	#get_tree().current_scene.add_child(tile_map.duplicate())
 
-func spawn_enemies(amount_of_groups:int = 4, size_of_groups:int = 3):
-	var regions_table = []
-	var i = 0
-	while i < amount_of_groups:
-		var new_point = Vector2i(randi_range(0,level_grid[0].size()),randi_range(0,level_grid.size()))
-		var new_region = circular_search(new_point, 30, regions_table)
-		if new_region != []:
-			i+=1
-			regions_table.append(new_region)
+#func spawn_enemies(amount_of_groups:int = 4, size_of_groups:int = 3):
+	#var regions_table = []
+	#var i = 0
+	#while i < amount_of_groups:
+		#var new_point = Vector2i(randi_range(0,level_grid[0].size()),randi_range(0,level_grid.size()))
+		#var new_region = circular_search(new_point, 30, regions_table)
+		#if new_region != []:
+			#i+=1
+			#regions_table.append(new_region)
+#
+	#var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
+	#for region in regions_table:
+#
+		#for monster in monster_group.get_monsters():
+			#var spawn_point = region.pick_random()
+			#region.erase(spawn_point)
+			#spawn_point -= Vector2i(MAX_ROOM_SIZE/2, MAX_ROOM_SIZE/2)
+			#var monster_scene = monster.instantiate()
+			#monster_scene.global_position = tile_map.map_to_local(spawn_point)
+			#GlobalDataBus.elements.append(monster_scene)
 
-	var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
-	for region in regions_table:
-
-		for monster in monster_group.get_monsters():
-			var spawn_point = region.pick_random()
-			region.erase(spawn_point)
-			spawn_point -= Vector2i(MAX_ROOM_SIZE/2, MAX_ROOM_SIZE/2)
-			var monster_scene = monster.instantiate()
-			monster_scene.global_position = tile_map.map_to_local(spawn_point)
-			GlobalDataBus.elements.append(monster_scene)
-
-func spawn_enemies2(encounter_coords:Vector2i):
+func spawn_enemies(encounter_coords:Vector2i):
 	var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
 	for monster in monster_group.get_monsters():
 		var spawn_point = encounter_coords
 		var monster_scene = monster.instantiate()
 		monster_scene.global_position = tile_map.map_to_local(spawn_point)
 		GlobalDataBus.elements.append(monster_scene)
+	
+func spawn_treasures(treasure_coords:Vector2i):
+	var chest = load("res://map_elements/Chest/chest.tscn").instantiate()
+	chest.global_position = tile_map.map_to_local(treasure_coords)
+	GlobalDataBus.elements.append(chest)
+	
+func spawn_level_exit(exit_coords:Vector2i):
+	var exit = load("res://map_elements/level_exit/level_exit.tscn").instantiate()
+	exit.global_position = tile_map.map_to_local(exit_coords)
+	GlobalDataBus.elements.append(exit)
 	
 func circular_search(center, region_size, region_table):
 	var grid = level_grid
@@ -126,6 +136,7 @@ func draw_room(room:Array, starting_point:Vector2i):
 func generate_level():
 	var room_properties: Array = []
 	var encounters_coords_table = []
+	var treasure_coords_table = []
 	var patchs:Image = load("res://assets/level_patterns/Sprite-0004.png")
 	
 	#if patchs.get_format() != Image.FORMAT_RGBA8:
@@ -143,11 +154,13 @@ func generate_level():
 				room_properties[column].append(2) #Encounter
 				encounters_coords_table.append(Vector2i(row, column))
 			elif patchs.get_pixel(row, column) == Color(0,1,0,1):
+				treasure_coords_table.append(Vector2i(row, column))
 				room_properties[column].append(3) #Tresure
 			elif patchs.get_pixel(row, column) == Color(0,1,1,1):
 				get_parent().spawn_point = Vector2i(row, column)
 				room_properties[column].append(5) #Spawn point
 			elif patchs.get_pixel(row, column) == Color(1,1,1,1):
+				spawn_level_exit(Vector2i(row, column))
 				room_properties[column].append(4) #Exit
 	
 	var room = room_properties
@@ -164,8 +177,12 @@ func generate_level():
 	
 	#find_sub_rooms(room)
 	level_grid = room
+	
+	for treasure_coords in treasure_coords_table:
+		spawn_treasures(treasure_coords)
+	
 	for encounter_coords in encounters_coords_table:
-		spawn_enemies2(encounter_coords)
+		spawn_enemies(encounter_coords)
 	
 	return room
 

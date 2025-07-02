@@ -10,12 +10,15 @@ var level_tilesets:Array[TileSet] = [level_0_tileset,level_1_tileset]
 
 var spawn_point: Vector2i
 
+func _ready():
+	GlobalDataBus.connect("move_to_next_level", new_level)
+
 func _input(event):
 	if event.is_action_pressed("debug"):
-		GlobalDataBus.current_level=(GlobalDataBus.current_level+1) % level_tilesets.size()
 		new_level()
 
 func new_level():
+	GlobalDataBus.current_level=(GlobalDataBus.current_level+1) % level_tilesets.size()
 	GlobalDataBus.elements.clear()
 	tile_set = level_tilesets[GlobalDataBus.current_level]
 	$LevelGenerator.new_level()

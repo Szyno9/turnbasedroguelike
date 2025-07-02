@@ -13,24 +13,24 @@
 			"tasks": [
 				"9e8d65c3-0dc1-4b24-b3e2-e8fb73b96dda",
 				"1fae73aa-129f-40a5-9a56-d9ea2273a876",
-				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
 				"19762a89-4f38-41f8-b593-d8bc462eff9a",
 				"2d9b08b4-6bd6-420d-9121-71afa3931217",
 				"9f2e2e5c-acea-428c-afb0-7eff8eae9579",
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"4d790c00-7606-4120-8cf1-b0b9479c2133",
 				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
-				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
 				"b5a81714-771c-4956-83e6-74eb6cb176f9",
-				"cd0342b9-5222-44e7-a958-a76c3ce5a07f",
-				"873c7757-db77-4598-bd74-37264625ffe4"
+				"66c3c98b-adb0-40ec-b212-486c31348c7d"
 			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
 			"tasks": [
-				"2391ee5e-694b-4e84-9761-1f972190eeb4"
+				"2391ee5e-694b-4e84-9761-1f972190eeb4",
+				"873c7757-db77-4598-bd74-37264625ffe4",
+				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
+				"b503c7a1-bfd6-4412-a35a-a12cb3b4806c"
 			]
 		},
 		{
@@ -50,7 +50,8 @@
 				"4f107f56-4b1b-41a1-8135-890ead7258b7",
 				"49058e54-d5d1-4dc6-90a8-0511aebf44ea",
 				"ef33a72b-6dd7-4802-81e1-423a469df8b6",
-				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32"
+				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
+				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf"
 			]
 		}
 	],
@@ -75,7 +76,7 @@
 				},
 				{
 					"details": "Add_features",
-					"done": false
+					"done": true
 				}
 			]
 		},
@@ -316,22 +317,6 @@
 			"steps": []
 		},
 		{
-			"uuid": "cd0342b9-5222-44e7-a958-a76c3ce5a07f",
-			"title": "Reguły dodawania elementów",
-			"description": "",
-			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
-			"steps": [
-				{
-					"details": "koło ścoiany",
-					"done": false
-				},
-				{
-					"details": "koło przeciwników",
-					"done": false
-				}
-			]
-		},
-		{
 			"uuid": "873c7757-db77-4598-bd74-37264625ffe4",
 			"title": "Doklejanie kształtów z szumu do gotowych ścieżek",
 			"description": "",
@@ -340,12 +325,30 @@
 				{
 					"details": "Gotowe ścież,ki",
 					"done": false
+				},
+				{
+					"details": "algorytm",
+					"done": true
 				}
 			]
 		},
 		{
 			"uuid": "2391ee5e-694b-4e84-9761-1f972190eeb4",
 			"title": "Multi_Level",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "66c3c98b-adb0-40ec-b212-486c31348c7d",
+			"title": "Enemy patrol logic",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "b503c7a1-bfd6-4412-a35a-a12cb3b4806c",
+			"title": "Level Exit",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": []

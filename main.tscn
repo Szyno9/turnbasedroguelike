@@ -66,6 +66,7 @@ script = ExtResource("6_pus1h")
 
 [node name="Camera2D" type="Camera2D" parent="UserInterface"]
 ignore_rotation = false
+zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UserInterface"]

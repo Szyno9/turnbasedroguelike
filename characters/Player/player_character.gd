@@ -1,4 +1,6 @@
-extends CharacterBase
+class_name PlayerCharacter extends CharacterBase
+
+
 
 enum INPUT_STATE{MOVE, ATTACK}
 var input_state:int
@@ -116,3 +118,6 @@ func _on_set_spawn_point(spawn_point: Vector2i):
 	spawn_point = tile_map.map_to_local(spawn_point)
 	global_position.x = spawn_point.x
 	global_position.y = spawn_point.y
+
+func exit_level():
+	pass
