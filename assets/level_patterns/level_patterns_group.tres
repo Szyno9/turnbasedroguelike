@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dwyhlcb6cpe5l"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_7rvgo"]
+
+[resource]
+script = ExtResource("1_7rvgo")
+base_folder = "res://assets/level_patterns"
+includes = Array[String](["*.png"])
+excludes = Array[String](["*.tres"])
+paths = Array[String](["res://assets/level_patterns/Sprite-0001.png", "res://assets/level_patterns/Sprite-0002.png", "res://assets/level_patterns/Sprite-0003.png", "res://assets/level_patterns/Sprite-0004.png", "res://assets/level_patterns/Sprite-0005.png", "res://assets/level_patterns/Sprite-0006.png", "res://assets/level_patterns/Sprite-0007.png", "res://assets/level_patterns/Sprite-0008.png", "res://assets/level_patterns/Sprite-0009.png", "res://assets/level_patterns/Sprite-00010.png"])

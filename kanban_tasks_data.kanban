@@ -19,19 +19,15 @@
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"4d790c00-7606-4120-8cf1-b0b9479c2133",
 				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
-				"b5a81714-771c-4956-83e6-74eb6cb176f9",
-				"66c3c98b-adb0-40ec-b212-486c31348c7d"
+				"2391ee5e-694b-4e84-9761-1f972190eeb4",
+				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
+				"b503c7a1-bfd6-4412-a35a-a12cb3b4806c"
 			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
-			"tasks": [
-				"2391ee5e-694b-4e84-9761-1f972190eeb4",
-				"873c7757-db77-4598-bd74-37264625ffe4",
-				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
-				"b503c7a1-bfd6-4412-a35a-a12cb3b4806c"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "224db046-a596-4ff4-8ad8-3b173959edd3",
@@ -51,7 +47,10 @@
 				"49058e54-d5d1-4dc6-90a8-0511aebf44ea",
 				"ef33a72b-6dd7-4802-81e1-423a469df8b6",
 				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
-				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf"
+				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
+				"b5a81714-771c-4956-83e6-74eb6cb176f9",
+				"873c7757-db77-4598-bd74-37264625ffe4",
+				"66c3c98b-adb0-40ec-b212-486c31348c7d"
 			]
 		}
 	],
@@ -324,7 +323,7 @@
 			"steps": [
 				{
 					"details": "Gotowe ścież,ki",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "algorytm",

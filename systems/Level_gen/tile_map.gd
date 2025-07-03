@@ -22,6 +22,7 @@ func new_level():
 	GlobalDataBus.elements.clear()
 	tile_set = level_tilesets[GlobalDataBus.current_level]
 	$LevelGenerator.new_level()
+	GlobalDataBus.level_changed.emit()
 	GlobalDataBus.set_spawn_point.emit(spawn_point)
 
 
@@ -32,7 +33,6 @@ func initialize():
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
 	set_solid()
-	GlobalDataBus.level_changed.emit()
 
 func _physics_process(_delta):
 	pass

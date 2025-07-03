@@ -2,7 +2,8 @@ extends Node
 
 @onready var tile_map:LevelMap
 
-
+var level_patterns_group:ResourceGroup = load("res://assets/level_patterns/level_patterns_group.tres")
+var level_patterns = level_patterns_group.load_all()
 var MAX_ROOM_SIZE: int = 90
 var level_grid:Array
 var room_table : Array[Array]
@@ -137,7 +138,7 @@ func generate_level():
 	var room_properties: Array = []
 	var encounters_coords_table = []
 	var treasure_coords_table = []
-	var patchs:Image = load("res://assets/level_patterns/Sprite-0004.png")
+	var patchs:Image = level_patterns.pick_random()#load("res://assets/level_patterns/Sprite-0003.png")
 	
 	#if patchs.get_format() != Image.FORMAT_RGBA8:
 		#patchs.convert(Image.FORMAT_RGBA8)
@@ -162,8 +163,11 @@ func generate_level():
 			elif patchs.get_pixel(row, column) == Color(1,1,1,1):
 				spawn_level_exit(Vector2i(row, column))
 				room_properties[column].append(4) #Exit
+
+	var room := room_properties.duplicate(true)
 	
-	var room = room_properties
+	
+	
 	for column in range(room.size()):
 		for row in range(room[0].size()):
 			if room[column][row] != 0 and room[column][row] != 1:
@@ -174,6 +178,10 @@ func generate_level():
 	
 	for i in range(cellular_automata_steps):
 		room = cellular_automata(room)
+	for column in range(room_properties.size()):
+		for row in range(room_properties[0].size()):
+			if room_properties[column][row] != 1:
+				room[column][row] = 0
 	
 	#find_sub_rooms(room)
 	level_grid = room
@@ -183,7 +191,7 @@ func generate_level():
 	
 	for encounter_coords in encounters_coords_table:
 		spawn_enemies(encounter_coords)
-	
+
 	return room
 
 func apply_noise(room):

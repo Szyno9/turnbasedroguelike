@@ -2,6 +2,7 @@ extends CharacterBase
 
 class_name EnemyBase
 var ai_processing = false
+var central_patrol_point:Vector2i = Vector2i.ZERO
 enum ACTION_TYPE{SHOOT, WALK_FOR_RANGE, HEAL, PASS}
 
 func _ready():
@@ -14,8 +15,14 @@ func _process(_delta):
 	pass
 
 func patrol(): #TODO PRZEROBIĆ
+	if central_patrol_point == Vector2i.ZERO:
+		central_patrol_point = tile_map.local_to_map(global_position)
 	if is_moving == false and TurnQueue.turn_mode == false:
-		set_id_path(get_random_surrouding_tile())
+		var random_tile = get_random_surrouding_tile()
+		if random_tile.distance_to(central_patrol_point) > 5:
+			set_id_path(central_patrol_point)
+		else:
+			set_id_path(random_tile)
 		is_moving = true
 
 
