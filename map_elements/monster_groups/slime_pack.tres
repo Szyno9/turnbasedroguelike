@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dbokxwm81evgb"]
+[gd_resource type="Resource" script_class="MonsterGroup" load_steps=3 format=3 uid="uid://dbokxwm81evgb"]
 
+[ext_resource type="PackedScene" uid="uid://ceobu7tklxixt" path="res://characters/Enemies/Slime/slime.tscn" id="1_mfvnp"]
 [ext_resource type="Script" path="res://map_elements/monster_groups/monster_group_resource.gd" id="1_y6m0m"]
 
 [resource]
 script = ExtResource("1_y6m0m")
 name = ""
-_content = Array[PackedScene]([])
+_content = Array[PackedScene]([ExtResource("1_mfvnp"), ExtResource("1_mfvnp"), ExtResource("1_mfvnp")])

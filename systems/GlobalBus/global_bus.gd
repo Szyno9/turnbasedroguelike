@@ -3,11 +3,13 @@ extends Node
 class_name GlobalBus
 var spell_interface = load("res://rewards/SpellUpgrade/spell_upgrade.tscn")
 var spell_group_resource: ResourceGroup = load("res://Spells/all_spells.tres")
-var enemies_group_resource: ResourceGroup = load("res://characters/Enemies/all_enemies.tres")
+var enemies_resource: ResourceGroup = load("res://characters/Enemies/all_enemies.tres")
 var reward_group_resource: ResourceGroup = load("res://rewards/all_rewards.tres")
+var enemy_groups_resource: ResourceGroup = load("res://map_elements/monster_groups/all_enemy_groups.tres")
 var all_spells:Array = spell_group_resource.load_all()
-var all_enemies:Array = enemies_group_resource.load_all()
+var all_enemies:Array = enemies_resource.load_all()
 var all_rewards:Array = reward_group_resource.load_all()
+var all_enemy_groups:Array = enemy_groups_resource.load_all()
 
 var player_character: CharacterBase
 var astar_grid: AStar2D

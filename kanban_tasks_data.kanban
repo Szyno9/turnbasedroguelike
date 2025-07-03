@@ -11,23 +11,24 @@
 			"uuid": "43b46b20-83f1-414c-a48a-20f0305f7253",
 			"title": "Todo",
 			"tasks": [
+				"1f8d8b67-b1d9-4c7b-a657-3ac5d30015e6",
+				"2391ee5e-694b-4e84-9761-1f972190eeb4",
 				"9e8d65c3-0dc1-4b24-b3e2-e8fb73b96dda",
 				"1fae73aa-129f-40a5-9a56-d9ea2273a876",
 				"19762a89-4f38-41f8-b593-d8bc462eff9a",
-				"2d9b08b4-6bd6-420d-9121-71afa3931217",
 				"9f2e2e5c-acea-428c-afb0-7eff8eae9579",
-				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
-				"4d790c00-7606-4120-8cf1-b0b9479c2133",
 				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
-				"2391ee5e-694b-4e84-9761-1f972190eeb4",
 				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
-				"b503c7a1-bfd6-4412-a35a-a12cb3b4806c"
+				"e7fb4a29-566d-4d75-8292-14b3e9651897",
+				"269654b0-2430-42cd-a0e6-bebb0d1a19ba"
 			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"4d790c00-7606-4120-8cf1-b0b9479c2133"
+			]
 		},
 		{
 			"uuid": "224db046-a596-4ff4-8ad8-3b173959edd3",
@@ -39,6 +40,7 @@
 				"8bd76749-a11e-4a8e-894f-9a7a7d8905dc",
 				"f0329f00-6607-48b3-b2ca-c68c386d71f3",
 				"5f308286-3901-493c-8e54-4cf1711649b2",
+				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
@@ -49,6 +51,8 @@
 				"49cd8d6b-0474-4f4b-bd08-bdadc2ebcc32",
 				"b937602d-e8a2-4e88-af1e-71b2bda0d5cf",
 				"b5a81714-771c-4956-83e6-74eb6cb176f9",
+				"2d9b08b4-6bd6-420d-9121-71afa3931217",
+				"b503c7a1-bfd6-4412-a35a-a12cb3b4806c",
 				"873c7757-db77-4598-bd74-37264625ffe4",
 				"66c3c98b-adb0-40ec-b212-486c31348c7d"
 			]
@@ -249,11 +253,11 @@
 			"steps": [
 				{
 					"details": "Cast spell by spell type",
-					"done": false
+					"done": true
 				},
 				{
-					"details": "cast spell on target not on coords",
-					"done": false
+					"details": "bullshit\n",
+					"done": true
 				}
 			]
 		},
@@ -348,6 +352,27 @@
 		{
 			"uuid": "b503c7a1-bfd6-4412-a35a-a12cb3b4806c",
 			"title": "Level Exit",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "e7fb4a29-566d-4d75-8292-14b3e9651897",
+			"title": "rebalance spells and stats",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "1f8d8b67-b1d9-4c7b-a657-3ac5d30015e6",
+			"title": "spell info dialog",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "269654b0-2430-42cd-a0e6-bebb0d1a19ba",
+			"title": "boss",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": []

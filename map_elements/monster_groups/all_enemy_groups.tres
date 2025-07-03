@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dvute88rq4kwh"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_42er3"]
+
+[resource]
+script = ExtResource("1_42er3")
+base_folder = "res://map_elements/monster_groups"
+includes = Array[String](["*.tres"])
+excludes = Array[String](["all_enemy_groups.tres"])
+paths = Array[String](["res://map_elements/monster_groups/evil_mage_skeletons.tres", "res://map_elements/monster_groups/skeleton_pack.tres", "res://map_elements/monster_groups/slime_pack.tres"])

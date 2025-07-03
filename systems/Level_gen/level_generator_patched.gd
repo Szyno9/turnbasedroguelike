@@ -61,7 +61,7 @@ func new_level():
 			#GlobalDataBus.elements.append(monster_scene)
 
 func spawn_enemies(encounter_coords:Vector2i):
-	var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
+	var monster_group = GlobalDataBus.all_enemy_groups.pick_random()
 	for monster in monster_group.get_monsters():
 		var spawn_point = encounter_coords
 		var monster_scene = monster.instantiate()
