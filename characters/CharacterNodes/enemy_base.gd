@@ -17,7 +17,7 @@ func _process(_delta):
 func patrol(): #TODO PRZEROBIĆ
 	if central_patrol_point == Vector2i.ZERO:
 		central_patrol_point = tile_map.local_to_map(global_position)
-	if is_moving == false and TurnQueue.turn_mode == false:
+	if is_moving == false and TurnQueueGlobal.turn_mode == false:
 		var random_tile = get_random_surrouding_tile()
 		if random_tile.distance_to(central_patrol_point) > 5:
 			set_id_path(central_patrol_point)
@@ -66,25 +66,25 @@ func turn_ai():
 
 func find_lowest_health_target():
 	var target = self
-	for entity in TurnQueue.all_chars:
+	for entity in TurnQueueGlobal.all_chars:
 		if entity.is_in_group("hostile") and entity.health<target.health: #groups
 			target = entity
 	return target
 
 func find_closest_enemy():
 	var target
-	for entity in TurnQueue.all_chars:
+	for entity in TurnQueueGlobal.all_chars:
 		if entity.is_in_group("ally"):
 			target = entity
 			break
-	for entity in TurnQueue.all_chars:
+	for entity in TurnQueueGlobal.all_chars:
 		if entity.is_in_group("ally") and global_position.distance_to(entity.global_position)<global_position.distance_to(target.global_position): #groups
 			target = entity
 	return target
 	
 func find_target(spell:Spell) ->Vector2:
 	var temp_target:CharacterBase
-	for entity in TurnQueue.all_chars:
+	for entity in TurnQueueGlobal.all_chars:
 		if entity.is_in_group("ally") and check_spell_range(spell, entity.global_position): #groups
 			temp_target = entity
 	if temp_target != null:

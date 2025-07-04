@@ -14,3 +14,11 @@ func set_properties(spell_resource1:Spell, spell_index1:int):
 	#text=spell_resource1.name
 	spell_index = spell_index1
 	spell_resource = spell_resource1
+
+
+func _on_mouse_entered():
+	SpellPopUp.spellPopUp(Rect2i(Vector2i(global_position),Vector2i(size)),spell_resource)
+
+
+func _on_mouse_exited():
+	SpellPopUp.hideSpellPopUp()

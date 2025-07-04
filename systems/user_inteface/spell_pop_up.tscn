@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://sraekmpmk2fq"]
+
+[ext_resource type="Script" path="res://systems/user_inteface/spell_pop_up.gd" id="1_cenh7"]
+
+[sub_resource type="SystemFont" id="SystemFont_y80qw"]
+
+[sub_resource type="Theme" id="Theme_1xbiy"]
+default_font = SubResource("SystemFont_y80qw")
+default_font_size = 10
+
+[node name="SpellPopUp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cenh7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpellPopUpPanel" type="PopupPanel" parent="CanvasLayer"]
+unique_name_in_owner = true
+size = Vector2i(120, 103)
+visible = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SpellPopUpPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 116.0
+offset_bottom = 99.0
+
+[node name="SpellName" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fireball"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Damage" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "Damage:"
+horizontal_alignment = 2
+
+[node name="ActionCost" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "Action cost:"
+horizontal_alignment = 2
+
+[node name="BaseCooldown" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "Base cooldown:"
+horizontal_alignment = 2
+
+[node name="RemainingCooldown" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "remaining cooldown:"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DamageVal" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "0"
+
+[node name="ActionCostVal" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "0"
+
+[node name="BaseCooldownVal" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "0"
+
+[node name="RemainingCooldownVal" type="Label" parent="CanvasLayer/SpellPopUpPanel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_1xbiy")
+theme_type_variation = &"TooltipLabel"
+text = "0"

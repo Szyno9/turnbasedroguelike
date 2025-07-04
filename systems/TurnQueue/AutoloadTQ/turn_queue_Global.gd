@@ -1,25 +1,25 @@
 class_name TurnQueue extends Node
-static var all_chars: Array[CharacterBase]
-static var active_char: CharacterBase
-static var turn_mode = false
-static var global_tick: Timer = preload("res://systems/TurnQueue/AutoloadTQ/global_tick.tscn").instantiate()
+var all_chars: Array[CharacterBase]
+var active_char: CharacterBase
+var turn_mode = false
+var global_tick: Timer = preload("res://systems/TurnQueue/AutoloadTQ/global_tick.tscn").instantiate()
 
 func _ready():
 	add_child(global_tick)
 	global_tick.start()
 
-static func play_turn(): #actually starts turn for next character
+func play_turn(): #actually starts turn for next character
 	if !active_char and all_chars.size()>0:
 		active_char = all_chars[0]
 		return
-	elif all_chars.size()==0:
+	elif all_chars.size()<=1:
 		end_queue()
 		return
 	var new_index: int = (all_chars.find(active_char) + 1) %  all_chars.size()
 	active_char = all_chars[new_index]
 	active_char.play_turn()
 
-static func join_queue(node:CharacterBody2D):
+func join_queue(node:CharacterBody2D):
 	turn_mode = true
 	global_tick.stop()
 	if all_chars.has(node) == false:
@@ -28,15 +28,15 @@ static func join_queue(node:CharacterBody2D):
 	else:
 		play_turn()
 
-static func end_queue():
+func end_queue():
 	all_chars.clear()
 	global_tick.start()
 	turn_mode = false
 	
-static func remove_char(node:CharacterBody2D):
+func remove_char(node:CharacterBody2D):
 	all_chars.erase(node)
 
-static func initiative_sort(a:CharacterBase,b:CharacterBase):
+func initiative_sort(a:CharacterBase,b:CharacterBase):
 	if a.initiative > b.initiative:
 		return true
 	return false

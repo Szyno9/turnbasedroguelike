@@ -37,7 +37,7 @@ func _ready():
 	add_child(NotifyArea)
 	add_child(status_holder)
 	
-	TurnQueue.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
+	TurnQueueGlobal.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
 	GlobalDataBus.level_changed.connect(_on_level_changed)
 	max_health = starting_stats.health
 	health = starting_stats.health
@@ -76,29 +76,29 @@ func play_turn():
 	turn_tick()
 	
 func end_turn():
-	TurnQueue.play_turn()
+	TurnQueueGlobal.play_turn()
 	
 func _on_global_tick():
-	if TurnQueue.turn_mode == false:
+	if TurnQueueGlobal.turn_mode == false:
 		turn_tick()
 
 func turn_modeON(): #TODO: lepsze szukanie wrogów do kolejki
-	if TurnQueue.turn_mode == false:
-		TurnQueue.turn_mode=true
+	if TurnQueueGlobal.turn_mode == false:
+		TurnQueueGlobal.turn_mode=true
 		#TurnQueue.join_queue(self)
 	for entity in NotifyArea.get_overlapping_bodies():
 		if entity.is_class("CharacterBody2D"):
-			TurnQueue.join_queue(entity)
+			TurnQueueGlobal.join_queue(entity)
 	await get_tree().create_timer(0.5).timeout
-	TurnQueue.play_turn()
+	TurnQueueGlobal.play_turn()
 
 
 func turn_modeOff():
 	#TurnQueue.turn_mode = false
-	TurnQueue.end_queue()
+	TurnQueueGlobal.end_queue()
 	
 func turn_tick(): #TODO
-	if TurnQueue.turn_mode == true:
+	if TurnQueueGlobal.turn_mode == true:
 		current_id_path.clear()
 		is_moving = false
 	speed=starting_stats.speed
@@ -109,7 +109,7 @@ func turn_tick(): #TODO
 	
 #BASE FUNCTIONS
 func take_damage(damage:int):
-	if TurnQueue.turn_mode == false:
+	if TurnQueueGlobal.turn_mode == false:
 		turn_modeON()
 	
 	damage = status_holder.damage_status_check(damage)
@@ -120,7 +120,7 @@ func take_damage(damage:int):
 		die()
 
 func die():
-	TurnQueue.remove_char(self)
+	TurnQueueGlobal.remove_char(self)
 	character_died.emit()
 	queue_free()
 
@@ -159,7 +159,7 @@ func move_path():
 		global_position = global_position.move_toward(next_tile, 1)
 		direction_facing = current_id_path.front() - tile_map.local_to_map(global_position)
 		if global_position == next_tile:
-			if TurnQueue.turn_mode:
+			if TurnQueueGlobal.turn_mode:
 				speed-=1
 			current_id_path.pop_front()
 			move_finished.emit()

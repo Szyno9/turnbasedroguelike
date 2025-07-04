@@ -35,7 +35,7 @@ action_cost = 0
 
 [resource]
 script = ExtResource("1_is8ea")
-name = ""
+name = "Fireball"
 icon = ExtResource("1_8mmch")
 damage = 30
 basic_cooldown = 1

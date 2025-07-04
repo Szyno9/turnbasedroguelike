@@ -3,7 +3,7 @@ extends Node
 class_name StatusHolder
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	TurnQueue.global_tick.connect("timeout", Callable(self, "turn_tick_status_check"))
+	TurnQueueGlobal.global_tick.connect("timeout", Callable(self, "turn_tick_status_check"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

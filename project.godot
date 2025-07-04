@@ -23,6 +23,7 @@ GlobalEnums="*res://systems/global_enums.gd"
 GlobalDataBus="*res://systems/GlobalBus/global_bus.gd"
 LevelGenerator="*res://systems/Level_gen/level_generator.tscn"
 GlobalLevelMap="*res://systems/Level_gen/level_map.tscn"
+SpellPopUp="*res://systems/user_inteface/spell_pop_up.tscn"
 
 [display]
 

@@ -8,14 +8,14 @@ func _ready():
 	show_spells()
 
 func _process(_delta):
-	if TurnQueue.turn_mode == false:
+	if TurnQueueGlobal.turn_mode == false:
 		camera.set_position(Player_Character.global_position)
-	elif TurnQueue.active_char !=null:
-		camera.set_position(TurnQueue.active_char.global_position)
+	elif TurnQueueGlobal.active_char !=null:
+		camera.set_position(TurnQueueGlobal.active_char.global_position)
 	
 	if Player_Character == null:
 		return
-	if Player_Character.actions == 0 or (TurnQueue.turn_mode == true and Player_Character != TurnQueue.active_char): #TODO zmienić do funkcji on_changed
+	if Player_Character.actions == 0 or (TurnQueueGlobal.turn_mode == true and Player_Character != TurnQueueGlobal.active_char): #TODO zmienić do funkcji on_changed
 		for button in SpellsUI.get_children():
 			button.disabled = true
 	else:

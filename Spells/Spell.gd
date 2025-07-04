@@ -26,3 +26,15 @@ func upgrade():
 	basic_cooldown -= next_upgrade.basic_cooldown
 	action_cost -= next_upgrade.action_cost
 	spell_range += next_upgrade.spell_range
+
+func next_level_damage():
+	return damage+upgrade_list.front().damage
+
+func next_level_basic_cooldown():
+	return basic_cooldown - upgrade_list.front().basic_cooldown
+
+func next_level_action_cost():
+	return action_cost - upgrade_list.front().action_cost
+
+func next_level_spell_range():
+	return spell_range + upgrade_list.front().spell_range

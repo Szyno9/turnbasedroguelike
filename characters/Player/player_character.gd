@@ -27,7 +27,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("open_spells_ui"):
 		GlobalDataBus.open_spell_interface.emit(spell_book, GlobalEnums.SPELL_DIALOG_MODES.SHOW)
 	
-	if TurnQueue.turn_mode == false or TurnQueue.active_char == self:
+	if TurnQueueGlobal.turn_mode == false or TurnQueueGlobal.active_char == self:
 		match input_state:
 			INPUT_STATE.MOVE:
 				if event.is_action_pressed("left_mouse_click") == false:
@@ -60,14 +60,14 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(_body):
-	if(TurnQueue.turn_mode==false):
+	if(TurnQueueGlobal.turn_mode==false):
 		call_deferred("turn_modeON")
 		#body.call_deferred("turn_modeON");
 
 #UI STUFF
 func _on_end_turn_button_pressed():#TODO
-	if TurnQueue.turn_mode:
-		TurnQueue.play_turn()
+	if TurnQueueGlobal.turn_mode:
+		TurnQueueGlobal.play_turn()
 
 func _on_attack_button_button_down():#TODO
 	if input_state == INPUT_STATE.MOVE:

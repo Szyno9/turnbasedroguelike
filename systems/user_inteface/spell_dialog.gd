@@ -1,7 +1,7 @@
 extends Panel
 
 var opened = false
-var mode = GlobalEnums.SPELL_DIALOG_MODES.UPGRADE
+#var mode = GlobalEnums.SPELL_DIALOG_MODES.UPGRADE
 var spell_book: SpellBook
 var next_spell: Spell
 
@@ -20,7 +20,8 @@ func _process(delta):
 
 func show_spells(user_spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MODES, new_spell:Spell = null):
 	spell_book = user_spell_book
-	mode = new_mode
+	GlobalDataBus.spell_dialog_mode = new_mode
+	GlobalDataBus.disputed_spell = new_spell
 	next_spell = new_spell
 	open_menu()
 	for child in %SpellContainer.get_children():
@@ -36,7 +37,7 @@ func show_spells(user_spell_book:SpellBook, new_mode:GlobalEnums.SPELL_DIALOG_MO
 		button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
 		%SpellContainer.add_child(button)
 		index+=1
-	if mode == GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL:
+	if GlobalDataBus.spell_dialog_mode == GlobalEnums.SPELL_DIALOG_MODES.ADD_SPELL:
 		var button = button_pck.instantiate()
 		button.set_properties(Spell.new(), index)
 		button.connect("pressed", Callable(self, "_on_spell_button_pressed").bind(button.spell_resource))
@@ -52,12 +53,14 @@ func open_menu():
 	opened = true
 	visible = true
 func close_menu():
+	GlobalDataBus.spell_dialog_mode = GlobalEnums.SPELL_DIALOG_MODES.SHOW
 	visible = false
 	get_tree().paused = false
 	opened = false
 
 func _on_spell_button_pressed(spell_resource:Spell):
-	match mode:
+	GlobalDataBus.disputed_spell = null
+	match GlobalDataBus.spell_dialog_mode:
 		GlobalEnums.SPELL_DIALOG_MODES.UPGRADE:
 			spell_resource.upgrade()
 			close_menu()

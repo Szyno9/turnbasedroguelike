@@ -5,3 +5,6 @@
 [node name="SpellButton" type="Button"]
 custom_minimum_size = Vector2(40, 40)
 script = ExtResource("1_61ua0")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

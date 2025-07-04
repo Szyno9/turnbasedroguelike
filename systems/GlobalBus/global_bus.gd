@@ -11,6 +11,9 @@ var all_enemies:Array = enemies_resource.load_all()
 var all_rewards:Array = reward_group_resource.load_all()
 var all_enemy_groups:Array = enemy_groups_resource.load_all()
 
+var spell_dialog_mode = GlobalEnums.SPELL_DIALOG_MODES.SHOW
+var disputed_spell:Spell = null
+
 var player_character: CharacterBase
 var astar_grid: AStar2D
 var elements=[]
