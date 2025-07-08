@@ -18,17 +18,19 @@
 				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
 				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
 				"e7fb4a29-566d-4d75-8292-14b3e9651897",
-				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5",
 				"269654b0-2430-42cd-a0e6-bebb0d1a19ba",
-				"d5d87cf6-ea06-4301-ae60-2336c7550ece",
 				"19762a89-4f38-41f8-b593-d8bc462eff9a",
-				"146c35e3-0269-4f0e-a60a-85669b56b0cf"
+				"146c35e3-0269-4f0e-a60a-85669b56b0cf",
+				"d5d87cf6-ea06-4301-ae60-2336c7550ece"
 			]
 		},
 		{
 			"uuid": "7677b0ce-33bb-4db0-a85f-661f5b566d95",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"fd356a51-6f8b-43b3-97a9-1720573490a2",
+				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5"
+			]
 		},
 		{
 			"uuid": "224db046-a596-4ff4-8ad8-3b173959edd3",
@@ -45,6 +47,7 @@
 				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
+				"3ec5b8d1-1789-41a4-9d9e-3881a3f3dbec",
 				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
 				"1f8d8b67-b1d9-4c7b-a657-3ac5d30015e6",
 				"4f107f56-4b1b-41a1-8135-890ead7258b7",
@@ -212,11 +215,11 @@
 					"done": true
 				},
 				{
-					"details": "spear shot",
-					"done": true
+					"details": "beam attack",
+					"done": false
 				},
 				{
-					"details": "fire wall",
+					"details": "wall spell\n",
 					"done": false
 				}
 			]
@@ -409,6 +412,57 @@
 		{
 			"uuid": "146c35e3-0269-4f0e-a60a-85669b56b0cf",
 			"title": "Style",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
+		},
+		{
+			"uuid": "fd356a51-6f8b-43b3-97a9-1720573490a2",
+			"title": "Lista do konca",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "5 levels",
+					"done": false
+				},
+				{
+					"details": "6 enemies",
+					"done": false
+				},
+				{
+					"details": "enemy recolors",
+					"done": false
+				},
+				{
+					"details": "boss",
+					"done": false
+				},
+				{
+					"details": "balance",
+					"done": false
+				},
+				{
+					"details": "player sprite",
+					"done": false
+				},
+				{
+					"details": "game over",
+					"done": false
+				},
+				{
+					"details": "game finish",
+					"done": false
+				},
+				{
+					"details": "Player upgrades",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "3ec5b8d1-1789-41a4-9d9e-3881a3f3dbec",
+			"title": "kolizja przeciwników",
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": []

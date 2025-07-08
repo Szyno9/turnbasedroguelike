@@ -1,13 +1,20 @@
-[gd_scene load_steps=57 format=3 uid="uid://ceychkkljcd64"]
+[gd_scene load_steps=58 format=3 uid="uid://bawhlghv2xwdl"]
 
-[ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton.gd" id="1_psago"]
-[ext_resource type="PackedScene" uid="uid://cc8fkq42ddbnw" path="res://characters/CharacterNodes/NotifyArea.tscn" id="2_6bum2"]
-[ext_resource type="Script" path="res://Spells/Spell.gd" id="2_31y0l"]
-[ext_resource type="Resource" uid="uid://he8f2ek3ciqk" path="res://characters/Stats/skeleton_stats.tres" id="2_37xce"]
-[ext_resource type="Resource" uid="uid://4n8a2m3be7g4" path="res://Spells/slash/slash.tres" id="3_boeqo"]
-[ext_resource type="Texture2D" uid="uid://dk5xy6uauvenv" path="res://characters/Enemies/Skeleton/Skeleton.png" id="3_etgh1"]
-[ext_resource type="Resource" uid="uid://cl4huj0fercdc" path="res://Spells/missle/missle.tres" id="4_re0js"]
-[ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton_animations.gd" id="4_yr6ea"]
+[ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton.gd" id="1_pwd2f"]
+[ext_resource type="Script" path="res://characters/Stats/Stats.gd" id="2_1ujmb"]
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="2_somey"]
+[ext_resource type="Resource" uid="uid://bec8meob5bo0h" path="res://Spells/fire_shuriken/fire_shuriken.tres" id="3_1duct"]
+[ext_resource type="PackedScene" uid="uid://cc8fkq42ddbnw" path="res://characters/CharacterNodes/NotifyArea.tscn" id="3_1favx"]
+[ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton_animations.gd" id="4_gdmnc"]
+[ext_resource type="Resource" uid="uid://4n8a2m3be7g4" path="res://Spells/slash/slash.tres" id="4_kqhep"]
+[ext_resource type="Texture2D" uid="uid://b37snyql7gtje" path="res://characters/Enemies/recolored_sprites/skeleton_red.png" id="5_0yw8b"]
+
+[sub_resource type="Resource" id="Resource_u7iq7"]
+script = ExtResource("2_1ujmb")
+health = 2
+actions = 0
+initiative = 0
+speed = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esrpl"]
 size = Vector2(16, 16)
@@ -338,14 +345,14 @@ _data = {
 
 [node name="Skeleton" type="CharacterBody2D" groups=["hostile"]]
 collision_layer = 3
-script = ExtResource("1_psago")
-spell_list = Array[ExtResource("2_31y0l")]([ExtResource("3_boeqo"), ExtResource("4_re0js")])
-starting_stats = ExtResource("2_37xce")
+script = ExtResource("1_pwd2f")
+spell_list = Array[ExtResource("2_somey")]([ExtResource("3_1duct"), ExtResource("4_kqhep")])
+starting_stats = SubResource("Resource_u7iq7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_esrpl")
 
-[node name="DetectionArea" parent="." instance=ExtResource("2_6bum2")]
+[node name="DetectionArea" parent="." instance=ExtResource("3_1favx")]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -359,7 +366,7 @@ parameters/Walk/conditions/back = false
 parameters/Walk/conditions/front = false
 parameters/Walk/conditions/is_moving = false
 parameters/Walk/conditions/side = false
-script = ExtResource("4_yr6ea")
+script = ExtResource("4_gdmnc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -368,7 +375,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_etgh1")
+texture = ExtResource("5_0yw8b")
 hframes = 4
 vframes = 12
 region_rect = Rect2(16, 16, 16, 16)

@@ -5,8 +5,11 @@ var ai_processing = false
 var central_patrol_point:Vector2i = Vector2i.ZERO
 enum ACTION_TYPE{SHOOT, WALK_FOR_RANGE, HEAL, PASS}
 
+@export var spell_list: Array[Spell]
+
 func _ready():
 	super()
+	learn_spells()
 
 
 
@@ -49,6 +52,8 @@ func turn_ai():
 	var current_variant = {"action": ACTION_TYPE.PASS,"spell": null,"target": null}
 	for spell_name in variants.keys():
 		if variants[spell_name]["action"] < current_variant["action"]:
+			if variants[spell_name]["spell"].action_cost > actions:
+				continue
 			current_variant = variants[spell_name]
 	match current_variant["action"]:
 		ACTION_TYPE.SHOOT:
@@ -98,3 +103,10 @@ func choose_spell(): #TODO do przerobienia, mmoże się przyda
 
 func give_rewards():
 	pass
+
+func learn_spells():
+	for spell in spell_list:
+		var new_spell = spell.duplicate()
+		for i in range(0, GlobalDataBus.current_level):
+			new_spell.upgrade()
+		spell_book.add_spell(new_spell)

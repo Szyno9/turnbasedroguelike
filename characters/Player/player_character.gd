@@ -121,3 +121,6 @@ func _on_set_spawn_point(spawn_point: Vector2i):
 
 func exit_level():
 	pass
+	
+func die():
+	GlobalDataBus.change_to_scene("res://systems/user_inteface/main_menu.tscn")

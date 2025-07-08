@@ -8,6 +8,11 @@ func _ready():
 	add_child(global_tick)
 	global_tick.start()
 
+func _physics_process(delta):
+	if all_chars.size()<=1 and turn_mode == true:
+		end_queue()
+		return
+
 func play_turn(): #actually starts turn for next character
 	if !active_char and all_chars.size()>0:
 		active_char = all_chars[0]
@@ -30,6 +35,7 @@ func join_queue(node:CharacterBody2D):
 
 func end_queue():
 	all_chars.clear()
+	global_tick.timeout.emit()
 	global_tick.start()
 	turn_mode = false
 	

@@ -42,6 +42,13 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/godot_resource_groups/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://characters/Enemies/": "red",
+"res://characters/Enemies/variations/": "purple"
+}
+
 [global_group]
 
 hostile="group for enemies"

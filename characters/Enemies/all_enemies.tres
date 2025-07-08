@@ -7,4 +7,4 @@ script = ExtResource("1_vl0rq")
 base_folder = "res://characters/Enemies"
 includes = Array[String](["**.tscn"])
 excludes = Array[String](["enemy.tscn"])
-paths = Array[String](["res://characters/Enemies/EvilMage/evil_mage.tscn", "res://characters/Enemies/Skeleton/skeleton.tscn", "res://characters/Enemies/Slime/slime.tscn"])
+paths = Array[String](["res://characters/Enemies/EvilMage/evil_mage.tscn", "res://characters/Enemies/Skeleton/skeleton.tscn", "res://characters/Enemies/Slime/slime.tscn", "res://characters/Enemies/variations/blue_evil_mage.tscn", "res://characters/Enemies/variations/blue_skeleton.tscn", "res://characters/Enemies/variations/blue_slime.tscn", "res://characters/Enemies/variations/grey_evil_mage.tscn", "res://characters/Enemies/variations/grey_skeleton.tscn", "res://characters/Enemies/variations/grey_slime.tscn", "res://characters/Enemies/variations/red_skeleton.tscn", "res://characters/Enemies/variations/red_slime.tscn", "res://characters/Enemies/variations/yellow_skeleton.tscn", "res://characters/Enemies/variations/yellow_slime.tscn"])

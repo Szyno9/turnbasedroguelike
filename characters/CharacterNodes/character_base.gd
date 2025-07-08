@@ -120,6 +120,8 @@ func take_damage(damage:int):
 		die()
 
 func die():
+	if TurnQueueGlobal.active_char == self:
+		end_turn()
 	TurnQueueGlobal.remove_char(self)
 	character_died.emit()
 	queue_free()
@@ -131,6 +133,8 @@ func take_heal(heal:int):
 		health = max_health
 		
 func cast_spell(target:Vector2, protected_group: String, spell: Spell):
+	if spell.action_cost> actions:
+		return
 	current_id_path =[]
 	actions-=spell.action_cost
 	spell_book.set_cooldown(spell)

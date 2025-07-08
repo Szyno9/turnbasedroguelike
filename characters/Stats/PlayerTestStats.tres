@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_qxuy6")
-health = 100
+health = 1000
 actions = 1
 initiative = 0
 speed = 6

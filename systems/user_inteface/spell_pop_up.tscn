@@ -9,10 +9,12 @@ default_font = SubResource("SystemFont_y80qw")
 default_font_size = 10
 
 [node name="SpellPopUp" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cenh7")
@@ -21,6 +23,7 @@ script = ExtResource("1_cenh7")
 
 [node name="SpellPopUpPanel" type="PopupPanel" parent="CanvasLayer"]
 unique_name_in_owner = true
+gui_disable_input = true
 size = Vector2i(120, 103)
 visible = true
 

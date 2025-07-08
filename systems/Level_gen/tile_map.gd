@@ -13,6 +13,12 @@ var spawn_point: Vector2i
 func _ready():
 	GlobalDataBus.connect("move_to_next_level", new_level)
 
+var physics_counter = 0
+func _physics_process(delta):
+	physics_counter+=1
+	if physics_counter%30 == 0:
+		test()
+
 func _input(event):
 	if event.is_action_pressed("debug"):
 		new_level()
@@ -34,8 +40,6 @@ func initialize():
 	astar_grid.update()
 	set_solid()
 
-func _physics_process(_delta):
-	pass
 
 func set_solid():
 	for x in get_used_rect().size.x:
@@ -50,9 +54,9 @@ func set_solid():
 
 func test():
 	var char_position:Array[Vector2i]
-	for character in get_parent().get_children():
-		if character.is_class("CharacterBody2D"):
-			char_position.append(local_to_map(character.global_position))
+	for element in GlobalDataBus.elements:
+		if element != null:
+			char_position.append(local_to_map(element.global_position))
 
 	for x in get_used_rect().size.x:
 			for y in get_used_rect().size.y:
