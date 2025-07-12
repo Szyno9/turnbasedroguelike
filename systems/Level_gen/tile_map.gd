@@ -3,10 +3,12 @@ extends TileMap
 class_name LevelMap
 var astar_grid: AStarGrid2D = AStarGrid2D.new()
 
-var level_0_tileset:TileSet = load("res://assets/tilesets/level_map_1.tres")
-var level_1_tileset:TileSet = load("res://assets/tilesets/level_map_2.tres")
+var level_0_tileset:TileSet = load("res://assets/TileSetMaps/level_map_1.tres")
+var level_1_tileset:TileSet = load("res://assets/TileSetMaps/level_map_2.tres")
 
-var level_tilesets:Array[TileSet] = [level_0_tileset,level_1_tileset]
+var tilemaps_group: ResourceGroup = load("res://assets/TileSetMaps/level_tilemaps.tres")
+
+var level_tilesets:Array = tilemaps_group.load_all()
 
 var spawn_point: Vector2i
 
@@ -24,6 +26,7 @@ func _input(event):
 		new_level()
 
 func new_level():
+	print(level_tilesets.size())
 	GlobalDataBus.current_level=(GlobalDataBus.current_level+1) % level_tilesets.size()
 	GlobalDataBus.elements.clear()
 	tile_set = level_tilesets[GlobalDataBus.current_level]

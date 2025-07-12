@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ceychkkljcd64"]
+[gd_scene load_steps=56 format=3 uid="uid://ceychkkljcd64"]
 
 [ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton.gd" id="1_psago"]
 [ext_resource type="PackedScene" uid="uid://cc8fkq42ddbnw" path="res://characters/CharacterNodes/NotifyArea.tscn" id="2_6bum2"]
@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://he8f2ek3ciqk" path="res://characters/Stats/skeleton_stats.tres" id="2_37xce"]
 [ext_resource type="Resource" uid="uid://4n8a2m3be7g4" path="res://Spells/slash/slash.tres" id="3_boeqo"]
 [ext_resource type="Texture2D" uid="uid://dk5xy6uauvenv" path="res://characters/Enemies/Skeleton/Skeleton.png" id="3_etgh1"]
-[ext_resource type="Resource" uid="uid://cl4huj0fercdc" path="res://Spells/missle/missle.tres" id="4_re0js"]
 [ext_resource type="Script" path="res://characters/Enemies/Skeleton/skeleton_animations.gd" id="4_yr6ea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esrpl"]
@@ -54,7 +53,7 @@ states/idle_front/position = Vector2(421, 40)
 states/idle_side/node = SubResource("AnimationNodeAnimation_ryuj8")
 states/idle_side/position = Vector2(405, 276)
 transitions = ["Start", "idle_front", SubResource("AnimationNodeStateMachineTransition_jqke8"), "Start", "idle_side", SubResource("AnimationNodeStateMachineTransition_5c2oy"), "Start", "idle_back", SubResource("AnimationNodeStateMachineTransition_fviqb"), "idle_front", "End", SubResource("AnimationNodeStateMachineTransition_ku4t6"), "idle_back", "End", SubResource("AnimationNodeStateMachineTransition_ipgq1"), "idle_side", "End", SubResource("AnimationNodeStateMachineTransition_u06iv")]
-graph_offset = Vector2(-250, -19)
+graph_offset = Vector2(-228, -52)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ls4qp"]
 animation = &"walk_back"
@@ -130,7 +129,7 @@ states/walk_front/position = Vector2(533, -131)
 states/walk_side/node = SubResource("AnimationNodeAnimation_utyxo")
 states/walk_side/position = Vector2(688, 100)
 transitions = ["Start", "walk_back", SubResource("AnimationNodeStateMachineTransition_em7yf"), "Start", "walk_side", SubResource("AnimationNodeStateMachineTransition_v3eux"), "walk_front", "walk_side", SubResource("AnimationNodeStateMachineTransition_12oej"), "walk_back", "walk_side", SubResource("AnimationNodeStateMachineTransition_xrj34"), "walk_side", "walk_front", SubResource("AnimationNodeStateMachineTransition_hd06e"), "walk_front", "walk_back", SubResource("AnimationNodeStateMachineTransition_mqasw"), "walk_back", "walk_front", SubResource("AnimationNodeStateMachineTransition_8opq7"), "walk_side", "walk_back", SubResource("AnimationNodeStateMachineTransition_suyjg"), "walk_front", "End", SubResource("AnimationNodeStateMachineTransition_ccgub"), "walk_side", "End", SubResource("AnimationNodeStateMachineTransition_prwl0"), "walk_back", "End", SubResource("AnimationNodeStateMachineTransition_pj3c2"), "Start", "End", SubResource("AnimationNodeStateMachineTransition_l2qhi"), "Start", "walk_front", SubResource("AnimationNodeStateMachineTransition_77h8l")]
-graph_offset = Vector2(-253, -201)
+graph_offset = Vector2(-259, -227)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf8mm"]
 animation = &"death"
@@ -339,7 +338,7 @@ _data = {
 [node name="Skeleton" type="CharacterBody2D" groups=["hostile"]]
 collision_layer = 3
 script = ExtResource("1_psago")
-spell_list = Array[ExtResource("2_31y0l")]([ExtResource("3_boeqo"), ExtResource("4_re0js")])
+spell_list = Array[ExtResource("2_31y0l")]([ExtResource("3_boeqo")])
 starting_stats = ExtResource("2_37xce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

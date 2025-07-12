@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MonsterGroup" load_steps=2 format=3 uid="uid://c1fkd38ojpq"]
+
+[ext_resource type="Script" path="res://map_elements/monster_groups/monster_group_resource.gd" id="1_onwuq"]
+
+[resource]
+script = ExtResource("1_onwuq")
+name = ""
+_content = Array[PackedScene]([])
+map_levels = Array[int]([])

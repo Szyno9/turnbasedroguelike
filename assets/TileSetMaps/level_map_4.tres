@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://deojxl7o06soj"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dvunep5utap6f"]
 
-[ext_resource type="Texture2D" uid="uid://ciii2htgauhp5" path="res://assets/tilesets/tileset1.png" id="1_j8hv6"]
+[ext_resource type="Texture2D" uid="uid://cqkl7cm62cv50" path="res://assets/tilesets/tileset4.png" id="1_xna7x"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kpxwt"]
-texture = ExtResource("1_j8hv6")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmcsp"]
+texture = ExtResource("1_xna7x")
 0:0/0 = 0
 0:0/0/metadata/_better_terrain = {
 0: [0],
@@ -13,7 +13,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 1:0/0 = 0
-1:0/0/probability = 0.03
+1:0/0/probability = 0.1
 1:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -22,7 +22,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 2:0/0 = 0
-2:0/0/probability = 0.03
+2:0/0/probability = 0.1
 2:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -31,7 +31,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 3:0/0 = 0
-3:0/0/probability = 0.03
+3:0/0/probability = 0.1
 3:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -40,7 +40,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 4:0/0 = 0
-4:0/0/probability = 0.03
+4:0/0/probability = 0.1
 4:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -49,7 +49,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 5:0/0 = 0
-5:0/0/probability = 0.03
+5:0/0/probability = 0.02
 5:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -58,7 +58,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 6:0/0 = 0
-6:0/0/probability = 0.03
+6:0/0/probability = 0.02
 6:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -67,7 +67,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 7:0/0 = 0
-7:0/0/probability = 0.03
+7:0/0/probability = 0.02
 7:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -76,7 +76,7 @@ texture = ExtResource("1_j8hv6")
 "type": 0
 }
 8:0/0 = 0
-8:0/0/probability = 0.03
+8:0/0/probability = 0.01
 8:0/0/metadata/_better_terrain = {
 0: [0],
 4: [0],
@@ -101,7 +101,6 @@ texture = ExtResource("1_j8hv6")
 8: [0],
 11: [1],
 12: [0],
-"symmetry": 0,
 "type": 0
 }
 12:0/0 = 0
@@ -111,7 +110,6 @@ texture = ExtResource("1_j8hv6")
 4: [1],
 8: [1],
 12: [1],
-"symmetry": 0,
 "type": 1
 }
 13:0/0 = 0
@@ -177,20 +175,20 @@ texture = ExtResource("1_j8hv6")
 19:0/0 = 0
 19:0/0/custom_data_0 = true
 19:0/0/metadata/_better_terrain = {
-0: [0],
+0: [0, -1],
 4: [1],
-8: [0],
-12: [0],
+8: [0, -1],
+12: [0, -1],
 "symmetry": 7,
 "type": 1
 }
 20:0/0 = 0
 20:0/0/custom_data_0 = true
 20:0/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
+0: [0, -1],
+4: [0, -1],
 8: [1],
-12: [0],
+12: [0, -1],
 "symmetry": 7,
 "type": 1
 }
@@ -255,40 +253,46 @@ texture = ExtResource("1_j8hv6")
 12:1/0 = 0
 12:1/0/custom_data_0 = true
 12:1/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [1],
-12: [0],
+0: [1],
+3: [0],
+4: [1],
+8: [0, -1],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 13:1/0 = 0
 13:1/0/custom_data_0 = true
 13:1/0/metadata/_better_terrain = {
-0: [1],
-4: [0],
-8: [0],
-12: [0],
+0: [0, -1],
+4: [1],
+7: [0],
+8: [1],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 14:1/0 = 0
 14:1/0/custom_data_0 = true
 14:1/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-8: [1],
-12: [0],
+0: [1],
+3: [0],
+4: [1],
+8: [0, -1],
+12: [1],
+15: [0],
 "symmetry": 7,
 "type": 1
 }
 15:1/0 = 0
 15:1/0/custom_data_0 = true
 15:1/0/metadata/_better_terrain = {
-0: [1],
-4: [0],
-8: [0],
-12: [0],
+0: [0, -1],
+4: [1],
+7: [0],
+8: [1],
+11: [0],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
@@ -369,96 +373,96 @@ texture = ExtResource("1_j8hv6")
 12:2/0 = 0
 12:2/0/custom_data_0 = true
 12:2/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [0],
-12: [0],
+0: [1],
+3: [0],
+4: [1],
+8: [1],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 13:2/0 = 0
 13:2/0/custom_data_0 = true
 13:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-7: [1],
-8: [0],
-12: [0],
+0: [1],
+4: [1],
+7: [0],
+8: [1],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 14:2/0 = 0
 14:2/0/custom_data_0 = true
 14:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-7: [1],
-8: [0],
-11: [1],
-12: [0],
+0: [1],
+4: [1],
+7: [0],
+8: [1],
+11: [0],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 15:2/0 = 0
 15:2/0/custom_data_0 = true
 15:2/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [0],
-12: [0],
-15: [1],
+0: [1],
+3: [0],
+4: [1],
+8: [1],
+12: [1],
+15: [0],
 "symmetry": 7,
 "type": 1
 }
 16:2/0 = 0
 16:2/0/custom_data_0 = true
 16:2/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [0],
-11: [1],
-12: [0],
+0: [1],
+3: [0],
+4: [1],
+8: [1, 0],
+11: [0],
+12: [1],
 "symmetry": 7,
 "type": 1
 }
 17:2/0 = 0
 17:2/0/custom_data_0 = true
 17:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-7: [1],
-8: [0],
-12: [0],
-15: [1],
+0: [1],
+4: [1],
+7: [0],
+8: [1],
+12: [1],
+15: [0],
 "symmetry": 7,
 "type": 1
 }
 18:2/0 = 0
 18:2/0/custom_data_0 = true
 18:2/0/metadata/_better_terrain = {
-0: [0],
-3: [1],
-4: [0],
-8: [0],
-11: [1],
-12: [0],
-15: [1],
+0: [1],
+3: [0],
+4: [1],
+8: [1],
+11: [0],
+12: [1],
+15: [0],
 "symmetry": 7,
 "type": 1
 }
 19:2/0 = 0
 19:2/0/custom_data_0 = true
 19:2/0/metadata/_better_terrain = {
-0: [0],
-4: [0],
-7: [1],
-8: [0],
-11: [1],
-12: [0],
-15: [1],
+0: [1],
+4: [1],
+7: [0],
+8: [1],
+11: [0],
+12: [1],
+15: [0],
 "symmetry": 7,
 "type": 1
 }
@@ -467,7 +471,7 @@ texture = ExtResource("1_j8hv6")
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "is_solid"
 custom_data_layer_0/type = 1
-sources/1 = SubResource("TileSetAtlasSource_kpxwt")
+sources/1 = SubResource("TileSetAtlasSource_jmcsp")
 metadata/_better_terrain = {
 "decoration": ["Decoration", Color(0.411765, 0.411765, 0.411765, 1), 3, [], {
 "path": "res://addons/better-terrain/icons/Decoration.svg"

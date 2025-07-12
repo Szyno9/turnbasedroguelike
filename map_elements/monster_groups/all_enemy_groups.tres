@@ -7,4 +7,4 @@ script = ExtResource("1_42er3")
 base_folder = "res://map_elements/monster_groups"
 includes = Array[String](["*.tres"])
 excludes = Array[String](["all_enemy_groups.tres"])
-paths = Array[String](["res://map_elements/monster_groups/evil_mage_skeletons.tres", "res://map_elements/monster_groups/skeleton_pack.tres", "res://map_elements/monster_groups/slime_pack.tres"])
+paths = Array[String](["res://map_elements/monster_groups/blue_evil_mage.tres", "res://map_elements/monster_groups/blue_skeletons.tres", "res://map_elements/monster_groups/blue_slimes.tres", "res://map_elements/monster_groups/evil_mages.tres", "res://map_elements/monster_groups/evil_mage_skeletons.tres", "res://map_elements/monster_groups/grey_skeletons.tres", "res://map_elements/monster_groups/grey_slimes.tres", "res://map_elements/monster_groups/red_evil_mage.tres", "res://map_elements/monster_groups/red_slimes_and_skeletons.tres", "res://map_elements/monster_groups/skeleton_pack.tres", "res://map_elements/monster_groups/slime_pack.tres", "res://map_elements/monster_groups/yellow_skeletons.tres", "res://map_elements/monster_groups/yellow_slimes.tres"])

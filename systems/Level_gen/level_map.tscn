@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbr4pod8hpx82"]
 
-[ext_resource type="TileSet" uid="uid://deojxl7o06soj" path="res://assets/tilesets/level_map_1.tres" id="1_jku47"]
+[ext_resource type="TileSet" uid="uid://deojxl7o06soj" path="res://assets/TileSetMaps/level_map_1.tres" id="1_jku47"]
 [ext_resource type="Script" path="res://systems/Level_gen/tile_map.gd" id="2_jfw75"]
 [ext_resource type="Script" path="res://systems/Level_gen/level_generator_patched.gd" id="3_qvnls"]
 

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=6 format=3 uid="uid://bkl4kjfe17j82"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_6g1r3"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_44i44"]
+[ext_resource type="PackedScene" uid="uid://dywkghlaw60bs" path="res://Spells/light_beam/light_beam.tscn" id="2_iqt4t"]
+
+[sub_resource type="Resource" id="Resource_0ldce"]
+script = ExtResource("2_44i44")
+damage = 5
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[sub_resource type="Resource" id="Resource_8pmay"]
+script = ExtResource("2_44i44")
+damage = 5
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[resource]
+script = ExtResource("1_6g1r3")
+name = "Light Beam"
+damage = 50
+basic_cooldown = 1
+cooldown = 0
+spell_range = 4
+range_type = 0
+type = 0
+action_cost = 1
+spell_scene = ExtResource("2_iqt4t")
+upgrade_list = Array[ExtResource("2_44i44")]([SubResource("Resource_0ldce"), SubResource("Resource_8pmay")])

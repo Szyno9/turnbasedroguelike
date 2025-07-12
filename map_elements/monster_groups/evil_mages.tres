@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MonsterGroup" load_steps=5 format=3 uid="uid://c5727jvroueid"]
+
+[ext_resource type="PackedScene" uid="uid://beq3l4vgslonw" path="res://characters/Enemies/variations/blue_evil_mage.tscn" id="1_8vity"]
+[ext_resource type="PackedScene" uid="uid://6rnfxkpn3ql2" path="res://characters/Enemies/EvilMage/evil_mage.tscn" id="2_7d0ru"]
+[ext_resource type="Script" path="res://map_elements/monster_groups/monster_group_resource.gd" id="2_10g7q"]
+[ext_resource type="PackedScene" uid="uid://comt7ls4sgv4o" path="res://characters/Enemies/variations/grey_evil_mage.tscn" id="3_0ev87"]
+
+[resource]
+script = ExtResource("2_10g7q")
+name = "blue_skeletons"
+_content = Array[PackedScene]([ExtResource("1_8vity"), ExtResource("2_7d0ru"), ExtResource("3_0ev87"), ExtResource("1_8vity")])
+map_levels = Array[int]([1, 3, 4])

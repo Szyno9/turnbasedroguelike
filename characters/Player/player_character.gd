@@ -15,6 +15,7 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/fireball/fireball.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/fire_shuriken/fire_shuriken.tres").duplicate())
+	spell_book.add_spell(load("res://Spells/light_beam/light_beam.tres").duplicate())
 	GlobalDataBus.world_interaction.connect(interact_with_element)
 	GlobalDataBus.set_spawn_point.connect(_on_set_spawn_point)
 	_on_set_spawn_point(GlobalLevelMap.spawn_point)

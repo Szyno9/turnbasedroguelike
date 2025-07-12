@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MonsterGroup" load_steps=3 format=3 uid="uid://b71ntrmspidi4"]
+
+[ext_resource type="PackedScene" uid="uid://cfxpfvwb1msyr" path="res://characters/Enemies/variations/blue_skeleton.tscn" id="1_48aqk"]
+[ext_resource type="Script" path="res://map_elements/monster_groups/monster_group_resource.gd" id="2_jdmus"]
+
+[resource]
+script = ExtResource("2_jdmus")
+name = "blue_skeletons"
+_content = Array[PackedScene]([ExtResource("1_48aqk"), ExtResource("1_48aqk")])
+map_levels = Array[int]([1])

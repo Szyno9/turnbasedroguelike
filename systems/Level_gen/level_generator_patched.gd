@@ -61,7 +61,11 @@ func new_level():
 			#GlobalDataBus.elements.append(monster_scene)
 
 func spawn_enemies(encounter_coords:Vector2i):
-	var monster_group = GlobalDataBus.all_enemy_groups.pick_random()
+	var viable_monster_groups:Array
+	for group in GlobalDataBus.all_enemy_groups:
+		if group.map_levels.has(GlobalDataBus.current_level):
+			viable_monster_groups.append(group)
+	var monster_group = viable_monster_groups.pick_random()
 	for monster in monster_group.get_monsters():
 		var spawn_point = encounter_coords
 		var monster_scene = monster.instantiate()

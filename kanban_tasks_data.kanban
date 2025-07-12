@@ -15,7 +15,6 @@
 				"9e8d65c3-0dc1-4b24-b3e2-e8fb73b96dda",
 				"1fae73aa-129f-40a5-9a56-d9ea2273a876",
 				"9f2e2e5c-acea-428c-afb0-7eff8eae9579",
-				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
 				"d3119641-a8be-4205-b5e3-ab4e4c91803b",
 				"e7fb4a29-566d-4d75-8292-14b3e9651897",
 				"269654b0-2430-42cd-a0e6-bebb0d1a19ba",
@@ -29,7 +28,8 @@
 			"title": "Doing",
 			"tasks": [
 				"fd356a51-6f8b-43b3-97a9-1720573490a2",
-				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5"
+				"cf0785cf-ce6c-40c1-b894-d23e0c08ae5e",
+				"4ab6160f-ce42-4395-9519-49cd68a0ed96"
 			]
 		},
 		{
@@ -46,6 +46,7 @@
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
+				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
 				"3ec5b8d1-1789-41a4-9d9e-3881a3f3dbec",
 				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
@@ -216,7 +217,7 @@
 				},
 				{
 					"details": "beam attack",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "wall spell\n",
@@ -424,15 +425,15 @@
 			"steps": [
 				{
 					"details": "5 levels",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "6 enemies",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "enemy recolors",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "boss",
@@ -444,7 +445,7 @@
 				},
 				{
 					"details": "player sprite",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "game over",
@@ -466,6 +467,34 @@
 			"description": "",
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": []
+		},
+		{
+			"uuid": "cf0785cf-ce6c-40c1-b894-d23e0c08ae5e",
+			"title": "Sobota",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "level enemies",
+					"done": true
+				},
+				{
+					"details": "game over screen",
+					"done": false
+				},
+				{
+					"details": "starting the game again",
+					"done": false
+				},
+				{
+					"details": "beam spell",
+					"done": true
+				},
+				{
+					"details": "fire hands spell",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

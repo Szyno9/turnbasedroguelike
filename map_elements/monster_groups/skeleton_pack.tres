@@ -7,3 +7,4 @@
 script = ExtResource("2_a4t5c")
 name = "skeleton_pack"
 _content = Array[PackedScene]([ExtResource("1_mgoy7"), ExtResource("1_mgoy7"), ExtResource("1_mgoy7"), ExtResource("1_mgoy7")])
+map_levels = Array[int]([0])

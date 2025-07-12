@@ -8,3 +8,4 @@
 script = ExtResource("1_mgotx")
 name = ""
 _content = Array[PackedScene]([ExtResource("1_y1m6o"), ExtResource("2_d6dxb")])
+map_levels = Array[int]([0, 1, 2])

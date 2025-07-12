@@ -3,6 +3,7 @@ extends Resource
 class_name MonsterGroup
 @export var name: String
 @export var _content: Array[PackedScene]
+@export var map_levels: Array[int]
 
 
 func get_monsters() -> Array[PackedScene]:
