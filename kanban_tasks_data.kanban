@@ -19,8 +19,7 @@
 				"e7fb4a29-566d-4d75-8292-14b3e9651897",
 				"269654b0-2430-42cd-a0e6-bebb0d1a19ba",
 				"19762a89-4f38-41f8-b593-d8bc462eff9a",
-				"146c35e3-0269-4f0e-a60a-85669b56b0cf",
-				"d5d87cf6-ea06-4301-ae60-2336c7550ece"
+				"146c35e3-0269-4f0e-a60a-85669b56b0cf"
 			]
 		},
 		{
@@ -28,8 +27,8 @@
 			"title": "Doing",
 			"tasks": [
 				"fd356a51-6f8b-43b3-97a9-1720573490a2",
-				"cf0785cf-ce6c-40c1-b894-d23e0c08ae5e",
-				"4ab6160f-ce42-4395-9519-49cd68a0ed96"
+				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
+				"73f17862-e7be-4f8a-9bb3-b9c4ce449d18"
 			]
 		},
 		{
@@ -45,10 +44,12 @@
 				"5f308286-3901-493c-8e54-4cf1711649b2",
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
+				"cf0785cf-ce6c-40c1-b894-d23e0c08ae5e",
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
 				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
 				"3ec5b8d1-1789-41a4-9d9e-3881a3f3dbec",
+				"d5d87cf6-ea06-4301-ae60-2336c7550ece",
 				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
 				"1f8d8b67-b1d9-4c7b-a657-3ac5d30015e6",
 				"4f107f56-4b1b-41a1-8135-890ead7258b7",
@@ -449,7 +450,7 @@
 				},
 				{
 					"details": "game over",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "game finish",
@@ -480,11 +481,11 @@
 				},
 				{
 					"details": "game over screen",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "starting the game again",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "beam spell",
@@ -492,6 +493,34 @@
 				},
 				{
 					"details": "fire hands spell",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "73f17862-e7be-4f8a-9bb3-b9c4ce449d18",
+			"title": "WTOREK",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": [
+				{
+					"details": "levelup",
+					"done": false
+				},
+				{
+					"details": "enemy levelup",
+					"done": false
+				},
+				{
+					"details": "napisy w menu",
+					"done": false
+				},
+				{
+					"details": "naprawa kolizji",
+					"done": false
+				},
+				{
+					"details": "naprawa enemy spawn",
 					"done": false
 				}
 			]

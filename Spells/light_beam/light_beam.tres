@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Spell" load_steps=6 format=3 uid="uid://bkl4kjfe17j82"]
+[gd_resource type="Resource" script_class="Spell" load_steps=7 format=3 uid="uid://bkl4kjfe17j82"]
 
 [ext_resource type="Script" path="res://Spells/Spell.gd" id="1_6g1r3"]
+[ext_resource type="Texture2D" uid="uid://bilv5ey80dpfn" path="res://Spells/light_beam/light_beam_icon.png" id="1_ir8a0"]
 [ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_44i44"]
 [ext_resource type="PackedScene" uid="uid://dywkghlaw60bs" path="res://Spells/light_beam/light_beam.tscn" id="2_iqt4t"]
 
@@ -21,11 +22,12 @@ action_cost = 0
 [resource]
 script = ExtResource("1_6g1r3")
 name = "Light Beam"
+icon = ExtResource("1_ir8a0")
 damage = 50
 basic_cooldown = 1
 cooldown = 0
-spell_range = 4
-range_type = 0
+spell_range = 20
+range_type = 1
 type = 0
 action_cost = 1
 spell_scene = ExtResource("2_iqt4t")

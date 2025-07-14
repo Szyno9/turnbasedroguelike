@@ -7,6 +7,9 @@ var global_tick: Timer = preload("res://systems/TurnQueue/AutoloadTQ/global_tick
 func _ready():
 	add_child(global_tick)
 	global_tick.start()
+	GlobalDataBus.level_changed.connect(end_queue)
+	GlobalDataBus.scene_changed_from_main.connect(end_queue)
+	GlobalDataBus.player_died.connect(end_queue)
 
 func _physics_process(delta):
 	if all_chars.size()<=1 and turn_mode == true:
@@ -41,9 +44,10 @@ func end_queue():
 	
 func remove_char(node:CharacterBody2D):
 	all_chars.erase(node)
+	if active_char == null:
+		play_turn()
 
 func initiative_sort(a:CharacterBase,b:CharacterBase):
 	if a.initiative > b.initiative:
 		return true
 	return false
-	

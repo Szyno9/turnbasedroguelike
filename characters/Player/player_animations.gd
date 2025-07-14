@@ -6,7 +6,7 @@ enum DIRECTION_FACING{LEFT, RIGHT, UP, DOWN}
 
 func _ready():
 	get_parent().connect("character_damaged", Callable(self, "_on_character_damaged"))
-	get_parent().connect("character_died", Callable(self, "_on_character_death"))
+	GlobalDataBus.connect("player_died", Callable(self, "_on_character_death"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

@@ -2,9 +2,8 @@ class_name PlayerCharacter extends CharacterBase
 
 
 
-enum INPUT_STATE{MOVE, ATTACK}
+enum INPUT_STATE{MOVE, ATTACK, BLOCK}
 var input_state:int
-
 
 
 func _ready():
@@ -14,7 +13,7 @@ func _ready():
 	spell_book.add_spell(load("res://Spells/slash/slash.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/Shield/shield.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/fireball/fireball.tres").duplicate())
-	spell_book.add_spell(load("res://Spells/fire_shuriken/fire_shuriken.tres").duplicate())
+	spell_book.add_spell(load("res://Spells/shockwave/shockwave.tres").duplicate())
 	spell_book.add_spell(load("res://Spells/light_beam/light_beam.tres").duplicate())
 	GlobalDataBus.world_interaction.connect(interact_with_element)
 	GlobalDataBus.set_spawn_point.connect(_on_set_spawn_point)
@@ -73,7 +72,7 @@ func _on_end_turn_button_pressed():#TODO
 func _on_attack_button_button_down():#TODO
 	if input_state == INPUT_STATE.MOVE:
 		input_state = INPUT_STATE.ATTACK
-	else:
+	elif input_state != INPUT_STATE.BLOCK:
 		input_state = INPUT_STATE.MOVE
 	
 func _on_spells_ui_child_entered_tree(node):
@@ -124,4 +123,6 @@ func exit_level():
 	pass
 	
 func die():
-	GlobalDataBus.change_to_scene("res://systems/user_inteface/main_menu.tscn")
+	input_state = INPUT_STATE.BLOCK
+	GlobalDataBus.player_died.emit()
+	

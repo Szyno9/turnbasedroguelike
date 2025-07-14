@@ -41,6 +41,18 @@ func get_range_circural(spell:Spell):
 				continue
 			cell_stack.append(cell)
 
+func get_range_line(spell:Spell):
+	const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+	var center = local_to_map(Player_Character.global_position)
+	#var cell_array: Array =[]
+	var cell_stack: Array = []
+	for i in range(spell.spell_range):
+		for direction in DIRECTIONS:
+			cell_stack.append(center+direction*i)
+	for cell in cell_stack:
+		if !current_overlay.has(cell):
+			current_overlay.append(cell)
+
 func _on_spells_ui_child_entered_tree(node):
 	node.connect("pressed", Callable(self, "_spell_button_pressed").bind(node))
 
@@ -50,6 +62,8 @@ func _spell_button_pressed(spell_button:SpellButton):
 	match(spell.range_type):
 		GlobalEnums.RANGE_TYPE.CIRCURAL:
 			get_range_circural(spell)
+		GlobalEnums.RANGE_TYPE.LINE:
+			get_range_line(spell)
 	
 
 func _on_spell_casted():

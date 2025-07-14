@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=6 format=3 uid="uid://dgxwkiooew41d"]
+
+[ext_resource type="Script" path="res://Spells/Spell.gd" id="1_q2ljg"]
+[ext_resource type="Texture2D" uid="uid://b6i852160f71v" path="res://Spells/shockwave/shockwave_icon.png" id="1_ucwmr"]
+[ext_resource type="PackedScene" uid="uid://cgwir56ogpy61" path="res://Spells/shockwave/shockwave.tscn" id="2_13vkl"]
+[ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="2_fexrf"]
+
+[sub_resource type="Resource" id="Resource_r0pp6"]
+script = ExtResource("2_fexrf")
+damage = 5
+basic_cooldown = 0
+spell_range = 0
+action_cost = 0
+
+[resource]
+script = ExtResource("1_q2ljg")
+name = "shockwave"
+icon = ExtResource("1_ucwmr")
+damage = 50
+basic_cooldown = 0
+cooldown = 0
+spell_range = 5
+range_type = 0
+type = 0
+action_cost = 0
+spell_scene = ExtResource("2_13vkl")
+upgrade_list = Array[ExtResource("2_fexrf")]([SubResource("Resource_r0pp6")])

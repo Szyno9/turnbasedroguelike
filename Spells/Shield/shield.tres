@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Spell" load_steps=6 format=3 uid="uid://vm6dbsvgtd42"]
+[gd_resource type="Resource" script_class="Spell" load_steps=7 format=3 uid="uid://vm6dbsvgtd42"]
 
+[ext_resource type="Texture2D" uid="uid://boteardeb017b" path="res://Spells/Shield/shield_icon.png" id="1_03g11"]
 [ext_resource type="Script" path="res://Spells/Spell.gd" id="1_bj1bj"]
 [ext_resource type="PackedScene" uid="uid://bnrklg848mv2p" path="res://Spells/Shield/shield.tscn" id="2_337ch"]
 [ext_resource type="Script" path="res://Spells/spell_upgrade/spell_stats.gd" id="3_4vkhk"]
@@ -21,6 +22,7 @@ action_cost = 0
 [resource]
 script = ExtResource("1_bj1bj")
 name = "Spell Shield"
+icon = ExtResource("1_03g11")
 damage = 0
 basic_cooldown = 3
 cooldown = 0

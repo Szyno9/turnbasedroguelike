@@ -6,8 +6,8 @@ var spell_index:int
 var spell_resource:Spell
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _ready():
+	GlobalDataBus.player_died.connect(_block_button)
 
 func set_properties(spell_resource1:Spell, spell_index1:int):
 	icon=spell_resource1.icon
@@ -22,3 +22,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	SpellPopUp.hideSpellPopUp()
+
+func _block_button():
+	disabled = true
+	queue_free()

@@ -3,9 +3,6 @@ extends TileMap
 class_name LevelMap
 var astar_grid: AStarGrid2D = AStarGrid2D.new()
 
-var level_0_tileset:TileSet = load("res://assets/TileSetMaps/level_map_1.tres")
-var level_1_tileset:TileSet = load("res://assets/TileSetMaps/level_map_2.tres")
-
 var tilemaps_group: ResourceGroup = load("res://assets/TileSetMaps/level_tilemaps.tres")
 
 var level_tilesets:Array = tilemaps_group.load_all()
@@ -13,7 +10,9 @@ var level_tilesets:Array = tilemaps_group.load_all()
 var spawn_point: Vector2i
 
 func _ready():
-	GlobalDataBus.connect("move_to_next_level", new_level)
+	GlobalDataBus.start_game.connect(start_level)
+	GlobalDataBus.move_to_next_level.connect(new_level)
+	GlobalDataBus.scene_changed_from_main.connect(reset)
 
 var physics_counter = 0
 func _physics_process(delta):
@@ -25,8 +24,15 @@ func _input(event):
 	if event.is_action_pressed("debug"):
 		new_level()
 
+func start_level():
+	print("elo")
+	tile_set = level_tilesets[GlobalDataBus.current_level]
+	$LevelGenerator.new_level()
+	GlobalDataBus.level_changed.emit()
+	GlobalDataBus.set_spawn_point.emit(spawn_point)
+
+
 func new_level():
-	print(level_tilesets.size())
 	GlobalDataBus.current_level=(GlobalDataBus.current_level+1) % level_tilesets.size()
 	GlobalDataBus.elements.clear()
 	tile_set = level_tilesets[GlobalDataBus.current_level]
@@ -72,3 +78,6 @@ func test():
 					astar_grid.set_point_solid(tile_position, true)
 				elif tile_data.get_custom_data("is_solid") == false:
 					astar_grid.set_point_solid(tile_position, false)
+
+func reset():
+	clear()

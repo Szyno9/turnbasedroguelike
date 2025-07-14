@@ -185,6 +185,9 @@ func check_spell_range(spell:Spell, target:Vector2):
 		GlobalEnums.RANGE_TYPE.CIRCURAL:
 			if center.distance_to(final_target) <= spell.spell_range:
 				return true
+		GlobalEnums.RANGE_TYPE.LINE:
+			if final_target.x == map_coords.x or final_target.y == map_coords.y:
+				return true
 	return false
 
 func teleport_to_location(destination: Vector2i):
