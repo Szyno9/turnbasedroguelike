@@ -5,9 +5,9 @@ class_name MonsterGroup
 @export var _content: Array[PackedScene]
 @export var map_levels: Array[int]
 
-
 func get_monsters() -> Array[PackedScene]:
 	return _content
+
 #var start: int
 #var current: int
 #var end: int

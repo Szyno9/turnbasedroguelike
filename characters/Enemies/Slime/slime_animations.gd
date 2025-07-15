@@ -18,9 +18,7 @@ func _physics_process(_delta):
 			get_parent().scale.x = 1
 
 func _on_character_damaged():
-	print("jump")
 	get("parameters/playback").travel("Jump")
 
 func _on_character_death():
-	print("end")
 	get("parameters/playback").travel("end")

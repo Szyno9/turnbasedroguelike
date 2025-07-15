@@ -28,6 +28,7 @@ func play_turn(): #actually starts turn for next character
 	active_char.play_turn()
 
 func join_queue(node:CharacterBody2D):
+	GlobalDataBus.turn_mode_started.emit()
 	turn_mode = true
 	global_tick.stop()
 	if all_chars.has(node) == false:
@@ -37,6 +38,7 @@ func join_queue(node:CharacterBody2D):
 		play_turn()
 
 func end_queue():
+	GlobalDataBus.turn_mode_ended.emit()
 	all_chars.clear()
 	global_tick.timeout.emit()
 	global_tick.start()

@@ -5,11 +5,13 @@ var ai_processing = false
 var central_patrol_point:Vector2i = Vector2i.ZERO
 enum ACTION_TYPE{SHOOT, WALK_FOR_RANGE, HEAL, PASS}
 
+@export var basic_level: int
 @export var spell_list: Array[Spell]
 
 func _ready():
 	super()
 	learn_spells()
+	adjust_to_level()
 
 
 
@@ -17,7 +19,8 @@ func _ready():
 func _process(_delta):
 	pass
 
-func patrol(): #TODO PRZEROBIĆ
+func patrol():
+	await get_tree().create_timer(randf_range(0,1.5)).timeout
 	if central_patrol_point == Vector2i.ZERO:
 		central_patrol_point = tile_map.local_to_map(global_position)
 	if is_moving == false and TurnQueueGlobal.turn_mode == false:
@@ -110,3 +113,10 @@ func learn_spells():
 		for i in range(0, GlobalDataBus.current_level):
 			new_spell.upgrade()
 		spell_book.add_spell(new_spell)
+		
+func adjust_to_level():
+	for i in range(0, GlobalDataBus.current_level - basic_level):
+		max_health=floori(max_health*1.25)
+		health = max_health
+		max_speed+=1
+		speed=max_speed

@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://by6ijbid5h3m7"]
+
+[ext_resource type="Script" path="res://rewards/ActionPickup/action_pickup.gd" id="1_fpvme"]
+[ext_resource type="Texture2D" uid="uid://dkudjlcldqlp2" path="res://rewards/ActionPickup/Star.png" id="2_f44wx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6i6r"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0am2"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejl14"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opotb"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sjty"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vgbv"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6spjn"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eixe"]
+atlas = ExtResource("2_f44wx")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8jy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6i6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0am2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejl14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opotb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sjty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vgbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6spjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eixe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w07vm"]
+size = Vector2(17, 21)
+
+[node name="action_pickup" type="Node2D"]
+script = ExtResource("1_fpvme")
+interaction_type = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_l8jy5")
+autoplay = "default"
+frame_progress = 0.22717
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_w07vm")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

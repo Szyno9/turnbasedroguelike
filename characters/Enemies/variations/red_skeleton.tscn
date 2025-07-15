@@ -12,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_u7iq7"]
 script = ExtResource("2_1ujmb")
 health = 2
-actions = 0
+actions = 1
 initiative = 0
 speed = 1
 
@@ -346,6 +346,7 @@ _data = {
 [node name="Skeleton" type="CharacterBody2D" groups=["hostile"]]
 collision_layer = 3
 script = ExtResource("1_pwd2f")
+basic_level = 2
 spell_list = Array[ExtResource("2_somey")]([ExtResource("3_1duct"), ExtResource("4_kqhep")])
 starting_stats = SubResource("Resource_u7iq7")
 

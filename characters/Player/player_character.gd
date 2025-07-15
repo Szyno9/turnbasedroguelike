@@ -89,7 +89,8 @@ func _on_spells_ui_child_entered_tree(node):
 		#input_state = INPUT_STATE.ATTACK
 		#next_attack = spell_book.get_indexed_spell(spell_button.spell_index)
 func _spell_button_pressed(spell_resource:Spell):
-	current_id_path = [tile_map.local_to_map(global_position)]
+	if current_id_path.size()>0:
+		current_id_path = [tile_map.local_to_map(global_position)]
 	
 	if input_state == INPUT_STATE.ATTACK and spell_resource == next_attack:
 		input_state = INPUT_STATE.MOVE
@@ -113,6 +114,10 @@ func interact_with_element(element:Interactable):
 			element.on_interaction()
 			max_health+=25
 			take_heal(25)
+		GlobalEnums.INTERACTABLES.STAR:
+			element.on_interaction()
+			max_actions+=1
+			actions+=1
 
 func _on_set_spawn_point(spawn_point: Vector2i):
 	spawn_point = tile_map.map_to_local(spawn_point)

@@ -343,6 +343,7 @@ _data = {
 [node name="Skeleton" type="CharacterBody2D" groups=["hostile"]]
 collision_layer = 3
 script = ExtResource("1_wh68u")
+basic_level = 3
 starting_stats = SubResource("Resource_jvr3c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

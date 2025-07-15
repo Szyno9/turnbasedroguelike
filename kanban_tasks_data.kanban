@@ -28,7 +28,7 @@
 			"tasks": [
 				"fd356a51-6f8b-43b3-97a9-1720573490a2",
 				"4ab6160f-ce42-4395-9519-49cd68a0ed96",
-				"73f17862-e7be-4f8a-9bb3-b9c4ce449d18"
+				"c26e21ab-2a38-46b4-a777-7d9f7340ebb7"
 			]
 		},
 		{
@@ -40,7 +40,6 @@
 				"4d790c00-7606-4120-8cf1-b0b9479c2133",
 				"a8ee94ab-0918-427c-ab19-2c42272455d4",
 				"8bd76749-a11e-4a8e-894f-9a7a7d8905dc",
-				"f0329f00-6607-48b3-b2ca-c68c386d71f3",
 				"5f308286-3901-493c-8e54-4cf1711649b2",
 				"1aa225f9-43e7-45db-b1d5-cba3f2af887f",
 				"c0bac883-3f0d-4c38-adf8-be6677e5b837",
@@ -48,6 +47,8 @@
 				"a2a08dbb-31ea-498d-a35e-1fe23e9237ce",
 				"aa6c76e9-d25d-4569-bc07-2cc5a1e5b0a5",
 				"4ce253cb-354e-4e9a-852a-4b1eec133be7",
+				"73f17862-e7be-4f8a-9bb3-b9c4ce449d18",
+				"f0329f00-6607-48b3-b2ca-c68c386d71f3",
 				"3ec5b8d1-1789-41a4-9d9e-3881a3f3dbec",
 				"d5d87cf6-ea06-4301-ae60-2336c7550ece",
 				"b4ae0d37-5023-4dfc-8b66-be76803ba913",
@@ -504,26 +505,33 @@
 			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
 			"steps": [
 				{
-					"details": "levelup",
-					"done": false
+					"details": "powerup\n",
+					"done": true
 				},
 				{
 					"details": "enemy levelup",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "napisy w menu",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "naprawa kolizji",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "naprawa enemy spawn",
-					"done": false
+					"done": true
 				}
 			]
+		},
+		{
+			"uuid": "c26e21ab-2a38-46b4-a777-7d9f7340ebb7",
+			"title": "WTOREK EXTRA",
+			"description": "",
+			"category": "3c7e7544-3f77-48cb-a6d7-bcec632a40c8",
+			"steps": []
 		}
 	],
 	"layout": {

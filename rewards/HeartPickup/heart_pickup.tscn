@@ -78,7 +78,7 @@ interaction_type = 3
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_l8jy5")
 autoplay = "default"
-frame_progress = 0.823892
+frame_progress = 0.822297
 
 [node name="Area2D" type="Area2D" parent="."]
 

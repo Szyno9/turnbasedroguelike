@@ -35,30 +35,8 @@ func new_level():
 	tile_map = get_parent() #TODO: na ten moment to jest głupie jak but
 	
 	draw_room(generate_level(), Vector2i(0,0))
-	#spawn_enemies()
 	get_parent().initialize()
-	#get_tree().current_scene.add_child(tile_map.duplicate())
 
-#func spawn_enemies(amount_of_groups:int = 4, size_of_groups:int = 3):
-	#var regions_table = []
-	#var i = 0
-	#while i < amount_of_groups:
-		#var new_point = Vector2i(randi_range(0,level_grid[0].size()),randi_range(0,level_grid.size()))
-		#var new_region = circular_search(new_point, 30, regions_table)
-		#if new_region != []:
-			#i+=1
-			#regions_table.append(new_region)
-#
-	#var monster_group = load("res://map_elements/monster_groups/evil_mage_skeletons.tres").duplicate()
-	#for region in regions_table:
-#
-		#for monster in monster_group.get_monsters():
-			#var spawn_point = region.pick_random()
-			#region.erase(spawn_point)
-			#spawn_point -= Vector2i(MAX_ROOM_SIZE/2, MAX_ROOM_SIZE/2)
-			#var monster_scene = monster.instantiate()
-			#monster_scene.global_position = tile_map.map_to_local(spawn_point)
-			#GlobalDataBus.elements.append(monster_scene)
 
 func spawn_enemies(encounter_coords:Vector2i):
 	var viable_monster_groups:Array
@@ -66,12 +44,42 @@ func spawn_enemies(encounter_coords:Vector2i):
 		if group.map_levels.has(GlobalDataBus.current_level):
 			viable_monster_groups.append(group)
 	var monster_group = viable_monster_groups.pick_random()
+	var spawn_area: Array[Vector2i] = get_spawn_area(encounter_coords, monster_group.get_monsters().size())
+	
 	for monster in monster_group.get_monsters():
-		var spawn_point = encounter_coords
+		var spawn_point = spawn_area.pick_random()
+		if spawn_area.size()>1:
+			spawn_area.erase(spawn_point)
 		var monster_scene = monster.instantiate()
 		monster_scene.global_position = tile_map.map_to_local(spawn_point)
 		GlobalDataBus.elements.append(monster_scene)
-	
+
+func get_spawn_area(center_coords:Vector2i, monster_group_size:int) -> Array[Vector2i]:
+	const DIRECTIONS = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+	var spawn_area: Array[Vector2i] = []
+	var cell_stack: Array = [center_coords]
+	while not (cell_stack.is_empty()):
+		#if spawn_area.size()>=monster_group_size*2:
+			#break
+		var current = cell_stack.pop_back()
+		if current in spawn_area:
+			continue
+		
+		spawn_area.append(current)
+		
+		for direction in DIRECTIONS:
+			var cell: Vector2i = current + direction
+			if cell.y>=level_grid.size() or cell.y<0 or cell.x>=level_grid[0].size() or cell.x<0:
+				continue
+			if cell in spawn_area:
+				continue
+			if level_grid[cell.y][cell.x] == 1:
+				continue
+			if cell.distance_to(center_coords) >= monster_group_size:
+				continue
+			cell_stack.append(cell)
+	return spawn_area
+
 func spawn_treasures(treasure_coords:Vector2i):
 	var chest = load("res://map_elements/Chest/chest.tscn").instantiate()
 	chest.global_position = tile_map.map_to_local(treasure_coords)
@@ -225,52 +233,6 @@ func noise_logic(room, x, y):
 			return true
 	return false
 
-#func merge_noise(noise:Array, room: Array, start: Vector2i):
-	#var queue: Array[Vector2i] = []
-	#queue.append(start)
-	#var visited:Array = []
-	#for y in room.size():
-		#visited.append([])
-		#for x in room[0].size():
-			#visited[y].append(false)
-	#visited[start.y][start.x] = true
-	#while !queue.is_empty():
-		#var current: Vector2i = queue.front()
-		#room[current.y][current.x] = 0
-		#queue.pop_front()
-		#for neighbour in [Vector2i(-1, 0),Vector2i(0, -1),Vector2i(1, 0),Vector2i(0, 1)]:
-			#var dx = current.x + neighbour.x
-			#var dy = current.y + neighbour.y
-			#if (dx < 0 or dy < 0 or dx >= noise[0].size() or dy >= noise.size()):
-				#continue
-			#if noise[dy][dx] == 1:
-				#continue
-			#if visited[dy][dx] == true:
-				#continue
-			#queue.append(Vector2i(dx,dy))
-			#visited[dy][dx] = true
-	#return room
-	#var queue: Array[Vector2i] = []
-	#queue.append(start)
-	#var visited:Array[Vector2i]=[start]
-	#while !queue.is_empty():
-		#print(queue)
-		#print(visited)
-		#var current: Vector2i = queue.front()
-		#room[current.y][current.x] = 0
-		#queue.pop_front()
-		#for neighbour in [Vector2i(-1, 0),Vector2i(0, -1),Vector2i(1, 0),Vector2i(0, 1)]:
-			#var dx = current.x + neighbour.x
-			#var dy = current.y + neighbour.y
-			#if (dx < 0 or dy < 0 or dx >= noise[0].size() or dy >= noise.size()):
-				#continue
-			#if noise[dy][dx] == 1:
-				#continue
-			#if visited.has(Vector2i(dx, dy)):
-				#continue
-			#queue.append(Vector2i(dx,dy))
-			#visited.append(Vector2i(dx,dy))
-	#return room
 func cellular_automata(room):
 	for y in range(room.size()):
 		for x in range(room[0].size()):

@@ -181,6 +181,7 @@ _data = {
 
 [node name="EvilMage" type="CharacterBody2D" groups=["hostile"]]
 script = ExtResource("1_72s1d")
+basic_level = 4
 starting_stats = SubResource("Resource_jwiwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

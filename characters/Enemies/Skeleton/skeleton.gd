@@ -17,7 +17,7 @@ func _physics_process(delta):
 			turn_ai()
 	
 func die():
-	var content = load("res://rewards/SpellUpgrade/spell_upgrade.tscn")
+	var content = load("res://rewards/ActionPickup/action_pickup.tscn")
 	var upgrade = content.instantiate()
 	upgrade.global_position = get_global_position()
 	call_deferred("add_sibling",upgrade)

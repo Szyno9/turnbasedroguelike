@@ -98,6 +98,7 @@ _data = {
 
 [node name="Slime" type="CharacterBody2D" groups=["hostile"]]
 script = ExtResource("1_d5vxr")
+basic_level = 1
 starting_stats = SubResource("Resource_chip7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

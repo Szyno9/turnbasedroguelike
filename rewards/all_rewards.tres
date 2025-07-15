@@ -7,4 +7,4 @@ script = ExtResource("1_beeo6")
 base_folder = "res://rewards"
 includes = Array[String](["**.tscn"])
 excludes = Array[String](["all_rewards.tres"])
-paths = Array[String](["res://rewards/HeartPickup/heart_pickup.tscn", "res://rewards/SpellPickup/spell_pickup.tscn", "res://rewards/SpellUpgrade/spell_upgrade.tscn"])
+paths = Array[String](["res://rewards/ActionPickup/action_pickup.tscn", "res://rewards/HeartPickup/heart_pickup.tscn", "res://rewards/SpellPickup/spell_pickup.tscn", "res://rewards/SpellUpgrade/spell_upgrade.tscn"])

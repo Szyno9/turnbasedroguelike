@@ -25,7 +25,6 @@ func _input(event):
 		new_level()
 
 func start_level():
-	print("elo")
 	tile_set = level_tilesets[GlobalDataBus.current_level]
 	$LevelGenerator.new_level()
 	GlobalDataBus.level_changed.emit()
@@ -65,7 +64,8 @@ func test():
 	var char_position:Array[Vector2i]
 	for element in GlobalDataBus.elements:
 		if element != null:
-			char_position.append(local_to_map(element.global_position))
+			if element.is_class("CharacterBody2D"):
+				char_position.append(local_to_map(element.global_position))
 
 	for x in get_used_rect().size.x:
 			for y in get_used_rect().size.y:

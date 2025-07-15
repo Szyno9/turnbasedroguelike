@@ -8,7 +8,9 @@ class_name CharacterBase
 @export var starting_stats:Stats
 @export var max_health: int
 @export var health: int
+@export var max_actions: int
 @export var actions: int
+@export var max_speed: int
 @export var speed: int
 @export var initiative: int
 var spell_book:SpellBook = SpellBook.new()
@@ -39,9 +41,12 @@ func _ready():
 	
 	TurnQueueGlobal.global_tick.connect("timeout", Callable(self, "_on_global_tick"))
 	GlobalDataBus.level_changed.connect(_on_level_changed)
+	GlobalDataBus.turn_mode_started.connect(_on_turn_mode_started)
 	max_health = starting_stats.health
 	health = starting_stats.health
+	max_actions = starting_stats.actions
 	actions = starting_stats.actions
+	max_speed = starting_stats.speed
 	speed = starting_stats.speed
 	initiative = starting_stats.initiative
 	
@@ -101,8 +106,8 @@ func turn_tick(): #TODO
 	if TurnQueueGlobal.turn_mode == true:
 		current_id_path.clear()
 		is_moving = false
-	speed=starting_stats.speed
-	actions=starting_stats.actions
+	speed=max_speed
+	actions=max_actions
 	spell_book.turn_tick()
 	status_holder.turn_tick_status_check()
 
@@ -157,8 +162,9 @@ func set_id_path(target:Vector2i):
 	if id_path.is_empty() == false:
 		current_id_path = id_path
 func move_path():
-	if current_id_path.is_empty() == false and speed>0:
+	if current_id_path.is_empty() == false and ((speed>0 and TurnQueueGlobal.turn_mode == true) or TurnQueueGlobal.turn_mode == false):
 		is_moving = true
+		set_id_path(current_id_path.back())
 		var next_tile = tile_map.map_to_local(current_id_path.front())
 		global_position = global_position.move_toward(next_tile, 1)
 		direction_facing = current_id_path.front() - tile_map.local_to_map(global_position)
@@ -173,9 +179,15 @@ func move_path():
 func get_random_surrouding_tile():
 	var surround_table = tile_map.get_surrounding_cells(tile_map.local_to_map(global_position))
 	for tile in surround_table:
+		if !tile_map.get_used_rect().has_point(tile):
+			surround_table.erase(tile)
+			continue
 		if astar_grid.is_point_solid(tile):
 			surround_table.erase(tile)
-	return surround_table[randi_range(0,surround_table.size()-1)]
+	if surround_table.is_empty():
+		return tile_map.local_to_map(global_position)
+	else:
+		return surround_table[randi_range(0,surround_table.size()-1)]
 
 
 func check_spell_range(spell:Spell, target:Vector2):
@@ -197,3 +209,7 @@ func teleport_to_location(destination: Vector2i):
 func _on_level_changed():
 	current_id_path.clear()
 	astar_grid = GlobalLevelMap.astar_grid
+
+func _on_turn_mode_started():
+	if !current_id_path.is_empty():
+		current_id_path = [current_id_path.front()]
